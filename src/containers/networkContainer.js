@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import SummaryComponent from '../components/SummaryComponent.js'
 
 class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            static_devices: [
+            staticDevices: [
                 {
                     id: 1,
                     hostName: "Alan's Phone",
@@ -34,7 +35,7 @@ class NetworkContainer extends Component {
                     ipAddress: "192.168.17.89"
                 }
             ],
-            dynamic_devices: [
+            dynamicDevices: [
                 {
                   timeStamp: 1588078694,
                   dynamicDeviceData: [
@@ -108,10 +109,18 @@ class NetworkContainer extends Component {
         }
     }
 
+    countActiveConnections() {
+      let result = this.state.dynamicDevices[this.state.dynamicDevices.length - 1]
+      let activeConnection = result.dynamicDeviceData.filter(device => device.activeConnection === true)
+      return activeConnection.length
+    }
+
     render() {
         return (
             <div>
                 <h1>Main Dash Container</h1>
+                <SummaryComponent />
+                <p>{this.countActiveConnections()}</p>
             </div>
         );
     }
