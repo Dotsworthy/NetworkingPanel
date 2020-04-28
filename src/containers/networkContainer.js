@@ -119,7 +119,7 @@ class NetworkContainer extends Component {
         return (
             <div>
                 <h1>Main Dash Container</h1>
-                <SummaryComponent />
+                <SummaryComponent dymanicDevices={this.state.dynamicDevices} />
                 <p>{this.countActiveConnections()}</p>
             </div>
         );

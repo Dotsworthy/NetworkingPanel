@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import TotalDataChart from "./TotalDataChart";
 
 
-function SummaryComponent() {
+function SummaryComponent(props) {
     return (
         <div>
+            <TotalDataChart dynamicDevices={props.dynamicDevices} />
             <p>Number of Connections: 10</p>
         </div>
     )
