@@ -1,7 +1,8 @@
-import React from React;
+import React, { Component } from 'react';
 
-class networkContainer extends Component {
-    construct(props) {
+class NetworkContainer extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
             static_devices: [
                 {
@@ -103,15 +104,17 @@ class networkContainer extends Component {
                     }
                   ]
                 }
-              ]
+            ]
         }
     }
 
     render() {
         return (
-            <h1>Main Dash Container</h1>
-        )
+            <div>
+                <h1>Main Dash Container</h1>
+            </div>
+        );
     }
 }
 
-export default networkContainer;
+export default NetworkContainer;
