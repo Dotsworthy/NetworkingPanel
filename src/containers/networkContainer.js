@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js'
+import DeviceList from '../components/DeviceList.js'
+import DeviceDetail from '../components/DeviceDetail.js'
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -120,7 +122,8 @@ class NetworkContainer extends Component {
             <div>
                 <h1>Main Dash Container</h1>
                 <SummaryComponent />
-                <p>{this.countActiveConnections()}</p>
+                <DeviceList devices={this.state.staticDevices}/>
+                <DeviceDetail />
             </div>
         );
     }
