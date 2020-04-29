@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js'
+import DeviceList from '../components/DeviceList.js'
 
 class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dark: false,
             staticDevices: [
                 {
                     id: 1,
@@ -105,8 +107,9 @@ class NetworkContainer extends Component {
                     }
                   ]
                 }
-            ]
+            ],
         }
+        this.toggleMode = this.toggleMode.bind(this);
     }
 
     latestSnapshotofDynamicDevices() {
@@ -142,18 +145,32 @@ class NetworkContainer extends Component {
       return wirlessDevices.length
     }
 
+    toggleMode(event) {
+        this.setState({dark: !this.state.dark})
+      } 
+    
+
     render() {
         return (
-            <div>
+            <div className={this.state.dark ? 'dark' : 'light'}>
                 <h1>Main Dash Container</h1>
                 <SummaryComponent />
+<<<<<<< HEAD
                 <p>{this.countConnectedDynamicDevices()}</p>
                 <p>{this.countWiredDevices()}</p>
                 <p>{this.countWirelessDevices()}</p>
                 <p>{this.countConnectedStaticDevices()}</p>
                 <p>{console.log(this.connectedDynamicDevicesIds())}</p>
+=======
+                <DeviceList devices={this.state.staticDevices}/>
+                <div class="container">
+                <h3>Light/Dark Mode</h3>
+                <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
+                <label for ="switch">Toggle</label>
+              </div>
+>>>>>>> develop
             </div>
-        );
+        )
     }
 }
 
