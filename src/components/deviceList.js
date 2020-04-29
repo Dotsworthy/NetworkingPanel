@@ -12,6 +12,8 @@ const DeviceList = (props) => {
             macAddress={device.macAddress}
             operatingSystem={device.operatingSystem}
             activeConnection={device.timeStamps[device.timeStamps.length - 1].activeConnection}
+            uploadSpeed={device.timeStamps[device.timeStamps.length - 1].uploadSpeed}
+            downloadSpeed={device.timeStamps[device.timeStamps.length - 1].downloadSpeed}
             />
         )
     })
