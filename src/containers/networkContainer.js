@@ -154,26 +154,18 @@ class NetworkContainer extends Component {
         return (
             <div className={this.state.dark ? 'dark' : 'light'}>
                 <h1>Main Dash Container</h1>
-<<<<<<< HEAD
-                <SummaryComponent devices={this.state.dynamicDevices} />
-                <p>{this.countActiveConnections()}</p>
-=======
                 <SummaryComponent />
-<<<<<<< HEAD
                 <p>{this.countConnectedDynamicDevices()}</p>
                 <p>{this.countWiredDevices()}</p>
                 <p>{this.countWirelessDevices()}</p>
                 <p>{this.countConnectedStaticDevices()}</p>
                 <p>{console.log(this.connectedDynamicDevicesIds())}</p>
-=======
                 <DeviceList devices={this.state.staticDevices}/>
                 <div class="container">
                 <h3>Light/Dark Mode</h3>
                 <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
                 <label for ="switch">Toggle</label>
               </div>
->>>>>>> develop
->>>>>>> develop
             </div>
         )
     }
