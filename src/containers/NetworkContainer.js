@@ -6,6 +6,7 @@ class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
             devices: [
               {
@@ -55,33 +56,29 @@ class NetworkContainer extends Component {
         this.toggleMode = this.toggleMode.bind(this);
   }
 
-  collectDownloadSpeeds(searchTimestamp) {
-    const result = this.state.devices.filter(device => device.timeStamps.timeStamp === searchTimestamp)
-    console.log(result)
+  chartDataMapping(number) {
+    let newChartData = ['']
+    let uploadTotal = 0
+    let downloadTotal = 0
+    for (let counter = 0; counter < number; counter ++) {
+      this.state.devices.forEach(device => {
+        uploadTotal += device.timeStamps[counter].uploadSpeed
+        downloadTotal += device.timeStamps[counter].downloadSpeed
+      })
+    }
+      newChartData.push(uploadTotal)
+      newChartData.push(downloadTotal)
+      this.state.chartData.push(newChartData)
+      newChartData = ['']
   }
+ 
+  
 
-    // latestSnapshotofDynamicDevices() {
-    // return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
-    
-    // connectedDynamicDevices() {
-    //   return this.latestSnapshotofDynamicDevices().dynamicDeviceData.filter(device => device.activeConnection === true)
-    // }
-    
-    // countConnectedDynamicDevices() {
-    //   return this.connectedDynamicDevices().length
-    // }
+  //map through each device
 
-    // connectedDynamicDevicesIds() {
-    //   return this.connectedDynamicDevices().map(device => device.id);
-    // }
+  //find the first timestamps object
 
-    // connectedStaticDevices() {  
-    //   return this.state.staticDevices.filter(device => this.connectedDynamicDevicesIds().includes(device.id))
-    // }
-
-    // countConnectedStaticDevices() {
-    //   return this.connectedStaticDevices().length
-    // }
+  //
 
     // countWiredDevices() {
     //   let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
@@ -102,6 +99,7 @@ class NetworkContainer extends Component {
         return (
             <div className={this.state.dark ? 'network-dark' : 'network-light'}>
               <div className="content">
+                {this.chartDataMapping(2)}
                 <h1>Network Dashboard</h1>
                 <hr></hr>
                 <h2>Summary</h2>
