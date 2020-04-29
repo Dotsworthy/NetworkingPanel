@@ -3,9 +3,9 @@ import Chart from 'react-google-charts';
 
 const TotalDataChart = (props) => {
 
-    const chartData = this.state.dynamicDevices.map((timeStamp, index) => {
-        return chartData;
-    })
+    // const chartData = this.state.dynamicDevices.map((timeStamp, index) => {
+    //     return chartData;
+    // })
 
     // Need to loop through dunamicDevices.timestamp
 
@@ -22,7 +22,12 @@ const TotalDataChart = (props) => {
                     ['Time', 'Upload Mbs', 'Download Mbs'],
                     ['Start', 467, 690],
                     ['', 354, 1009],
-                    ['End', 150, 743],
+                    ['', 265, 2781],
+                    ['', 478, 893],
+                    ['', 354, 1009],
+                    ['', 757, 1677],
+                    ['', 667, 4788],
+                    ['End', 655, 1743],
                 ]}
                 options={{
                     title: 'Total Upload & Downloads',
