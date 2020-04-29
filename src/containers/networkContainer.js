@@ -27,7 +27,8 @@ class NetworkContainer extends Component {
                     download_speed: 0,
                     active_connection: false
                     }      
-                ]},
+                ]
+              },
               {
                 host_name: "DevLaptop",
                 device_type: "PC",
@@ -47,43 +48,45 @@ class NetworkContainer extends Component {
                     download_speed: 0,
                     active_connection: false
                     }
-                  ]},
-            ]},
+                  ]
+              },
+            ]
+          }
         this.toggleMode = this.toggleMode.bind(this);
   }
 
-    latestSnapshotofDynamicDevices() {
-    return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
+    // latestSnapshotofDynamicDevices() {
+    // return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
     
-    connectedDynamicDevices() {
-      return this.latestSnapshotofDynamicDevices().dynamicDeviceData.filter(device => device.activeConnection === true)
-    }
+    // connectedDynamicDevices() {
+    //   return this.latestSnapshotofDynamicDevices().dynamicDeviceData.filter(device => device.activeConnection === true)
+    // }
     
-    countConnectedDynamicDevices() {
-      return this.connectedDynamicDevices().length
-    }
+    // countConnectedDynamicDevices() {
+    //   return this.connectedDynamicDevices().length
+    // }
 
-    connectedDynamicDevicesIds() {
-      return this.connectedDynamicDevices().map(device => device.id);
-    }
+    // connectedDynamicDevicesIds() {
+    //   return this.connectedDynamicDevices().map(device => device.id);
+    // }
 
-    connectedStaticDevices() {  
-      return this.state.staticDevices.filter(device => this.connectedDynamicDevicesIds().includes(device.id))
-    }
+    // connectedStaticDevices() {  
+    //   return this.state.staticDevices.filter(device => this.connectedDynamicDevicesIds().includes(device.id))
+    // }
 
-    countConnectedStaticDevices() {
-      return this.connectedStaticDevices().length
-    }
+    // countConnectedStaticDevices() {
+    //   return this.connectedStaticDevices().length
+    // }
 
-    countWiredDevices() {
-      let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
-      return wiredDevices.length
-    }
+    // countWiredDevices() {
+    //   let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
+    //   return wiredDevices.length
+    // }
 
-    countWirelessDevices() {
-      let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
-      return wirlessDevices.length
-    }
+    // countWirelessDevices() {
+    //   let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
+    //   return wirlessDevices.length
+    // }
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
@@ -95,12 +98,12 @@ class NetworkContainer extends Component {
             <div className={this.state.dark ? 'dark' : 'light'}>
                 <h1>Main Dash Container</h1>
                 <SummaryComponent />
-                <p>{this.countConnectedDynamicDevices()}</p>
+                {/* <p>{this.countConnectedDynamicDevices()}</p>
                 <p>{this.countWiredDevices()}</p>
                 <p>{this.countWirelessDevices()}</p>
                 <p>{this.countConnectedStaticDevices()}</p>
-                <p>{console.log(this.connectedDynamicDevicesIds())}</p>
-                <DeviceList devices={this.state.staticDevices}/>
+                <p>{console.log(this.connectedDynamicDevicesIds())}</p> */}
+                <DeviceList devices={this.state.devices}/>
                 <div class="container">
                 <h3>Light/Dark Mode</h3>
                 <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
