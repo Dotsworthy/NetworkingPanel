@@ -10,43 +10,43 @@ class NetworkContainer extends Component {
             devices: [
               {
                 hostName: "DevLaptop",
-                device_type: "PC",
-                operating_system: "OSx",
-                mac_address: "82:0f:0c:79:5d:69" ,
-                ip_address: "192.168.1.23",
-                time_stamps: [
+                deviceType: "PC",
+                operatingSystem: "OSx",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.23",
+                timeStamps: [
 	                {
-                    time_stamp: 123456789,
-                    upload_speed: 23456,
-                    download_speed: 8946748,
-                    active_connection: true
+                    timeStamp: 123456789,
+                    uploadSpeed: 23456,
+                    downloadSpeed: 8946748,
+                    activeConnection: true
                     },
                     {
-                    time: 98765,
-                    upload_speed: 0,
-                    download_speed: 0,
-                    active_connection: false
+                    timeStamp: 98765,
+                    uploadSpeed: 0,
+                    downloadSpeed: 0,
+                    activeConnection: false
                     }      
                 ]
               },
               {
-                host_name: "DevLaptop",
-                device_type: "PC",
-                operating_system: "OSx",
-                mac_address: "82:0f:0c:79:5d:69" ,
-                ip_address: "192.168.1.23",
-                time_stamps: [
+                hostName: "DevLaptop",
+                deviceType: "PC",
+                operatingSystem: "OSx",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.24",
+                timeStamps: [
                   {
-                    time_stamp: 123456789,
-                    upload_speed: 23456,
-                    download_speed: 8946748,
-                    active_connection: true
+                    timeStamp: 123456789,
+                    uploadSpeed: 23456,
+                    downloadSpeed: 8946748,
+                    activeConnection: true
                     },
                     {
-                    time: 98765,
-                    upload_speed: 0,
-                    download_speed: 0,
-                    active_connection: false
+                    timeStamp: 98765,
+                    uploadSpeed: 0,
+                    downloadSpeed: 0,
+                    activeConnection: true
                     }
                   ]
               },

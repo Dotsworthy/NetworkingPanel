@@ -27,6 +27,7 @@ class DeviceDetail extends Component {
                     <p>{this.props.ipAddress}</p> 
                     <p>{this.props.macAddress}</p> 
                     <p>{this.props.operatingSystem}</p>
+                    <p>{this.props.activeConnection ? "True" : "False"}</p>
                     </div>)
                     :null 
                     }
