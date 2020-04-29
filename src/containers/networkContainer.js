@@ -7,143 +7,91 @@ class NetworkContainer extends Component {
         super(props);
         this.state = {
             dark: false,
-            staticDevices: [
-                {
-                    id: 1,
-                    hostName: "Alan's Phone",
-                    deviceType: "phone",
-                    operatingSystem: "Android",
-                    connectionType: "wifi",
-                    macAddress: "00:1b:44:11:3A",
-                    ipAddress: "192.168.17.43"
-
-                },
-                {
-                    id: 2,
-                    hostName: "Andrews's Macbook Air",
-                    deviceType: "laptop",
-                    operatingSystem: "MacOS",
-                    connectionType: "wifi",
-                    macAddress: "00:2b:24:12:4A",
-                    ipAddress: "192.168.17.68"
-                },
-                {
-                    id: 3,
-                    hostName: "Nick's Server",
-                    deviceType: "server",
-                    operatingSystem: "Linux",
-                    connectionType: "ethernet",
-                    macAddress: "00:1b:44:11:5A",
-                    ipAddress: "192.168.17.89"
-                }
-            ],
-            dynamicDevices: [
-                {
-                  timeStamp: 1588078694,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 5
+            devices: [
+              {
+                hostName: "DevLaptop",
+                deviceType: "PC",
+                operatingSystem: "OSx",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.23",
+                timeStamps: [
+	                {
+                    timeStamp: "2020-04-29 14:19:26.546321",
+                    uploadSpeed: 23456,
+                    downloadSpeed: 8946748,
+                    activeConnection: true
                     },
                     {
-                        deviceID: 2,
-                        activeConnection: false,
-                        uploadSpeed: 0,
-                        downloadSpeed: 0
+                    timeStamp: "2020-04-29 14:19:30.011170",
+                    uploadSpeed: 0,
+                    downloadSpeed: 0,
+                    activeConnection: false
+                    }      
+                ]
+              },
+              {
+                hostName: "Andrew's iPhone",
+                deviceType: "mobile",
+                operatingSystem: "iOS",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.24",
+                timeStamps: [
+                  {
+                    timeStamp: "2020-04-29 14:19:26.546321",
+                    uploadSpeed: 23456,
+                    downloadSpeed: 8946748,
+                    activeConnection: true
                     },
                     {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 5
+                    timeStamp: "2020-04-29 14:19:30.011170",
+                    uploadSpeed: 250,
+                    downloadSpeed: 4000,
+                    activeConnection: true
                     }
                   ]
-                },
-                {
-                  timeStamp: 1588078769,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: false,
-                      uploadSpeed: 0,
-                      downloadSpeed: 0
-                    },
-                    {
-                      deviceID: 2,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 1000
-                    },
-                    {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 3000
-                    }
-                  ]
-                },
-                {
-                  timeStamp: 1588078912,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: true,
-                      uploadSpeed: 25,
-                      downloadSpeed: 125
-                    },
-                    {
-                      deviceID: 2,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 1000
-                    },
-                    {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 3000
-                    }
-                  ]
-                }
-            ],
-        }
+              },
+            ]
+          }
         this.toggleMode = this.toggleMode.bind(this);
-    }
+  }
 
-    latestSnapshotofDynamicDevices() {
-    return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
+  collectDownloadSpeeds(searchTimestamp) {
+    const result = this.state.devices.filter(device => device.timeStamps.timeStamp === searchTimestamp)
+    console.log(result)
+  }
+
+    // latestSnapshotofDynamicDevices() {
+    // return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
     
-    connectedDynamicDevices() {
-      return this.latestSnapshotofDynamicDevices().dynamicDeviceData.filter(device => device.activeConnection === true)
-    }
+    // connectedDynamicDevices() {
+    //   return this.latestSnapshotofDynamicDevices().dynamicDeviceData.filter(device => device.activeConnection === true)
+    // }
     
-    countConnectedDynamicDevices() {
-      return this.connectedDynamicDevices().length
-    }
+    // countConnectedDynamicDevices() {
+    //   return this.connectedDynamicDevices().length
+    // }
 
-    connectedDynamicDevicesIds() {
-      return this.connectedDynamicDevices().map(device => device.id);
-    }
+    // connectedDynamicDevicesIds() {
+    //   return this.connectedDynamicDevices().map(device => device.id);
+    // }
 
-    connectedStaticDevices() {  
-      return this.state.staticDevices.filter(device => this.connectedDynamicDevicesIds().includes(device.id))
-    }
+    // connectedStaticDevices() {  
+    //   return this.state.staticDevices.filter(device => this.connectedDynamicDevicesIds().includes(device.id))
+    // }
 
-    countConnectedStaticDevices() {
-      return this.connectedStaticDevices().length
-    }
+    // countConnectedStaticDevices() {
+    //   return this.connectedStaticDevices().length
+    // }
 
-    countWiredDevices() {
-      let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
-      return wiredDevices.length
-    }
+    // countWiredDevices() {
+    //   let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
+    //   return wiredDevices.length
+    // }
 
-    countWirelessDevices() {
-      let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
-      return wirlessDevices.length
-    }
+    // countWirelessDevices() {
+    //   let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
+    //   return wirlessDevices.length
+    // }
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
@@ -152,23 +100,23 @@ class NetworkContainer extends Component {
 
     render() {
         return (
-            <div className={this.state.dark ? 'dark' : 'light'}>
-                <h1>Main Dash Container</h1>
+            <div className={this.state.dark ? 'network-dark' : 'network-light'}>
+              <div className="content">
+                <h1>Network Dashboard</h1>
+                <hr></hr>
+                <h2>Summary</h2>
+                <hr></hr>
                 <SummaryComponent />
-<<<<<<< HEAD
-                <p>{this.countConnectedDynamicDevices()}</p>
-                <p>{this.countWiredDevices()}</p>
-                <p>{this.countWirelessDevices()}</p>
-                <p>{this.countConnectedStaticDevices()}</p>
-                <p>{console.log(this.connectedDynamicDevicesIds())}</p>
-=======
-                <DeviceList devices={this.state.staticDevices}/>
-                <div class="container">
-                <h3>Light/Dark Mode</h3>
-                <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                <label for ="switch">Toggle</label>
+                <h2>Devices</h2>
+                <hr></hr>
+                <DeviceList devices={this.state.devices}/>
+                  <div class="container">
+                <hr></hr>
+                  <h4>Light/Dark Mode</h4>
+                  <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
+                  <label for ="switch">Toggle</label>
+                  </div>
               </div>
->>>>>>> develop
             </div>
         )
     }

@@ -1,3 +1,36 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  background-color: #F2F3F4;
+}
+
+
+
+.network-dark {
+  background-color: #1D3354;
+  color: white;
+  height: 100vh;
+}
+
+.network-light {
+  background-color: #F2F3F4;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.device-title-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .header {
   cursor: pointer;
   border: none;
@@ -25,11 +58,34 @@ font-family: verdana;
 font-size: 14px;
 }
 
-.dark {
-  background-color: #1D3354;
-  color: white;
+.connection-light {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: yellow;
+  padding: 2px;
 }
 
-.light {
-  background-color: #F2F3F4;
+.connection-light-connected {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: green;
+  padding: 2px;
+}
+
+.connection-light-disconnected {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: red;
+  padding: 2px;
+}
+
+.chart {
+  height: 200px;
+  width: 200px;
 }

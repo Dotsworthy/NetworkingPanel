@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import TotalDataChart from "./TotalDataChart";
+import "../App.css";
 
 
-function SummaryComponent() {
+function SummaryComponent(props) {
     return (
-        <div>
+        <div className="summary">
+            <TotalDataChart dynamicDevices={props.dynamicDevices} />
+            <div>
             <p>Download Speed: 35mps</p>
             <p>Number of Connections: 10</p>
             <p>Wireless: 5 </p>
             <p>Wired: 5</p>
+            </div>
         </div>
     )
 } 
