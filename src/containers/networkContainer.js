@@ -16,13 +16,13 @@ class NetworkContainer extends Component {
                 ipAddress: "192.168.1.23",
                 timeStamps: [
 	                {
-                    timeStamp: 123456789,
+                    timeStamp: "2020-04-29 14:19:26.546321",
                     uploadSpeed: 23456,
                     downloadSpeed: 8946748,
                     activeConnection: true
                     },
                     {
-                    timeStamp: 98765,
+                    timeStamp: "2020-04-29 14:19:30.011170",
                     uploadSpeed: 0,
                     downloadSpeed: 0,
                     activeConnection: false
@@ -37,13 +37,13 @@ class NetworkContainer extends Component {
                 ipAddress: "192.168.1.24",
                 timeStamps: [
                   {
-                    timeStamp: 123456789,
+                    timeStamp: "2020-04-29 14:19:26.546321",
                     uploadSpeed: 23456,
                     downloadSpeed: 8946748,
                     activeConnection: true
                     },
                     {
-                    timeStamp: 98765,
+                    timeStamp: "2020-04-29 14:19:30.011170",
                     uploadSpeed: 0,
                     downloadSpeed: 0,
                     activeConnection: true
@@ -53,6 +53,11 @@ class NetworkContainer extends Component {
             ]
           }
         this.toggleMode = this.toggleMode.bind(this);
+  }
+
+  collectDownloadSpeeds(searchTimestamp) {
+    const result = this.state.devices.filter(device => device.timeStamps.timeStamp === searchTimestamp)
+    console.log(result)
   }
 
     // latestSnapshotofDynamicDevices() {
@@ -97,6 +102,7 @@ class NetworkContainer extends Component {
         return (
             <div className={this.state.dark ? 'dark' : 'light'}>
                 <h1>Main Dash Container</h1>
+                {this.collectDownloadSpeeds(123456789)}
                 <SummaryComponent />
                 {/* <p>{this.countConnectedDynamicDevices()}</p>
                 <p>{this.countWiredDevices()}</p>
