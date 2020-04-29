@@ -7,110 +7,50 @@ class NetworkContainer extends Component {
         super(props);
         this.state = {
             dark: false,
-            staticDevices: [
-                {
-                    id: 1,
-                    hostName: "Alan's Phone",
-                    deviceType: "phone",
-                    operatingSystem: "Android",
-                    connectionType: "wifi",
-                    macAddress: "00:1b:44:11:3A",
-                    ipAddress: "192.168.17.43"
-
-                },
-                {
-                    id: 2,
-                    hostName: "Andrews's Macbook Air",
-                    deviceType: "laptop",
-                    operatingSystem: "MacOS",
-                    connectionType: "wifi",
-                    macAddress: "00:2b:24:12:4A",
-                    ipAddress: "192.168.17.68"
-                },
-                {
-                    id: 3,
-                    hostName: "Nick's Server",
-                    deviceType: "server",
-                    operatingSystem: "Linux",
-                    connectionType: "ethernet",
-                    macAddress: "00:1b:44:11:5A",
-                    ipAddress: "192.168.17.89"
-                }
-            ],
-            dynamicDevices: [
-                {
-                  timeStamp: 1588078694,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 5
+            devices: [
+              {
+                hostName: "DevLaptop",
+                device_type: "PC",
+                operating_system: "OSx",
+                mac_address: "82:0f:0c:79:5d:69" ,
+                ip_address: "192.168.1.23",
+                time_stamps: [
+	                {
+                    time_stamp: 123456789,
+                    upload_speed: 23456,
+                    download_speed: 8946748,
+                    active_connection: true
                     },
                     {
-                        deviceID: 2,
-                        activeConnection: false,
-                        uploadSpeed: 0,
-                        downloadSpeed: 0
+                    time: 98765,
+                    upload_speed: 0,
+                    download_speed: 0,
+                    active_connection: false
+                    }      
+                ]},
+              {
+                host_name: "DevLaptop",
+                device_type: "PC",
+                operating_system: "OSx",
+                mac_address: "82:0f:0c:79:5d:69" ,
+                ip_address: "192.168.1.23",
+                time_stamps: [
+                  {
+                    time_stamp: 123456789,
+                    upload_speed: 23456,
+                    download_speed: 8946748,
+                    active_connection: true
                     },
                     {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 5
+                    time: 98765,
+                    upload_speed: 0,
+                    download_speed: 0,
+                    active_connection: false
                     }
-                  ]
-                },
-                {
-                  timeStamp: 1588078769,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: false,
-                      uploadSpeed: 0,
-                      downloadSpeed: 0
-                    },
-                    {
-                      deviceID: 2,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 1000
-                    },
-                    {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 3000
-                    }
-                  ]
-                },
-                {
-                  timeStamp: 1588078912,
-                  dynamicDeviceData: [
-                    {
-                      deviceID: 1,
-                      activeConnection: true,
-                      uploadSpeed: 25,
-                      downloadSpeed: 125
-                    },
-                    {
-                      deviceID: 2,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 1000
-                    },
-                    {
-                      deviceID: 3,
-                      activeConnection: true,
-                      uploadSpeed: 4,
-                      downloadSpeed: 3000
-                    }
-                  ]
-                }
-            ],
-        }
+                  ]},
+            ]},
         this.toggleMode = this.toggleMode.bind(this);
-    }
+  }
 
     latestSnapshotofDynamicDevices() {
     return this.state.dynamicDevices[this.state.dynamicDevices.length - 1]}
