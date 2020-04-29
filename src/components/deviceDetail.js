@@ -18,8 +18,12 @@ class DeviceDetail extends Component {
         return (
                 <div>
                     <div onClick={(e)=> this.togglePanel(e)} className ='header'>
-                    <h3>{this.props.deviceName}</h3>
-                    <div className={this.props.activeConnection ? "connection-light-connected" : "connection-light-disconnected" }></div>
+                    
+                    <div className="device-title-bar">
+                        <h3>{this.props.deviceName}</h3>
+                        <div className={this.props.activeConnection ? "connection-light-connected" : "connection-light-disconnected" }></div>
+                    </div>
+                    
                     </div> 
                     {
                     this.state.open? (

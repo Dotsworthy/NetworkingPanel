@@ -12,10 +12,10 @@ const TotalDataChart = (props) => {
     // Then loop through and reduce the uploadSpeed & downloadSpeed
 
     return(
-        <div>
+        <div className="chart">
             <Chart
-                width={400}
-                height={'300px'}
+                // width={400}
+                // height={'300px'}
                 chartType="LineChart"
                 loader={<div>Loading Chart</div>}
                 data={[ // { chartData }
