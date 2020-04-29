@@ -6,7 +6,7 @@ import "../App.css";
 function SummaryComponent(props) {
     return (
         <div className="summary">
-            <TotalDataChart dynamicDevices={props.dynamicDevices} />
+            <TotalDataChart devices={props.devices} />
             <div>
             <p>Download Speed: 35mps</p>
             <p>Number of Connections: 10</p>
