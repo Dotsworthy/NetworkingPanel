@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js'
 import DeviceList from '../components/DeviceList.js'
-import DeviceDetail from '../components/DeviceDetail.js'
 
 class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dark: false,
             staticDevices: [
                 {
                     id: 1,
@@ -107,8 +107,9 @@ class NetworkContainer extends Component {
                     }
                   ]
                 }
-            ]
+            ],
         }
+        this.toggleMode = this.toggleMode.bind(this);
     }
 
     countActiveConnections() {
@@ -117,15 +118,24 @@ class NetworkContainer extends Component {
       return activeConnection.length
     }
 
+    toggleMode(event) {
+        this.setState({dark: !this.state.dark})
+      } 
+    
+
     render() {
         return (
-            <div>
+            <div className={this.state.dark ? 'dark' : 'light'}>
                 <h1>Main Dash Container</h1>
                 <SummaryComponent />
                 <DeviceList devices={this.state.staticDevices}/>
-                <DeviceDetail />
+                <div class="container">
+                <h3>Light/Dark Mode</h3>
+                <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
+                <label for ="switch">Toggle</label>
+              </div>
             </div>
-        );
+        )
     }
 }
 
