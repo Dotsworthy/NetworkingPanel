@@ -8,87 +8,88 @@ class NetworkContainer extends Component {
         this.state = {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
-            devices: [
-              {
-                hostName: "DevLaptop",
-                deviceType: "PC",
-                operatingSystem: "OSx",
-                macAddress: "82:0f:0c:79:5d:69" ,
-                ipAddress: "192.168.1.23",
-                timeStamps: [
-	                {
-                    timeStamp: "2020-04-29 14:19:26.546321",
-                    uploadSpeed: 23456,
-                    downloadSpeed: 8946748,
-                    activeConnection: true
-                    },
-                    {
-                    timeStamp: "2020-04-29 14:19:30.011170",
-                    uploadSpeed: 0,
-                    downloadSpeed: 0,
-                    activeConnection: false
-                    }      
-                ]
-              },
-              {
-                hostName: "Andrew's iPhone",
-                deviceType: "mobile",
-                operatingSystem: "iOS",
-                macAddress: "82:0f:0c:79:5d:69" ,
-                ipAddress: "192.168.1.24",
-                timeStamps: [
-                  {
-                    timeStamp: "2020-04-29 14:19:26.546321",
-                    uploadSpeed: 23456,
-                    downloadSpeed: 8946748,
-                    activeConnection: true
-                    },
-                    {
-                    timeStamp: "2020-04-29 14:19:30.011170",
-                    uploadSpeed: 250,
-                    downloadSpeed: 4000,
-                    activeConnection: true
-                    }
-                  ]
-              },
-            ]
-          }
+            connectedDevices: 0,
+            combinedUploadSpeed: 0,
+            combinedDownloadSpeed: 0,
+            devices: []
+          };
         this.toggleMode = this.toggleMode.bind(this);
+    }
+
+  componentDidMount() {
+    const url = 'http://localhost:5001/presentation-data';
+    
+    fetch(url)
+      .then(res => res.json())
+      .then(devices => this.setState({
+         devices: devices 
+        }))
+      .then(() => {
+        this.chartDataMapping()
+        this.countConnectedDevices()
+        this.countUploadSpeed()
+        this.countDownloadSpeed()
+      })
+      .catch(err => console.error); 
+     
   }
 
-  chartDataMapping(number) {
+  chartDataMapping() {
     let newChartData = ['']
     let uploadTotal = 0
     let downloadTotal = 0
-    for (let counter = 0; counter < number; counter ++) {
+    for (let counter = 0; counter < this.state.devices.length; counter ++) {
       this.state.devices.forEach(device => {
-        uploadTotal += device.timeStamps[counter].uploadSpeed
-        downloadTotal += device.timeStamps[counter].downloadSpeed
+        uploadTotal += device.snap_shots[counter].upload_speed
+        downloadTotal += device.snap_shots[counter].download_speed
       })
-    }
       newChartData.push(uploadTotal)
       newChartData.push(downloadTotal)
       this.state.chartData.push(newChartData)
       newChartData = ['']
+      uploadTotal = 0
+      downloadTotal = 0
+      
+    }
   }
- 
+  
+    countConnectedDevices() {
+      let counter = 0;
+
+      this.state.devices.forEach (device => {
+      if (device.snap_shots[device.snap_shots.length -1].active_connection === true) {
+        counter += 1 
+      };
+    })
+    this.setState({connectedDevices: counter})
+  }
+
+  countUploadSpeed() {
+    let counter = 0;
+    this.state.devices.forEach(device => {
+      counter += device.snap_shots[device.snap_shots.length-1].upload_speed
+    })
+    this.setState({combinedUploadSpeed: counter})
+  }
+
+  countDownloadSpeed() {
+    let counter = 0;
+    this.state.devices.forEach(device => {
+      counter += device.snap_shots[device.snap_shots.length-1].download_speed
+    })
+    this.setState({combinedDownloadSpeed: counter})
+  }
   
 
-  //map through each device
+    countWiredDevices() {
+      let wiredDevices = this.state.devices.filter(device => device.connectionType === "wifi")
+      return wiredDevices.length
+    }
 
-  //find the first timestamps object
-
-  //
-
-    // countWiredDevices() {
-    //   let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
-    //   return wiredDevices.length
-    // }
-
-    // countWirelessDevices() {
-    //   let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
-    //   return wirlessDevices.length
-    // }
+    countWirelessDevices() {
+      let wirlessDevices = this.state.devices.filter(device => device.connectionType === "ethernet")
+      return wirlessDevices.length
+    }
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
@@ -99,12 +100,18 @@ class NetworkContainer extends Component {
         return (
             <div className={this.state.dark ? 'network-dark' : 'network-light'}>
               <div className="content">
-                {this.chartDataMapping(2)}
+                
                 <h1>Network Dashboard</h1>
                 <hr></hr>
                 <h2>Summary</h2>
                 <hr></hr>
-                <SummaryComponent />
+                
+                <SummaryComponent 
+                chartData = {this.state.chartData} 
+                connectedDevices = {this.state.connectedDevices} 
+                uploadSpeed = {this.state.combinedUploadSpeed}
+                downloadSpeed = {this.state.combinedDownloadSpeed}  
+                />
                 <h2>Devices</h2>
                 <hr></hr>
                 <DeviceList devices={this.state.devices}/>

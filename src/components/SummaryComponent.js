@@ -6,12 +6,11 @@ import "../App.css";
 function SummaryComponent(props) {
     return (
         <div className="summary">
-            <TotalDataChart dynamicDevices={props.dynamicDevices} />
+            <TotalDataChart className="summary=chart" chartData={props.chartData} />
             <div>
-            <p>Download Speed: 35mps</p>
-            <p>Number of Connections: 10</p>
-            <p>Wireless: 5 </p>
-            <p>Wired: 5</p>
+            <p>Number of Connections: {props.connectedDevices}</p>
+            <p>Upload Speed: {props.uploadSpeed} </p>
+            <p>Download Speed: {props.downloadSpeed}</p>
             </div>
         </div>
     )
