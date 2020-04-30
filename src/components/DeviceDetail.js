@@ -21,9 +21,9 @@ class DeviceDetail extends Component {
 
     plotData() {
         let newChartData = ['']
-        this.props.timeStamps.map(timestamp => {
-        newChartData.push(timestamp.uploadSpeed)
-        newChartData.push(timestamp.downloadSpeed)
+        this.props.snap_shots.map(timeStamp => {
+        newChartData.push(timeStamp.upload_speed)
+        newChartData.push(timeStamp.download_speed)
         this.state.chartData.push(newChartData)
         newChartData = ['']    
         })

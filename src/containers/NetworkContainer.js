@@ -9,50 +9,7 @@ class NetworkContainer extends Component {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
             connectedDevices: 0,
-            devices: [
-              {
-                hostName: "DevLaptop",
-                deviceType: "PC",
-                operatingSystem: "OSx",
-                macAddress: "82:0f:0c:79:5d:69" ,
-                ipAddress: "192.168.1.23",
-                timeStamps: [
-	                {
-                    timeStamp: "2020-04-29 14:19:26.546321",
-                    uploadSpeed: 10,
-                    downloadSpeed: 20,
-                    activeConnection: true
-                    },
-                    {
-                    timeStamp: "2020-04-29 14:19:30.011170",
-                    uploadSpeed: 0,
-                    downloadSpeed: 0,
-                    activeConnection: false
-                    }      
-                ]
-              },
-              {
-                hostName: "Andrew's iPhone",
-                deviceType: "mobile",
-                operatingSystem: "iOS",
-                macAddress: "82:0f:0c:79:5d:69" ,
-                ipAddress: "192.168.1.24",
-                timeStamps: [
-                  {
-                    timeStamp: "2020-04-29 14:19:26.546321",
-                    uploadSpeed: 8,
-                    downloadSpeed: 10,
-                    activeConnection: true
-                    },
-                    {
-                    timeStamp: "2020-04-29 14:19:30.011170",
-                    uploadSpeed: 15,
-                    downloadSpeed: 30,
-                    activeConnection: true
-                    }
-                  ]
-              },
-            ]
+            devices: []
           };
         this.toggleMode = this.toggleMode.bind(this);
     }
@@ -65,10 +22,12 @@ class NetworkContainer extends Component {
       .then(devices => this.setState({
          devices: devices 
         }))
+      .then(() => {
+        this.chartDataMapping()
+        this.countConnectedDevices()
+      })
       .catch(err => console.error); 
-
-      {this.chartDataMapping()}
-      {this.countConnectedDevices()}
+     
   }
 
   chartDataMapping() {
@@ -77,8 +36,8 @@ class NetworkContainer extends Component {
     let downloadTotal = 0
     for (let counter = 0; counter < this.state.devices.length; counter ++) {
       this.state.devices.forEach(device => {
-        uploadTotal += device.timeStamps[counter].uploadSpeed
-        downloadTotal += device.timeStamps[counter].downloadSpeed
+        uploadTotal += device.snap_shots[counter].upload_speed
+        downloadTotal += device.snap_shots[counter].download_speed
       })
       newChartData.push(uploadTotal)
       newChartData.push(downloadTotal)
@@ -96,10 +55,15 @@ class NetworkContainer extends Component {
     }
   
     countConnectedDevices() {
+      let counter = 0;
+
       this.state.devices.forEach (device => {
-      this.state.connectedDevices += device.timeStamps[device.timeStamps.length -1].connectionStatus === true});
-      return this.state.connectedDevices;
-    }
+      if (device.snap_shots[device.snap_shots.length -1].active_connection === true) {
+        counter += 1 
+      };
+    })
+    this.setState({connectedDevices: counter})
+  }
   
 
     countWiredDevices() {
@@ -127,7 +91,7 @@ class NetworkContainer extends Component {
                 <h2>Summary</h2>
                 <hr></hr>
                 
-                <SummaryComponent chartData = {this.state.chartData} connectedDevices = {this.state.connectedDevices} wiredDevices = {this.countWiredDevices()} wirelessDevices = {this.countWirelessDevices()} />
+                <SummaryComponent chartData = {this.state.chartData} connectedDevices = {this.state.connectedDevices} />
                 <h2>Devices</h2>
                 <hr></hr>
                 <DeviceList devices={this.state.devices}/>
