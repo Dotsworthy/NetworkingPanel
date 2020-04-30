@@ -98,7 +98,7 @@ class NetworkContainer extends Component {
 
     render() {
         return (
-            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white')  : document.body.style.backgroundColor="#F2F3F4"}>
+            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white')  : (document.body.style.backgroundColor="#F2F3F4", document.body.style.color="black")}>
               <div className="content">
                 
                 <h1>Network Dashboard</h1>
