@@ -11,6 +11,10 @@ class DeviceDetail extends Component {
         this.togglePanel = this.togglePanel.bind(this);
     }
 
+    componentDidMount() {
+        this.plotData() 
+    }
+
     togglePanel(e){
         this.setState({open: !this.state.open})
     }
@@ -34,8 +38,8 @@ class DeviceDetail extends Component {
                     
                     <div className="device-title-bar">
                         <h3>{this.props.deviceName}</h3>
-                        <div className={this.props.activeConnection ? "connection-light-connected" : "connection-light-disconnected" }></div>
-                    </div>
+                        <div className={this.props.activeConnection ? "connection-light-connected" : "connection-light-disconnected" }></div>   
+                        </div>
                     
                     </div> 
                     {
@@ -51,7 +55,7 @@ class DeviceDetail extends Component {
                     <p>Download Speed: {this.props.downloadSpeed}</p>
                     </div>
                     <div>
-                    {this.plotData()}    
+                    
                     <TotalDataChart chartData={this.state.chartData} /> </div>
                     </div>
                     )

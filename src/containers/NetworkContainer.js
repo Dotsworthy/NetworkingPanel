@@ -65,6 +65,8 @@ class NetworkContainer extends Component {
          devices: devices 
         }))
       .catch(err => console.error); 
+
+      {this.chartDataMapping(2)}
   }
 
   chartDataMapping(number) {
@@ -115,7 +117,7 @@ class NetworkContainer extends Component {
                 <hr></hr>
                 <h2>Summary</h2>
                 <hr></hr>
-                {this.chartDataMapping(2)}
+                
                 <SummaryComponent chartData = {this.state.chartData}/>
                 <h2>Devices</h2>
                 <hr></hr>
