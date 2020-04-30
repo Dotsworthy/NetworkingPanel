@@ -6,15 +6,16 @@
 
 body {
   display: grid;
-  background-color: #F2F3F4;
 }
 
+.dark {
+  background-color: #1D3354
+}
 
 
 .network-dark {
   background-color: #1D3354;
   color: white;
-  height: 100vh;
 }
 
 .network-light {
