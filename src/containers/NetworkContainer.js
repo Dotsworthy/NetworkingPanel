@@ -8,6 +8,7 @@ class NetworkContainer extends Component {
         this.state = {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
+            connectedDevices: 0,
             devices: [
               {
                 hostName: "DevLaptop",
@@ -66,14 +67,15 @@ class NetworkContainer extends Component {
         }))
       .catch(err => console.error); 
 
-      {this.chartDataMapping(2)}
+      {this.chartDataMapping()}
+      {this.countConnectedDevices()}
   }
 
-  chartDataMapping(number) {
+  chartDataMapping() {
     let newChartData = ['']
     let uploadTotal = 0
     let downloadTotal = 0
-    for (let counter = 0; counter < number; counter ++) {
+    for (let counter = 0; counter < this.state.devices.length; counter ++) {
       this.state.devices.forEach(device => {
         uploadTotal += device.timeStamps[counter].uploadSpeed
         downloadTotal += device.timeStamps[counter].downloadSpeed
@@ -89,19 +91,27 @@ class NetworkContainer extends Component {
     }
   }
   
+    connectedDevices() {
+      return
+      this.devices.filter(device => device.timeStamps[device.timeStamps.length-1].activeConnection === true)
+    }
+  
+    countConnectedDevices() {
+      this.state.devices.forEach (device => {
+      this.state.connectedDevices += device.timeStamps[device.timeStamps.length -1].connectionStatus == true});
+      return this.state.connectedDevices;
+    }
   
 
-  
+    countWiredDevices() {
+      let wiredDevices = this.state.devices.filter(device => device.connectionType === "wifi")
+      return wiredDevices.length
+    }
 
-    // countWiredDevices() {
-    //   let wiredDevices = this.state.staticDevices.filter(device => device.connectionType === "wifi")
-    //   return wiredDevices.length
-    // }
-
-    // countWirelessDevices() {
-    //   let wirlessDevices = this.state.staticDevices.filter(device => device.connectionType === "ethernet")
-    //   return wirlessDevices.length
-    // }
+    countWirelessDevices() {
+      let wirlessDevices = this.state.devices.filter(device => device.connectionType === "ethernet")
+      return wirlessDevices.length
+    }
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
@@ -118,7 +128,7 @@ class NetworkContainer extends Component {
                 <h2>Summary</h2>
                 <hr></hr>
                 
-                <SummaryComponent chartData = {this.state.chartData}/>
+                <SummaryComponent chartData = {this.state.chartData} connectedDevices = {this.state.connectedDevices} wiredDevices = {this.countWiredDevices()} wirelessDevices = {this.countWirelessDevices()} />
                 <h2>Devices</h2>
                 <hr></hr>
                 <DeviceList devices={this.state.devices}/>
