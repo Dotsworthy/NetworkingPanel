@@ -9,8 +9,8 @@ function SummaryComponent(props) {
             <TotalDataChart className="summary=chart" chartData={props.chartData} />
             <div>
             <p>Number of Connections: {props.connectedDevices}</p>
-            <p>Wireless: 1 </p>
-            <p>Wired: 1</p>
+            <p>Upload Speed: {props.uploadSpeed} </p>
+            <p>Download Speed: {props.downloadSpeed}</p>
             </div>
         </div>
     )

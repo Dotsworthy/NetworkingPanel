@@ -9,6 +9,8 @@ class NetworkContainer extends Component {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
             connectedDevices: 0,
+            combinedUploadSpeed: 0,
+            combinedDownloadSpeed: 0,
             devices: []
           };
         this.toggleMode = this.toggleMode.bind(this);
@@ -25,6 +27,8 @@ class NetworkContainer extends Component {
       .then(() => {
         this.chartDataMapping()
         this.countConnectedDevices()
+        this.countUploadSpeed()
+        this.countDownloadSpeed()
       })
       .catch(err => console.error); 
      
@@ -49,11 +53,6 @@ class NetworkContainer extends Component {
     }
   }
   
-    connectedDevices() {
-      return
-      this.devices.filter(device => device.timeStamps[device.timeStamps.length-1].activeConnection === true)
-    }
-  
     countConnectedDevices() {
       let counter = 0;
 
@@ -63,6 +62,22 @@ class NetworkContainer extends Component {
       };
     })
     this.setState({connectedDevices: counter})
+  }
+
+  countUploadSpeed() {
+    let counter = 0;
+    this.state.devices.forEach(device => {
+      counter += device.snap_shots[device.snap_shots.length-1].upload_speed
+    })
+    this.setState({combinedUploadSpeed: counter})
+  }
+
+  countDownloadSpeed() {
+    let counter = 0;
+    this.state.devices.forEach(device => {
+      counter += device.snap_shots[device.snap_shots.length-1].download_speed
+    })
+    this.setState({combinedDownloadSpeed: counter})
   }
   
 
@@ -91,7 +106,12 @@ class NetworkContainer extends Component {
                 <h2>Summary</h2>
                 <hr></hr>
                 
-                <SummaryComponent chartData = {this.state.chartData} connectedDevices = {this.state.connectedDevices} />
+                <SummaryComponent 
+                chartData = {this.state.chartData} 
+                connectedDevices = {this.state.connectedDevices} 
+                uploadSpeed = {this.state.combinedUploadSpeed}
+                downloadSpeed = {this.state.combinedDownloadSpeed}  
+                />
                 <h2>Devices</h2>
                 <hr></hr>
                 <DeviceList devices={this.state.devices}/>
