@@ -78,7 +78,7 @@ class NetworkContainer extends Component {
       })
       newChartData.push(uploadTotal)
       newChartData.push(downloadTotal)
-      console.log(newChartData)
+      // console.log(newChartData)
       this.state.chartData.push(newChartData)
       newChartData = ['']
       uploadTotal = 0

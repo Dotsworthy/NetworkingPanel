@@ -58,6 +58,11 @@ font-family: verdana;
 font-size: 14px;
 }
 
+.device-list-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .connection-light {
   border: 2px solid black;
   height: 20px;

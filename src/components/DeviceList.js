@@ -14,6 +14,7 @@ const DeviceList = (props) => {
             activeConnection={device.timeStamps[device.timeStamps.length - 1].activeConnection}
             uploadSpeed={device.timeStamps[device.timeStamps.length - 1].uploadSpeed}
             downloadSpeed={device.timeStamps[device.timeStamps.length - 1].downloadSpeed}
+            timeStamps={device.timeStamps}
             />
         )
     })

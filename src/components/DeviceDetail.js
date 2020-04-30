@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-
+import TotalDataChart from "./TotalDataChart";
 
 class DeviceDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             open: false,
         }
         this.togglePanel = this.togglePanel.bind(this);
@@ -12,6 +13,18 @@ class DeviceDetail extends Component {
 
     togglePanel(e){
         this.setState({open: !this.state.open})
+    }
+
+    plotData() {
+        let newChartData = ['']
+        this.props.timeStamps.map(timestamp => {
+        newChartData.push(timestamp.uploadSpeed)
+        newChartData.push(timestamp.downloadSpeed)
+        this.state.chartData.push(newChartData)
+        newChartData = ['']    
+        })
+        
+        console.log(this.state.chartData)
     }
 
     render() {
@@ -27,7 +40,8 @@ class DeviceDetail extends Component {
                     </div> 
                     {
                     this.state.open? (
-                    <div className='content'> 
+                    <div className='device-list-content'> 
+                    <div>
                     <p>Device: {this.props.deviceType}</p>
                     <p>IP Address: {this.props.ipAddress}</p> 
                     <p>MAC Address: {this.props.macAddress}</p> 
@@ -35,7 +49,12 @@ class DeviceDetail extends Component {
                     <p>Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</p>
                     <p>Upload Speed: {this.props.uploadSpeed}</p>
                     <p>Download Speed: {this.props.downloadSpeed}</p>
-                    </div>)
+                    </div>
+                    <div>
+                    {this.plotData()}    
+                    <TotalDataChart chartData={this.state.chartData} /> </div>
+                    </div>
+                    )
                     :null 
                     }
                 </div>
