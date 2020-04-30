@@ -97,7 +97,7 @@ class NetworkContainer extends Component {
   
     countConnectedDevices() {
       this.state.devices.forEach (device => {
-      this.state.connectedDevices += device.timeStamps[device.timeStamps.length -1].connectionStatus == true});
+      this.state.connectedDevices += device.timeStamps[device.timeStamps.length -1].connectionStatus === true});
       return this.state.connectedDevices;
     }
   

@@ -27,8 +27,6 @@ class DeviceDetail extends Component {
         this.state.chartData.push(newChartData)
         newChartData = ['']    
         })
-        
-        console.log(this.state.chartData)
     }
 
     render() {
