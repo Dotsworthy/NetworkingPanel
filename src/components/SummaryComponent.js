@@ -6,7 +6,7 @@ import "../App.css";
 function SummaryComponent(props) {
     return (
         <div className="summary">
-            <TotalDataChart devices={props.devices} />
+            <TotalDataChart chartData={props.chartData} />
             <div>
             <p>Download Speed: 35mps</p>
             <p>Number of Connections: 10</p>

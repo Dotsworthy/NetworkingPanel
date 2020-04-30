@@ -8,51 +8,50 @@ class NetworkContainer extends Component {
         this.state = {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
             dark: false,
-            devices: [],
-            // [
-            //   {
-            //     hostName: "DevLaptop",
-            //     deviceType: "PC",
-            //     operatingSystem: "OSx",
-            //     macAddress: "82:0f:0c:79:5d:69" ,
-            //     ipAddress: "192.168.1.23",
-            //     timeStamps: [
-	          //       {
-            //         timeStamp: "2020-04-29 14:19:26.546321",
-            //         uploadSpeed: 10,
-            //         downloadSpeed: 20,
-            //         activeConnection: true
-            //         },
-            //         {
-            //         timeStamp: "2020-04-29 14:19:30.011170",
-            //         uploadSpeed: 0,
-            //         downloadSpeed: 0,
-            //         activeConnection: false
-            //         }      
-            //     ]
-            //   },
-            //   {
-            //     hostName: "Andrew's iPhone",
-            //     deviceType: "mobile",
-            //     operatingSystem: "iOS",
-            //     macAddress: "82:0f:0c:79:5d:69" ,
-            //     ipAddress: "192.168.1.24",
-            //     timeStamps: [
-            //       {
-            //         timeStamp: "2020-04-29 14:19:26.546321",
-            //         uploadSpeed: 8,
-            //         downloadSpeed: 10,
-            //         activeConnection: true
-            //         },
-            //         {
-            //         timeStamp: "2020-04-29 14:19:30.011170",
-            //         uploadSpeed: 15,
-            //         downloadSpeed: 30,
-            //         activeConnection: true
-            //         }
-            //       ]
-            //   },
-            // ]
+            devices: [
+              {
+                hostName: "DevLaptop",
+                deviceType: "PC",
+                operatingSystem: "OSx",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.23",
+                timeStamps: [
+	                {
+                    timeStamp: "2020-04-29 14:19:26.546321",
+                    uploadSpeed: 10,
+                    downloadSpeed: 20,
+                    activeConnection: true
+                    },
+                    {
+                    timeStamp: "2020-04-29 14:19:30.011170",
+                    uploadSpeed: 0,
+                    downloadSpeed: 0,
+                    activeConnection: false
+                    }      
+                ]
+              },
+              {
+                hostName: "Andrew's iPhone",
+                deviceType: "mobile",
+                operatingSystem: "iOS",
+                macAddress: "82:0f:0c:79:5d:69" ,
+                ipAddress: "192.168.1.24",
+                timeStamps: [
+                  {
+                    timeStamp: "2020-04-29 14:19:26.546321",
+                    uploadSpeed: 8,
+                    downloadSpeed: 10,
+                    activeConnection: true
+                    },
+                    {
+                    timeStamp: "2020-04-29 14:19:30.011170",
+                    uploadSpeed: 15,
+                    downloadSpeed: 30,
+                    activeConnection: true
+                    }
+                  ]
+              },
+            ]
           };
         this.toggleMode = this.toggleMode.bind(this);
     }
@@ -116,7 +115,8 @@ class NetworkContainer extends Component {
                 <hr></hr>
                 <h2>Summary</h2>
                 <hr></hr>
-                <SummaryComponent />
+                {this.chartDataMapping(2)}
+                <SummaryComponent chartData = {this.state.chartData}/>
                 <h2>Devices</h2>
                 <hr></hr>
                 <DeviceList devices={this.state.devices}/>
