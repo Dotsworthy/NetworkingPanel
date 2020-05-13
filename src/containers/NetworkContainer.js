@@ -106,12 +106,18 @@ class NetworkContainer extends Component {
             <div className={
               this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white') 
               : 
-              (document.body.style.backgroundColor="white", document.body.style.color="black")}>
+              (document.body.style.backgroundColor="#F2F3F4", document.body.style.color="black")}>
               
               <div className="content">
                 
+                <div id="title-panel">
                 <h1>Network Dashboard</h1>
-                
+                <div class="container">
+                  <h4>Light/Dark Mode</h4>
+                  <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
+                  <label for ="switch">Toggle</label>
+                </div>
+                </div>
 
                 <div className="row2">
 
@@ -132,12 +138,7 @@ class NetworkContainer extends Component {
                         
                 </div>
 
-                <div class="container">
-                <hr></hr>
-                  <h4>Light/Dark Mode</h4>
-                  <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle</label>
-                  </div>
+                
 
               </div>
 

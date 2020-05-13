@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 import NetworkContainer from './containers/NetworkContainer.js';
-import './App.css';
+import './styles/App.scss';
+import './styles/_colorDefinitions.scss'
 
 class App extends Component {
   render() {

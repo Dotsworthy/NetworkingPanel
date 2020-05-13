@@ -1,3 +1,5 @@
+@use 'colorDefinitions';
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -16,19 +18,26 @@ h2 {
 }
 
 #summary {
-  border: 1pt solid black;
+  border: 0pt solid black;
   border-radius: 25px;
-  margin: 2px;
+  margin: 5px;
   padding: 10px;
+  background-color: white;
 }
 
 #devices {
-  border: 1pt solid black;
+  border: 0pt solid black;
   border-radius: 25px;
-  margin: 2px;
+  margin: 5px;
   padding: 10px;
+  background-color: white;
 }
 
+#title-panel{
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  margin-left: 10px;
+}
 .dark {
   background-color: #1D3354
 }
