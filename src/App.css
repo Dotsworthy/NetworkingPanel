@@ -8,6 +8,27 @@ body {
   display: grid;
 }
 
+h2 {
+  background-color: #F2F3F4;
+  border: 0pt solid black;
+  border-radius: 25px;
+  margin: 3px;
+}
+
+#summary {
+  border: 1pt solid black;
+  border-radius: 25px;
+  margin: 2px;
+  padding: 10px;
+}
+
+#devices {
+  border: 1pt solid black;
+  border-radius: 25px;
+  margin: 2px;
+  padding: 10px;
+}
+
 .dark {
   background-color: #1D3354
 }
@@ -22,14 +43,15 @@ body {
   background-color: #F2F3F4;
 }
 
-.summary {
+.device-title-bar {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.device-title-bar {
+.row2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  padding: 2px;
 }
 
 .header {
@@ -91,7 +113,3 @@ font-size: 14px;
   padding: 2px;
 }
 
-.chart {
-  height: 50%;
-  width: 50%;
-}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SummaryComponent from '../components/SummaryComponent.js'
-import DeviceList from '../components/DeviceList.js'
+import SummaryComponent from '../components/SummaryComponent.js';
+import DeviceList from '../components/DeviceList.js';
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -31,7 +31,7 @@ class NetworkContainer extends Component {
         this.countDownloadSpeed()
       })
       .catch(err => console.error); 
-     
+
   }
 
   chartDataMapping() {
@@ -98,30 +98,44 @@ class NetworkContainer extends Component {
 
     render() {
         return (
-            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white')  : (document.body.style.backgroundColor="#F2F3F4", document.body.style.color="black")}>
+            <div className={
+              this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white') 
+              : 
+              (document.body.style.backgroundColor="white", document.body.style.color="black")}>
+              
               <div className="content">
                 
                 <h1>Network Dashboard</h1>
-                <hr></hr>
-                <h2>Summary</h2>
-                <hr></hr>
                 
+
+                <div className="row2">
+
+                <div id="summary"> 
+                <h2>Summary</h2>
                 <SummaryComponent 
                 chartData = {this.state.chartData} 
                 connectedDevices = {this.state.connectedDevices} 
                 uploadSpeed = {this.state.combinedUploadSpeed}
                 downloadSpeed = {this.state.combinedDownloadSpeed}  
                 />
+                </div>
+
+                <div id="devices">
                 <h2>Devices</h2>
-                <hr></hr>
                 <DeviceList devices={this.state.devices}/>
-                  <div class="container">
+                </div>              
+                        
+                </div>
+
+                <div class="container">
                 <hr></hr>
                   <h4>Light/Dark Mode</h4>
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
                   <label for ="switch">Toggle</label>
                   </div>
+
               </div>
+
             </div>
         )
     }
