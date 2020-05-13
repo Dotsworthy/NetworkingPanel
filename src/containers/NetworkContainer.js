@@ -35,18 +35,23 @@ class NetworkContainer extends Component {
   }
 
   chartDataMapping() {
-    let newChartData = ['']
+    let newChartData = []
+    let completeTimeString = ''
+    let formattedTimeString = ''
     let uploadTotal = 0
     let downloadTotal = 0
     for (let counter = 0; counter < this.state.devices.length; counter ++) {
       this.state.devices.forEach(device => {
+        completeTimeString = device.snap_shots[counter].time_stamp
+        formattedTimeString = completeTimeString.slice(11, 16)
         uploadTotal += device.snap_shots[counter].upload_speed
         downloadTotal += device.snap_shots[counter].download_speed
       })
+      newChartData.push(formattedTimeString)
       newChartData.push(uploadTotal)
       newChartData.push(downloadTotal)
       this.state.chartData.push(newChartData)
-      newChartData = ['']
+      newChartData = []
       uploadTotal = 0
       downloadTotal = 0
       
