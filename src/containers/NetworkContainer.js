@@ -17,6 +17,7 @@ class NetworkContainer extends Component {
     }
 
   componentDidMount() {
+    const socket = openSocket('http://localhost:8000')
     const url = 'http://localhost:5001/presentation-data';
     
     fetch(url)
