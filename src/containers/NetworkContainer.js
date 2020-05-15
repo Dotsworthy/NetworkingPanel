@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
+import socketIOClient from "socket.io-client"
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class NetworkContainer extends Component {
     }
 
   componentDidMount() {
-    const socket = openSocket('http://localhost:8000')
+    const socket = socketIOClient('http://localhost:8000')
     const url = 'http://localhost:5001/presentation-data';
     
     fetch(url)
@@ -104,45 +105,40 @@ class NetworkContainer extends Component {
 
     render() {
         return (
-            <div className={
-              this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white') 
-              : 
-              (document.body.style.backgroundColor="#F2F3F4", document.body.style.color="black")}>
+            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354') : (document.body.style.backgroundColor="#F2F3F4")}>
               
-              <div className="content">
+             <div className="app-container"> 
                 
-                <div id="title-panel">
+                <div className="title-bar-container">
                 <h1>Network Dashboard</h1>
-                <div class="container">
+                
+                  <div className="light-dark-container">
                   <h4>Light/Dark Mode</h4>
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle</label>
+                  <label for ="switch">Enable/Disable</label>
+                  </div>
                 </div>
-                </div>
-
-                <div className="row2">
-
-                <div id="summary"> 
-                <h2>Summary</h2>
-                <SummaryComponent 
-                chartData = {this.state.chartData} 
-                connectedDevices = {this.state.connectedDevices} 
-                uploadSpeed = {this.state.combinedUploadSpeed}
-                downloadSpeed = {this.state.combinedDownloadSpeed}  
-                />
-                </div>
-
-                <div id="devices">
-                <h2>Devices</h2>
-                <DeviceList devices={this.state.devices}/>
-                </div>              
-                        
-                </div>
-
                 
+                <div className="content-container">
 
+                  <div className="summary-container">
+                  <h2>Summary</h2>
+                  <SummaryComponent 
+                  chartData = {this.state.chartData} 
+                  connectedDevices = {this.state.connectedDevices} 
+                  uploadSpeed = {this.state.combinedUploadSpeed}
+                  downloadSpeed = {this.state.combinedDownloadSpeed}  
+                  />
+                  </div>
+
+                  <div className="device-container">
+                  <h2>Devices</h2>
+                  <DeviceList devices={this.state.devices}/>
+                  </div>         
+                
+                </div>   
+              
               </div>
-
             </div>
         )
     }

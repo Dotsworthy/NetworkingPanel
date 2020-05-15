@@ -1,4 +1,4 @@
-@use 'colorDefinitions';
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,31 +6,73 @@
   margin: 0;
 }
 
-body {
+// Colour Scheme
+ $background-light: #FBFBFB;
+ $background-dark: #1D3354;
+ $menu-light: #FFFFFF;
+ $menu-dark: #1D3354;
+ $heading-light:#000000 ;
+ $heading-dark: #FFFFFF;
+ $heading-box-light: #FBFBFB;
+ $heading-box-dark: #FFFFFF;
+ $font-light: #FFFFFF;
+ $font-dark: #000000;
+
+// Display Options
+%display-options {
   display: grid;
 }
 
+
+body {
+  font-family: 'Nunito' sans-serif;
+}
+
 h2 {
-  background-color: #F2F3F4;
-  border: 0pt solid black;
+  background-color: $heading-box-light;
+  border: 0pt solid $menu-dark;
   border-radius: 25px;
   margin: 3px;
+  font-family: 'Nunito' sans-serif;
 }
 
-#summary {
+.app-container {
+  @extend %display-options;
+  grid-template-rows: 76.8px 614.4px;
+}
+
+.title-bar-container {
+  @extend %display-options;
+  grid-template-columns: 1229.4px 136.6px;
+  margin: 10px 0px 0px 10px;
+  
+}
+
+.content-container {
+  @extend %display-options;
+  grid-template-columns: 1fr 2fr;
+}
+
+.summary-container {
+  grid-row-start: 1;
+  grid-row-end: 3;
   border: 0pt solid black;
   border-radius: 25px;
   margin: 5px;
   padding: 10px;
-  background-color: white;
+  background-color: $menu-light;
 }
 
-#devices {
+.device-container {
   border: 0pt solid black;
   border-radius: 25px;
   margin: 5px;
   padding: 10px;
-  background-color: white;
+  background-color: $menu-light;
+}
+
+.light-dark-container {
+  
 }
 
 #title-panel{
@@ -86,7 +128,6 @@ border-radius: 0 0 5px 5px;
 padding: 15px;
 animation-name: content;
 animation-duration: 3s;
-font-family: verdana;
 font-size: 14px;
 }
 
