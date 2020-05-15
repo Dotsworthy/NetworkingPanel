@@ -129,7 +129,8 @@ class NetworkContainer extends Component {
                   chartData = {this.state.chartData} 
                   connectedDevices = {this.state.connectedDevices} 
                   uploadSpeed = {this.state.combinedUploadSpeed}
-                  downloadSpeed = {this.state.combinedDownloadSpeed}  
+                  downloadSpeed = {this.state.combinedDownloadSpeed}
+                  dark = {this.state.dark}  
                   />
                   </div>
 
