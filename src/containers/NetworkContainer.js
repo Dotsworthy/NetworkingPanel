@@ -31,7 +31,7 @@ class NetworkContainer extends Component {
         this.countConnectedDevices()
         this.countUploadSpeed()
         this.countDownloadSpeed()
-      })
+            })
       .catch(err => console.error); 
 
   }
@@ -100,12 +100,15 @@ class NetworkContainer extends Component {
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
+        let element = document.body;
+        element.classList.toggle("dark");
       } 
+  
     
 
     render() {
         return (
-            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354') : (document.body.style.backgroundColor="#F2F3F4")}>
+            <div>
               
              <div className="app-container"> 
                 
@@ -114,24 +117,25 @@ class NetworkContainer extends Component {
                 
                   <div className="light-dark-container">
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle Light/Dark Mode</label>
+                  <label for ="switch">Toggle Light/Dark</label>
                   </div>
                 </div>
                 
                 <div className="content-container">
 
-                  <div className="summary-container">
-                  <h2>Summary</h2>
+                  <div className={this.state.dark ? "summary-container-dark" : "summary-container"}>
+                  <h2 className={this.state.dark ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
                   chartData = {this.state.chartData} 
                   connectedDevices = {this.state.connectedDevices} 
                   uploadSpeed = {this.state.combinedUploadSpeed}
-                  downloadSpeed = {this.state.combinedDownloadSpeed}  
+                  downloadSpeed = {this.state.combinedDownloadSpeed}
+                  dark = {this.state.dark}  
                   />
                   </div>
 
-                  <div className="device-container">
-                  <h2>Devices</h2>
+                  <div className={this.state.dark ? "device-container-dark" : "device-container"}>
+                  <h2 className={this.state.dark ? "dark" : "" }>Devices</h2>
                   <DeviceList devices={this.state.devices}/>
                   </div>         
                 
