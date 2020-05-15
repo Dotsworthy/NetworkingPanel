@@ -62,12 +62,12 @@ h2 {
 
 .app-container {
   @extend %display-options;
-  grid-template-rows: 76.8px 614.4px;
+  grid-template-rows: 76px 1fr;
 }
 
 .title-bar-container {
   @extend %display-options;
-  grid-template-columns: 1229.4px 136.6px;
+  grid-template-columns: 10fr 2fr;
   margin: 10px 0px 0px 10px;
   h1 {
     font-size: 42pt;
@@ -93,8 +93,6 @@ h2 {
 // Site Content
 .summary-container {
   @extend %content-box-options;
-  grid-row-start: 1;
-  grid-row-end: 3; 
 
     #dark {
       background-color: $menu-dark;
@@ -103,8 +101,6 @@ h2 {
 
 .summary-container-dark {
   @extend %content-box-options;
-  grid-row-start: 1;
-  grid-row-end: 3; 
   background-color: $menu-dark;
 }
 
@@ -116,11 +112,6 @@ h2 {
   @extend %content-box-options;
   background-color: $menu-dark;
 }
-
-
-
-
-
 
 #title-panel{
   display: grid;
@@ -146,58 +137,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
 }
 
-.row2 {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  padding: 2px;
-}
-
-.header {
-  cursor: pointer;
-  border: none;
-  padding: 5px;
-  font-family: verdana;
-  }
-
-.content {
-cursor: pointer;
-border: none;
-border-radius: 0 0 5px 5px;
-padding: 15px;
-animation-name: content;
-animation-duration: 3s;
-font-size: 14px;
-}
-
 .device-list-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
-.connection-light {
-  border: 2px solid black;
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  background-color: yellow;
-  padding: 2px;
-}
-
-.connection-light-connected {
-  border: 2px solid black;
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  background-color: green;
-  padding: 2px;
-}
-
-.connection-light-disconnected {
-  border: 2px solid black;
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  background-color: red;
-  padding: 2px;
-}
-

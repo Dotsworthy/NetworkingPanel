@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
-import socketIOClient from "socket.io-client"
+
+const URL = 'ws://localhost:5001';
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -17,8 +18,31 @@ class NetworkContainer extends Component {
         this.toggleMode = this.toggleMode.bind(this);
     }
 
+  ws = new WebSocket(URL)  
+
   componentDidMount() {
-    const socket = socketIOClient('http://localhost:8000')
+    this.ws.onopen = () => {
+      // on connecting, do nothing but log it to the console
+      console.log('connected')
+    }
+
+    // this.ws.onmessage = evt => {
+    //   // on receiving data from server, update devices
+    //   let deviceData = JSON.parse(evt.data)
+    //   this.setState({
+    //     devices: deviceData)
+    // }
+
+    this.ws.onclose = () => {
+      console.log('disconnected')
+      // automatically try to reconnect on connection loss
+      this.setState({
+        ws: new WebSocket(URL),
+      })
+    }
+
+
+
     const url = 'http://localhost:5001/presentation-data';
     
     fetch(url)
@@ -116,8 +140,8 @@ class NetworkContainer extends Component {
                 <h1>Network Dashboard</h1>
                 
                   <div className="light-dark-container">
-                  <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle Light/Dark</label>
+                  <input onClick={(event) => this.toggleMode(event)} className="container_toggle" type="checkbox" id="switch" name="mode"></input>
+                  <label id="switch">Toggle Light/Dark</label>
                   </div>
                 </div>
                 
