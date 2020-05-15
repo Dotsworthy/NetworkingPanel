@@ -7,16 +7,16 @@
 }
 
 // Colour Scheme
- $background-light: #FBFBFB;
- $background-dark: #1D3354;
- $menu-light: #FFFFFF;
- $menu-dark: #1D3354;
- $heading-light:#000000 ;
- $heading-dark: #FFFFFF;
- $heading-box-light: #FBFBFB;
- $heading-box-dark: #FFFFFF;
- $font-light: #FFFFFF;
- $font-dark: #000000;
+$background-light: #FBFBFB;
+$background-dark: #1D3354;
+$menu-light: #FFFFFF;
+$menu-dark: #1D3354;
+$heading-light:#000000;
+$heading-dark: #FFFFFF;
+$heading-box-light: #FBFBFB;
+$heading-box-dark: #000000;
+$font-light: #000000;
+$font-dark: #FFFFFF;
 
 // Display Options
 %display-options {
@@ -26,15 +26,28 @@
 
 body {
   font-family: 'Nunito' sans-serif;
+  background-color: $background-light;
+  color: $font-light;
+
+  .dark {
+    background-color: $background-dark;
+    color: $font-dark;
+  }
 }
 
 h2 {
   background-color: $heading-box-light;
+  color: $heading-light;
   border: 0pt solid $menu-dark;
   border-radius: 10px;
   margin: 3px;
   padding: 5px 5px 5px 10px;
   font-family: 'Nunito' sans-serif;
+
+  .dark {
+    background-color: $heading-box-dark;
+    color: $heading-dark;
+  }
 }
 
 .app-container {
@@ -48,7 +61,18 @@ h2 {
   margin: 10px 0px 0px 10px;
   h1 {
     font-size: 42pt;
+    #light {
+      color: $heading-light;
+    }
+
+    #dark {
+      color: $heading-dark;
+    }
   }
+
+  
+
+  
 
   .light-dark-container {
   font-weight: bold;

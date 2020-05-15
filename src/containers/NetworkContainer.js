@@ -31,7 +31,7 @@ class NetworkContainer extends Component {
         this.countConnectedDevices()
         this.countUploadSpeed()
         this.countDownloadSpeed()
-      })
+            })
       .catch(err => console.error); 
 
   }
@@ -100,12 +100,15 @@ class NetworkContainer extends Component {
 
     toggleMode(event) {
         this.setState({dark: !this.state.dark})
+        let element = document.body;
+        element.classList.toggle("dark");
       } 
+  
     
 
     render() {
         return (
-            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354') : (document.body.style.backgroundColor="#F2F3F4")}>
+            <div>
               
              <div className="app-container"> 
                 
