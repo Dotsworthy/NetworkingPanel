@@ -114,7 +114,7 @@ class NetworkContainer extends Component {
                 
                   <div className="light-dark-container">
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle Light/Dark Mode</label>
+                  <label for ="switch">Toggle Light/Dark</label>
                   </div>
                 </div>
                 
