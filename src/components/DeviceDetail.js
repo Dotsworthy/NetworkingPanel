@@ -36,7 +36,7 @@ class DeviceDetail extends Component {
                     
                     <div className="device-title-bar">
                         <h3>{this.props.deviceName}</h3>
-                        <div className={this.props.activeConnection ? "connection-light-connected" : "connection-light-disconnected" }></div>   
+                        <img src={this.props.activeConnection ? "../images/connected.png" : "..images/disconnected"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="42" width="42"></img>
                         </div>
                     
                     </div> 
