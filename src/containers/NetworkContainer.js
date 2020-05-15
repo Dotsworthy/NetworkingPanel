@@ -113,9 +113,8 @@ class NetworkContainer extends Component {
                 <h1>Network Dashboard</h1>
                 
                   <div className="light-dark-container">
-                  <h4>Light/Dark Mode</h4>
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Enable/Disable</label>
+                  <label for ="switch">Toggle Light/Dark Mode</label>
                   </div>
                 </div>
                 

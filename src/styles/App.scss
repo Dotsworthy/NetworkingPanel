@@ -33,6 +33,7 @@ h2 {
   border: 0pt solid $menu-dark;
   border-radius: 25px;
   margin: 3px;
+  padding: 5px 5px 5px 10px;
   font-family: 'Nunito' sans-serif;
 }
 
@@ -45,7 +46,13 @@ h2 {
   @extend %display-options;
   grid-template-columns: 1229.4px 136.6px;
   margin: 10px 0px 0px 10px;
-  
+  h1 {
+    font-size: 42pt;
+  }
+
+  .light-dark-container {
+  font-weight: bold;
+  }
 }
 
 .content-container {
@@ -71,9 +78,7 @@ h2 {
   background-color: $menu-light;
 }
 
-.light-dark-container {
-  
-}
+
 
 #title-panel{
   display: grid;
