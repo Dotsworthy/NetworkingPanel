@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import SummaryComponent from '../components/SummaryComponent.js'
-import DeviceList from '../components/DeviceList.js'
+import SummaryComponent from '../components/SummaryComponent.js';
+import DeviceList from '../components/DeviceList.js';
+import socketIOClient from "socket.io-client"
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class NetworkContainer extends Component {
     }
 
   componentDidMount() {
+    const socket = socketIOClient('http://localhost:8000')
     const url = 'http://localhost:5001/presentation-data';
     
     fetch(url)
@@ -31,22 +33,27 @@ class NetworkContainer extends Component {
         this.countDownloadSpeed()
       })
       .catch(err => console.error); 
-     
+
   }
 
   chartDataMapping() {
-    let newChartData = ['']
+    let newChartData = []
+    let completeTimeString = ''
+    let formattedTimeString = ''
     let uploadTotal = 0
     let downloadTotal = 0
     for (let counter = 0; counter < this.state.devices.length; counter ++) {
       this.state.devices.forEach(device => {
+        completeTimeString = device.snap_shots[counter].time_stamp
+        formattedTimeString = completeTimeString.slice(11, 16)
         uploadTotal += device.snap_shots[counter].upload_speed
         downloadTotal += device.snap_shots[counter].download_speed
       })
+      newChartData.push(formattedTimeString)
       newChartData.push(uploadTotal)
       newChartData.push(downloadTotal)
       this.state.chartData.push(newChartData)
-      newChartData = ['']
+      newChartData = []
       uploadTotal = 0
       downloadTotal = 0
       
@@ -98,29 +105,38 @@ class NetworkContainer extends Component {
 
     render() {
         return (
-            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354', document.body.style.color='white')  : (document.body.style.backgroundColor="#F2F3F4", document.body.style.color="black")}>
-              <div className="content">
+            <div className={this.state.dark ? (document.body.style.backgroundColor='#1D3354') : (document.body.style.backgroundColor="#F2F3F4")}>
+              
+             <div className="app-container"> 
                 
+                <div className="title-bar-container">
                 <h1>Network Dashboard</h1>
-                <hr></hr>
-                <h2>Summary</h2>
-                <hr></hr>
                 
-                <SummaryComponent 
-                chartData = {this.state.chartData} 
-                connectedDevices = {this.state.connectedDevices} 
-                uploadSpeed = {this.state.combinedUploadSpeed}
-                downloadSpeed = {this.state.combinedDownloadSpeed}  
-                />
-                <h2>Devices</h2>
-                <hr></hr>
-                <DeviceList devices={this.state.devices}/>
-                  <div class="container">
-                <hr></hr>
-                  <h4>Light/Dark Mode</h4>
+                  <div className="light-dark-container">
                   <input onClick={(event) => this.toggleMode(event)} class="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label for ="switch">Toggle</label>
+                  <label for ="switch">Toggle Light/Dark Mode</label>
                   </div>
+                </div>
+                
+                <div className="content-container">
+
+                  <div className="summary-container">
+                  <h2>Summary</h2>
+                  <SummaryComponent 
+                  chartData = {this.state.chartData} 
+                  connectedDevices = {this.state.connectedDevices} 
+                  uploadSpeed = {this.state.combinedUploadSpeed}
+                  downloadSpeed = {this.state.combinedDownloadSpeed}  
+                  />
+                  </div>
+
+                  <div className="device-container">
+                  <h2>Devices</h2>
+                  <DeviceList devices={this.state.devices}/>
+                  </div>         
+                
+                </div>   
+              
               </div>
             </div>
         )

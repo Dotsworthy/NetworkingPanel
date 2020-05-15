@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+// Colour Scheme
+ $background-light: #FBFBFB;
+ $background-dark: #1D3354;
+ $menu-light: #FFFFFF;
+ $menu-dark: #1D3354;
+ $heading-light:#000000 ;
+ $heading-dark: #FFFFFF;
+ $heading-box-light: #FBFBFB;
+ $heading-box-dark: #FFFFFF;
+ $font-light: #FFFFFF;
+ $font-dark: #000000;
+
+// Display Options
+%display-options {
+  display: grid;
+}
+
+
+body {
+  font-family: 'Nunito' sans-serif;
+}
+
+h2 {
+  background-color: $heading-box-light;
+  border: 0pt solid $menu-dark;
+  border-radius: 25px;
+  margin: 3px;
+  padding: 5px 5px 5px 10px;
+  font-family: 'Nunito' sans-serif;
+}
+
+.app-container {
+  @extend %display-options;
+  grid-template-rows: 76.8px 614.4px;
+}
+
+.title-bar-container {
+  @extend %display-options;
+  grid-template-columns: 1229.4px 136.6px;
+  margin: 10px 0px 0px 10px;
+  h1 {
+    font-size: 42pt;
+  }
+
+  .light-dark-container {
+  font-weight: bold;
+  }
+}
+
+.content-container {
+  @extend %display-options;
+  grid-template-columns: 1fr 2fr;
+}
+
+.summary-container {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  border: 0pt solid black;
+  border-radius: 25px;
+  margin: 5px;
+  padding: 10px;
+  background-color: $menu-light;
+}
+
+.device-container {
+  border: 0pt solid black;
+  border-radius: 25px;
+  margin: 5px;
+  padding: 10px;
+  background-color: $menu-light;
+}
+
+
+
+#title-panel{
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  margin-left: 10px;
+}
+.dark {
+  background-color: #1D3354
+}
+
+
+.network-dark {
+  background-color: #1D3354;
+  color: white;
+}
+
+.network-light {
+  background-color: #F2F3F4;
+}
+
+.device-title-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 2px;
+}
+
+.header {
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  font-family: verdana;
+  }
+
+  /* doesn't work */
+@keyframes content {
+  0% {height: 0px;}
+  25% {height: 25%;}
+  50% {height: 50%;}
+  75% {height: 75%;}
+  100% {height: 100%;}
+}
+
+.content {
+cursor: pointer;
+border: none;
+border-radius: 0 0 5px 5px;
+padding: 15px;
+animation-name: content;
+animation-duration: 3s;
+font-size: 14px;
+}
+
+.device-list-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.connection-light {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: yellow;
+  padding: 2px;
+}
+
+.connection-light-connected {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: green;
+  padding: 2px;
+}
+
+.connection-light-disconnected {
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: red;
+  padding: 2px;
+}
+

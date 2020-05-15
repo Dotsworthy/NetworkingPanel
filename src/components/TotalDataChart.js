@@ -14,8 +14,6 @@ const TotalDataChart = (props) => {
     return(
         <div>
             <Chart className = "chart"
-                // width={400}
-                // height={'300px'}
                 chartType="LineChart"
                 loader={<div>Loading Chart</div>}
                 data={ props.chartData }
@@ -26,7 +24,6 @@ const TotalDataChart = (props) => {
                     series: {
                         1: { curveType: 'function' },
                     },
-                    // chartArea: { width: '50%', height: '70%' },
                 }}
             />
         </div>
