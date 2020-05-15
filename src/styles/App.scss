@@ -10,7 +10,7 @@
 $background-light: #FBFBFB;
 $background-dark: #1D3354;
 $menu-light: #FFFFFF;
-$menu-dark: #1D3354;
+$menu-dark: #26537C;
 $heading-light:#000000;
 $heading-dark: #FFFFFF;
 $heading-box-light: #FBFBFB;
@@ -23,17 +23,27 @@ $font-dark: #FFFFFF;
   display: grid;
 }
 
+// Content Box Universal Settings
+%content-box-options {
+  border: 0pt solid black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  background-color: $menu-light;
+}
+
 
 body {
   font-family: 'Nunito' sans-serif;
   background-color: $background-light;
   color: $font-light;
-
-  .dark {
-    background-color: $background-dark;
-    color: $font-dark;
-  }
 }
+
+.dark {
+  background-color: $background-dark;
+  color: $font-dark;
+}
+
 
 h2 {
   background-color: $heading-box-light;
@@ -61,18 +71,14 @@ h2 {
   margin: 10px 0px 0px 10px;
   h1 {
     font-size: 42pt;
-    #light {
+    .light {
       color: $heading-light;
     }
 
-    #dark {
+    .dark {
       color: $heading-dark;
     }
   }
-
-  
-
-  
 
   .light-dark-container {
   font-weight: bold;
@@ -85,21 +91,29 @@ h2 {
 }
 
 .summary-container {
+  @extend %content-box-options;
   grid-row-start: 1;
-  grid-row-end: 3;
-  border: 0pt solid black;
-  border-radius: 10px;
-  margin: 5px;
-  padding: 10px;
-  background-color: $menu-light;
+  grid-row-end: 3; 
+
+    #dark {
+      background-color: $menu-dark;
+    }
+}
+
+.summary-container-dark {
+  @extend %content-box-options;
+  grid-row-start: 1;
+  grid-row-end: 3; 
+  background-color: $menu-dark;
 }
 
 .device-container {
-  border: 0pt solid black;
-  border-radius: 10px;
-  margin: 5px;
-  padding: 10px;
-  background-color: $menu-light;
+@extend %content-box-options;
+}
+
+.device-container-dark {
+  @extend %content-box-options;
+  background-color: $menu-dark;
 }
 
 
@@ -140,15 +154,6 @@ h2 {
   padding: 5px;
   font-family: verdana;
   }
-
-  /* doesn't work */
-@keyframes content {
-  0% {height: 0px;}
-  25% {height: 25%;}
-  50% {height: 50%;}
-  75% {height: 75%;}
-  100% {height: 100%;}
-}
 
 .content {
 cursor: pointer;

@@ -123,8 +123,8 @@ class NetworkContainer extends Component {
                 
                 <div className="content-container">
 
-                  <div className="summary-container">
-                  <h2>Summary</h2>
+                  <div className={this.state.dark ? "summary-container-dark" : "summary-container"}>
+                  <h2 className={this.state.dark ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
                   chartData = {this.state.chartData} 
                   connectedDevices = {this.state.connectedDevices} 
@@ -133,8 +133,8 @@ class NetworkContainer extends Component {
                   />
                   </div>
 
-                  <div className="device-container">
-                  <h2>Devices</h2>
+                  <div className={this.state.dark ? "device-container-dark" : "device-container"}>
+                  <h2 className={this.state.dark ? "dark" : "" }>Devices</h2>
                   <DeviceList devices={this.state.devices}/>
                   </div>         
                 
