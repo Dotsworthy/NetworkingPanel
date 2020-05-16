@@ -31,7 +31,7 @@ class NetworkContainer extends Component {
       let deviceData = JSON.parse(evt.data)
       this.setState({
         devices: deviceData})
-      this.chartDataMapping()
+      // this.chartDataMapping()
       this.countConnectedDevices()
       this.countUploadSpeed()
       this.countDownloadSpeed()
@@ -56,14 +56,17 @@ class NetworkContainer extends Component {
       let deviceData = JSON.parse(evt.data)
       this.setState({
         devices: deviceData})
-        this.chartDataMapping()
+        // this.chartDataMapping()
         this.countConnectedDevices()
         this.countUploadSpeed()
         this.countDownloadSpeed() 
     }
   }
 
-  chartDataMapping() {
+  // take the last snapshot and add it to ChartData
+
+  chartDataMapping() { 
+    this.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
     let newChartData = []
     let completeTimeString = ''
     let formattedTimeString = ''

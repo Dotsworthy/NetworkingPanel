@@ -15,19 +15,32 @@ class DeviceDetail extends Component {
         this.plotData() 
     }
 
+    componentWillReceiveProps() {
+        this.plotNewData()
+    }
+
     togglePanel(e){
         this.setState({open: !this.state.open})
     }
 
     plotData() {
         let newChartData = ['']
-        this.props.snap_shots.map(timeStamp => {
+        this.props.snapShots.map(timeStamp => {
         newChartData.push(timeStamp.upload_speed)
         newChartData.push(timeStamp.download_speed)
         this.state.chartData.push(newChartData)
         newChartData = ['']    
         })
-    }
+    }    
+
+    plotNewData() {
+        let newChartData = ['']
+        let latestSnapShot = this.props.snapShots.slice(-1)
+        console.log(latestSnapShot)
+        newChartData.push(latestSnapShot[0].upload_speed)
+        newChartData.push(latestSnapShot[0].download_speed)
+        this.state.chartData.push(newChartData)
+    }    
 
     render() {
         return (
