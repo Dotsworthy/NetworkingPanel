@@ -26,12 +26,16 @@ class NetworkContainer extends Component {
       console.log('connected')
     }
 
-    // this.ws.onmessage = evt => {
-    //   // on receiving data from server, update devices
-    //   let deviceData = JSON.parse(evt.data)
-    //   this.setState({
-    //     devices: deviceData)
-    // }
+    this.ws.onmessage = evt => {
+      // on receiving data from server, update devices
+      let deviceData = JSON.parse(evt.data)
+      this.setState({
+        devices: deviceData})
+      this.chartDataMapping()
+      this.countConnectedDevices()
+      this.countUploadSpeed()
+      this.countDownloadSpeed()
+    }
 
     this.ws.onclose = () => {
       console.log('disconnected')
@@ -41,23 +45,22 @@ class NetworkContainer extends Component {
       })
     }
 
-
-
-    const url = 'http://localhost:5001/presentation-data';
     
-    fetch(url)
-      .then(res => res.json())
-      .then(devices => this.setState({
-         devices: devices 
-        }))
-      .then(() => {
+  
+
+}
+
+  componentDidUpdate() {
+    this.ws.onmessage = evt => {
+      // on receiving data from server, update devices
+      let deviceData = JSON.parse(evt.data)
+      this.setState({
+        devices: deviceData})
         this.chartDataMapping()
         this.countConnectedDevices()
         this.countUploadSpeed()
-        this.countDownloadSpeed()
-            })
-      .catch(err => console.error); 
-
+        this.countDownloadSpeed() 
+    }
   }
 
   chartDataMapping() {
@@ -67,6 +70,7 @@ class NetworkContainer extends Component {
     let uploadTotal = 0
     let downloadTotal = 0
     for (let counter = 0; counter < this.state.devices.length; counter ++) {
+      console.log("newData")
       this.state.devices.forEach(device => {
         completeTimeString = device.snap_shots[counter].time_stamp
         formattedTimeString = completeTimeString.slice(11, 16)
