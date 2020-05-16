@@ -24,7 +24,6 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
-        console.log("newData")
         this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let newChartData = ['']
         this.props.snapShots.map(timeStamp => {
