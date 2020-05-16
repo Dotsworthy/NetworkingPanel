@@ -14,20 +14,37 @@ class DeviceDetail extends Component {
     componentDidMount() {
         this.plotData() 
     }
+    // below not currently working. Constant duplication. is it getting confused?
+    componentWillReceiveProps() {
+        this.plotData()
+    }
 
     togglePanel(e){
         this.setState({open: !this.state.open})
     }
 
     plotData() {
-        let newChartData = ['']
-        this.props.snap_shots.map(timeStamp => {
+        this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+        let newChartData = []
+        let formattedTimeString = ''
+        this.props.snapShots.map(timeStamp => {
+        formattedTimeString = timeStamp.time_stamp.slice(11, 16)
+        newChartData.push(formattedTimeString)
         newChartData.push(timeStamp.upload_speed)
         newChartData.push(timeStamp.download_speed)
         this.state.chartData.push(newChartData)
-        newChartData = ['']    
+        newChartData = []    
         })
-    }
+    }   
+    // bugged. Currently updates the chartdata multiple times. 
+    // plotNewData() {
+    //     let newChartData = ['']
+    //     let latestSnapShot = this.props.snapShots.slice(-1)
+    //     console.log(latestSnapShot)
+    //     newChartData.push(latestSnapShot[0].upload_speed)
+    //     newChartData.push(latestSnapShot[0].download_speed)
+    //     this.state.chartData.push(newChartData)
+    // }    
 
     render() {
         return (
@@ -36,7 +53,7 @@ class DeviceDetail extends Component {
                     
                     <div className="device-title-bar">
                         <h3>{this.props.deviceName}</h3>
-                        <img src={this.props.activeConnection ? "../images/connected.png" : "..images/disconnected"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="42" width="42"></img>
+                        <img src={this.props.activeConnection ? "../images/connected.png" : "../images/disconnected.png"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="42" width="42"></img>
                         </div>
                     
                     </div> 

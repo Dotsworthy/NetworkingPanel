@@ -26,12 +26,16 @@ class NetworkContainer extends Component {
       console.log('connected')
     }
 
-    // this.ws.onmessage = evt => {
-    //   // on receiving data from server, update devices
-    //   let deviceData = JSON.parse(evt.data)
-    //   this.setState({
-    //     devices: deviceData)
-    // }
+    this.ws.onmessage = evt => {
+      // on receiving data from server, update devices
+      let deviceData = JSON.parse(evt.data)
+      this.setState({
+        devices: deviceData})
+      this.chartDataMapping()
+      this.countConnectedDevices()
+      this.countUploadSpeed()
+      this.countDownloadSpeed()
+    }
 
     this.ws.onclose = () => {
       console.log('disconnected')
@@ -41,35 +45,37 @@ class NetworkContainer extends Component {
       })
     }
 
+}
 
-
-    const url = 'http://localhost:5001/presentation-data';
-    
-    fetch(url)
-      .then(res => res.json())
-      .then(devices => this.setState({
-         devices: devices 
-        }))
-      .then(() => {
+  componentWillRecieveProps() {
+    this.ws.onmessage = evt => {
+      // on receiving data from server, update devices
+      let deviceData = JSON.parse(evt.data)
+      this.setState({
+        devices: deviceData})
         this.chartDataMapping()
         this.countConnectedDevices()
         this.countUploadSpeed()
-        this.countDownloadSpeed()
-            })
-      .catch(err => console.error); 
-
+        this.countDownloadSpeed() 
+        console.log("newData")
+    }
   }
 
-  chartDataMapping() {
+  // this needs to go off snapshots instead of devices?
+
+  chartDataMapping() { 
+    this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
     let newChartData = []
     let completeTimeString = ''
     let formattedTimeString = ''
     let uploadTotal = 0
     let downloadTotal = 0
-    for (let counter = 0; counter < this.state.devices.length; counter ++) {
+    for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
+      completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
+      formattedTimeString = completeTimeString.slice(11, 16)
       this.state.devices.forEach(device => {
-        completeTimeString = device.snap_shots[counter].time_stamp
-        formattedTimeString = completeTimeString.slice(11, 16)
+        // completeTimeString = device.snap_shots[counter].time_stamp
+        // formattedTimeString = completeTimeString.slice(11, 16)
         uploadTotal += device.snap_shots[counter].upload_speed
         downloadTotal += device.snap_shots[counter].download_speed
       })

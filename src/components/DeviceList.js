@@ -14,15 +14,15 @@ const DeviceList = (props) => {
             activeConnection={device.snap_shots[device.snap_shots.length - 1].active_connection}
             uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
             downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
-            snap_shots={device.snap_shots}
+            snapShots={device.snap_shots}
             />
         )
     })
         
     return (
-        <ul>
+        <div>
         {deviceItems}
-        </ul>
+        </div>
     )
      
 }
