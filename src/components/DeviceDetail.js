@@ -14,9 +14,9 @@ class DeviceDetail extends Component {
     componentDidMount() {
         this.plotData() 
     }
-
+    // below not currently working. Constant duplication. is it getting confused?
     componentWillReceiveProps() {
-        this.plotNewData()
+        this.plotData()
     }
 
     togglePanel(e){
@@ -24,6 +24,8 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
+        console.log("newData")
+        this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let newChartData = ['']
         this.props.snapShots.map(timeStamp => {
         newChartData.push(timeStamp.upload_speed)
@@ -31,16 +33,16 @@ class DeviceDetail extends Component {
         this.state.chartData.push(newChartData)
         newChartData = ['']    
         })
-    }    
-
-    plotNewData() {
-        let newChartData = ['']
-        let latestSnapShot = this.props.snapShots.slice(-1)
-        console.log(latestSnapShot)
-        newChartData.push(latestSnapShot[0].upload_speed)
-        newChartData.push(latestSnapShot[0].download_speed)
-        this.state.chartData.push(newChartData)
-    }    
+    }   
+    // bugged. Currently updates the chartdata multiple times. 
+    // plotNewData() {
+    //     let newChartData = ['']
+    //     let latestSnapShot = this.props.snapShots.slice(-1)
+    //     console.log(latestSnapShot)
+    //     newChartData.push(latestSnapShot[0].upload_speed)
+    //     newChartData.push(latestSnapShot[0].download_speed)
+    //     this.state.chartData.push(newChartData)
+    // }    
 
     render() {
         return (

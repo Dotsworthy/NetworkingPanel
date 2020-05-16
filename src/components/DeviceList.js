@@ -20,9 +20,9 @@ const DeviceList = (props) => {
     })
         
     return (
-        <ul>
+        <div>
         {deviceItems}
-        </ul>
+        </div>
     )
      
 }
