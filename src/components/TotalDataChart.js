@@ -12,7 +12,9 @@ const TotalDataChart = (props) => {
             options={{
                 title: 'Total Upload & Downloads',
                 backgroundColor: { fill: 'transparent'},
-                hAxis: { title: 'Time', titleTextStyle: { color: '#333'} },
+                hAxis: { title: 'Time', titleTextStyle: { color: '#333'}, textStyle: {
+                    fontSize: 9
+                } },
                 vAxis: { title: 'Mbs', minValue: 0 },
                 series: {
                     1: { curveType: 'function' },

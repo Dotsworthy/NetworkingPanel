@@ -25,12 +25,15 @@ class DeviceDetail extends Component {
 
     plotData() {
         this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
-        let newChartData = ['']
+        let newChartData = []
+        let formattedTimeString = ''
         this.props.snapShots.map(timeStamp => {
+        formattedTimeString = timeStamp.time_stamp.slice(11, 16)
+        newChartData.push(formattedTimeString)
         newChartData.push(timeStamp.upload_speed)
         newChartData.push(timeStamp.download_speed)
         this.state.chartData.push(newChartData)
-        newChartData = ['']    
+        newChartData = []    
         })
     }   
     // bugged. Currently updates the chartdata multiple times. 
