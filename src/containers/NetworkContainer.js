@@ -16,112 +16,63 @@ class NetworkContainer extends Component {
             devices: [],
             connectedWebsocket: false,
             ws: null,
-            timeout: 250
           };
         this.toggleMode = this.toggleMode.bind(this);
     }
 
-  // ws = new WebSocket(URL)  
-
   componentDidMount() {
-    this.connect();
-    // this.ws.onopen = () => {
-    //   // on connecting, do nothing but log it to the console
-    //   console.log('Connected to server.')
-    //   this.setState({connectedWebsocket: true})
-    // }
-
-
-
-    // this.ws.onclose = () => {
-    //   console.log('Disconnected to server. Will attempt to reconnect in 30s')
-    //   this.setState({connectedWebsocket: false,
-    //                  ws: new WebSocket(URL)})
-    //  }
-    
-
-
-//   // this doesn't work. need a websocket refresh function.
-// componentDidUpdate() {
-//   this.ws.onopen = () => {
-//     // on connecting, do nothing but log it to the console
-//     console.log('connected')
-//   }
-
-//   this.ws.onclose = () => {
-//     console.log('disconnected')
-//     // automatically try to reconnect on connection loss
-//     this.setState({
-//       ws: new WebSocket(URL),
-//     })
-//   }
+    this.connectToWebSocket();
   }
 
-  // componentWillReceiveProps() {
-  //   this.ws.onmessage = evt => {
-  //     // on receiving data from server, update devices
-  //     let deviceData = JSON.parse(evt.data)
-  //     this.setState({
-  //       devices: deviceData})
-  //       this.chartDataMapping()
-  //       this.countConnectedDevices()
-  //       this.countUploadSpeed()
-  //       this.countDownloadSpeed() 
-  //       console.log("newData")
-  //   }
-  // }
+  connectToWebSocket() {
+    let ws = new WebSocket(URL);
+    let connectInterval
 
-    connect() {
-      let ws = new WebSocket(URL);
-      let connectInterval
+    ws.onopen = () => {
+      console.log("Connected to Websocket")
 
-      ws.onopen = () => {
-        console.log("Connected to Websocket")
-
-        this.setState({ ws: ws})
-        clearTimeout(connectInterval)
-      }
-
-      ws.onmessage = evt => {
-        // on receiving data from server, update devices
-        let deviceData = JSON.parse(evt.data)
-        this.setState({
-          devices: deviceData}) 
-        this.chartDataMapping()
-        
-        this.countConnectedDevices()
-        this.countUploadSpeed()
-        this.countDownloadSpeed()
-      }
-
-      ws.onclose = e => {
-        console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
-      
-          // does not follow this logic but now connects and reconnects.
-          connectInterval = setTimeout(() => {
-            this.check()
-          }, 30000)
-        }
-
-      ws.onerror = err => {
-        console.error(
-          "Socket encountered error: ",
-          err.message,
-          "Closing socket"
-        )
-
-        ws.close();
-      }  
-      
+      this.setState({ ws: ws})
+      clearTimeout(connectInterval)
     }
 
-    check() {
+    ws.onmessage = evt => {
+      // on receiving data from server, update devices
+      let deviceData = JSON.parse(evt.data)
+      this.setState({
+        devices: deviceData}) 
+      this.chartDataMapping()
+        
+      this.countConnectedDevices()
+      this.countUploadSpeed()
+      this.countDownloadSpeed()
+    }
+
+    ws.onclose = e => {
+      console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
+      
+        // does not follow this logic but now connects and reconnects.
+        connectInterval = setTimeout(() => {
+          this.checkForWebsocket()
+        }, 30000)
+      }
+
+     ws.onerror = err => {
+      console.error(
+         "Socket encountered error: ",
+         err.message,
+        "Closing socket"
+      )
+
+      ws.close();
+     }  
+      
+  }
+
+  checkForWebSocket() {
       if (!this.ws || this.ws.readyState == WebSocket.CLOSED) {
         this.connect()
     }
   }
-
-    
   
   chartDataMapping() { 
     if (this.state.devices.length == 0) {
