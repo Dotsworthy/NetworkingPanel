@@ -14,52 +14,41 @@ class NetworkContainer extends Component {
             combinedUploadSpeed: 0,
             combinedDownloadSpeed: 0,
             devices: [],
-            websocket: 'disconnected'
+            connectedWebsocket: false,
+            ws: null,
+            timeout: 250
           };
         this.toggleMode = this.toggleMode.bind(this);
     }
 
-  ws = new WebSocket(URL)  
+  // ws = new WebSocket(URL)  
 
   componentDidMount() {
-    this.ws.onopen = () => {
-      // on connecting, do nothing but log it to the console
-      console.log('Connected to server.')
-      this.setState({websocket: 'connected'})
-    }
+    this.connect();
+    // this.ws.onopen = () => {
+    //   // on connecting, do nothing but log it to the console
+    //   console.log('Connected to server.')
+    //   this.setState({connectedWebsocket: true})
+    // }
 
-    this.ws.onmessage = evt => {
-      // on receiving data from server, update devices
-      let deviceData = JSON.parse(evt.data)
-      this.setState({
-        devices: deviceData}) 
-      this.chartDataMapping()
+    // this.ws.onmessage = evt => {
+    //   // on receiving data from server, update devices
+    //   let deviceData = JSON.parse(evt.data)
+    //   this.setState({
+    //     devices: deviceData}) 
+    //   this.chartDataMapping()
       
-      this.countConnectedDevices()
-      this.countUploadSpeed()
-      this.countDownloadSpeed()
-    }
+    //   this.countConnectedDevices()
+    //   this.countUploadSpeed()
+    //   this.countDownloadSpeed()
+    // }
 
-    this.ws.onclose = () => {
-      console.log('Disconnected to server. Will attempt to reconnect in 30s')
-      this.setState({websocket: 'disconnected'})
-      // automatically try to reconnect on connection loss
-
-      // doesn't recognise function? why?
-      // this.reconnect()
-
-      // setInterval(function(){
-      //   this.reconnect()}, 30000)
-      }
-
-      if (this.websocket == 'disconnected') {
-        this.reconnect()
-
-        setInterval(function() {
-          this.reconnect()}, 30000)
-      }
+    // this.ws.onclose = () => {
+    //   console.log('Disconnected to server. Will attempt to reconnect in 30s')
+    //   this.setState({connectedWebsocket: false,
+    //                  ws: new WebSocket(URL)})
+    //  }
     
-    }
 
 
 //   // this doesn't work. need a websocket refresh function.
@@ -76,29 +65,65 @@ class NetworkContainer extends Component {
 //       ws: new WebSocket(URL),
 //     })
 //   }
-// }
+  }
 
-  componentWillReceiveProps() {
-    this.ws.onmessage = evt => {
-      // on receiving data from server, update devices
-      let deviceData = JSON.parse(evt.data)
-      this.setState({
-        devices: deviceData})
-        this.chartDataMapping()
-        this.countConnectedDevices()
-        this.countUploadSpeed()
-        this.countDownloadSpeed() 
-        console.log("newData")
+  // componentWillReceiveProps() {
+  //   this.ws.onmessage = evt => {
+  //     // on receiving data from server, update devices
+  //     let deviceData = JSON.parse(evt.data)
+  //     this.setState({
+  //       devices: deviceData})
+  //       this.chartDataMapping()
+  //       this.countConnectedDevices()
+  //       this.countUploadSpeed()
+  //       this.countDownloadSpeed() 
+  //       console.log("newData")
+  //   }
+  // }
+
+    connect() {
+      let ws = new WebSocket(URL);
+      let connectInterval
+
+      ws.onopen = () => {
+        console.log("Connected to Websocket")
+
+        this.setState({ ws: ws})
+        clearTimeout(connectInterval)
+      }
+
+      ws.onclose = e => {
+        console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
+      
+          // does not follow this logic but now connects and reconnects.
+          connectInterval = setTimeout(() => {
+            this.check()
+          }, 30000)
+            
+            
+            
+        }
+
+      ws.onerror = err => {
+        console.error(
+          "Socket encountered error: ",
+          err.message,
+          "Closing socket"
+        )
+
+        ws.close();
+      }  
+      
+    }
+
+    check() {
+      if (!this.ws || this.ws.readyState == WebSocket.CLOSED) {
+        this.connect()
     }
   }
 
+    
   
-  reconnect() {
-    this.setState({
-      ws: new WebSocket(URL),
-    })
-  }
-
   chartDataMapping() { 
     if (this.state.devices.length == 0) {
       console.log(this.state.devices)
@@ -175,7 +200,7 @@ class NetworkContainer extends Component {
         element.classList.toggle("dark");
       } 
   
-    
+
 
     render() {
         return (
