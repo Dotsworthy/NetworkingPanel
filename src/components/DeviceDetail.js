@@ -5,7 +5,9 @@ class DeviceDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
+            chartData: [
+                ['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]
+            ],
             open: false,
         }
         this.togglePanel = this.togglePanel.bind(this);
@@ -14,7 +16,7 @@ class DeviceDetail extends Component {
     componentDidMount() {
         this.plotData() 
     }
-    // below not currently working. Constant duplication. is it getting confused?
+    // To do: React warns against this, try and find another way? Perhaps move state open to device list level
     componentWillReceiveProps() {
         this.plotData()
     }
@@ -24,6 +26,11 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
+        // to do: rewrite this function to do a check on whether the size of the chartData 
+        // matches the size of the snapShots. If no, loop through every snapshot and push it to the
+        // chartData. This may be cleaner than doing it repeatedly and avoid the state mutation warning
+        // flagged by React.
+        // below function works on Network Container chart but now here. why?
         this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let newChartData = []
         let formattedTimeString = ''
@@ -33,18 +40,9 @@ class DeviceDetail extends Component {
         newChartData.push(timeStamp.upload_speed)
         newChartData.push(timeStamp.download_speed)
         this.state.chartData.push(newChartData)
-        newChartData = []    
+        newChartData = []  
         })
     }   
-    // bugged. Currently updates the chartdata multiple times. 
-    // plotNewData() {
-    //     let newChartData = ['']
-    //     let latestSnapShot = this.props.snapShots.slice(-1)
-    //     console.log(latestSnapShot)
-    //     newChartData.push(latestSnapShot[0].upload_speed)
-    //     newChartData.push(latestSnapShot[0].download_speed)
-    //     this.state.chartData.push(newChartData)
-    // }    
 
     render() {
         return (

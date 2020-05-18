@@ -8,84 +8,97 @@ class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
+            chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
             dark: false,
             connectedDevices: 0,
             combinedUploadSpeed: 0,
             combinedDownloadSpeed: 0,
-            devices: []
+            devices: [],
+            connectedWebsocket: false,
+            ws: null,
           };
         this.toggleMode = this.toggleMode.bind(this);
     }
 
-  ws = new WebSocket(URL)  
-
   componentDidMount() {
-    this.ws.onopen = () => {
-      // on connecting, do nothing but log it to the console
-      console.log('connected')
+    this.connectToWebSocket();
+  }
+
+  connectToWebSocket() {
+    let ws = new WebSocket(URL);
+    let connectInterval
+
+    ws.onopen = () => {
+      console.log("Connected to Websocket")
+
+      this.setState({ ws: ws})
+      clearTimeout(connectInterval)
     }
 
-    this.ws.onmessage = evt => {
-      // on receiving data from server, update devices
+    ws.onmessage = evt => {
       let deviceData = JSON.parse(evt.data)
       this.setState({
-        devices: deviceData})
+        devices: deviceData}) 
       this.chartDataMapping()
+        
       this.countConnectedDevices()
       this.countUploadSpeed()
       this.countDownloadSpeed()
     }
 
-    this.ws.onclose = () => {
-      console.log('disconnected')
-      // automatically try to reconnect on connection loss
-      this.setState({
-        ws: new WebSocket(URL),
-      })
-    }
+    ws.onclose = e => {
+      console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
+      
+        // does not follow this logic but now connects and reconnects.
+        connectInterval = setTimeout(() => {
+          this.checkForWebSocket()
+        }, 30000)
+      }
 
-}
+     ws.onerror = err => {
+      console.error(
+         "Socket encountered error: ",
+         err.message,
+        "Closing socket"
+      )
 
-  componentWillRecieveProps() {
-    this.ws.onmessage = evt => {
-      // on receiving data from server, update devices
-      let deviceData = JSON.parse(evt.data)
-      this.setState({
-        devices: deviceData})
-        this.chartDataMapping()
-        this.countConnectedDevices()
-        this.countUploadSpeed()
-        this.countDownloadSpeed() 
-        console.log("newData")
-    }
+      ws.close();
+     }  
+      
   }
 
-  // this needs to go off snapshots instead of devices?
-
+  checkForWebSocket() {
+      if (!this.ws || this.ws.readyState === WebSocket.CLOSED) {
+        this.connectToWebSocket()
+    }
+  }
+  
   chartDataMapping() { 
-    this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
-    let newChartData = []
-    let completeTimeString = ''
-    let formattedTimeString = ''
-    let uploadTotal = 0
-    let downloadTotal = 0
-    for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
-      completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
-      formattedTimeString = completeTimeString.slice(11, 16)
-      this.state.devices.forEach(device => {
-        // completeTimeString = device.snap_shots[counter].time_stamp
-        // formattedTimeString = completeTimeString.slice(11, 16)
-        uploadTotal += device.snap_shots[counter].upload_speed
-        downloadTotal += device.snap_shots[counter].download_speed
-      })
-      newChartData.push(formattedTimeString)
-      newChartData.push(uploadTotal)
-      newChartData.push(downloadTotal)
-      this.state.chartData.push(newChartData)
-      newChartData = []
-      uploadTotal = 0
-      downloadTotal = 0
+    if (this.state.devices.length === 0) {
+      return
+    } else {
+      this.setState({chartData: [['Time', 'Upload Mbs', 'Download Mbs']]})
+      let newChartData = []
+      let completeTimeString = ''
+      let formattedTimeString = ''
+      let uploadTotal = 0
+      let downloadTotal = 0
+      for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
+        completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
+        formattedTimeString = completeTimeString.slice(11, 16)
+        this.state.devices.forEach(device => {
+          uploadTotal += device.snap_shots[counter].upload_speed
+          downloadTotal += device.snap_shots[counter].download_speed
+        })
+        newChartData.push(formattedTimeString)
+        newChartData.push(uploadTotal)
+        newChartData.push(downloadTotal)
+        this.state.chartData.push(newChartData)
+        newChartData = []
+        uploadTotal = 0
+        downloadTotal = 0
+    }
+
       
     }
   }
@@ -134,7 +147,7 @@ class NetworkContainer extends Component {
         element.classList.toggle("dark");
       } 
   
-    
+
 
     render() {
         return (
