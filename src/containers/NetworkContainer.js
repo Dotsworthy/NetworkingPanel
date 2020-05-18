@@ -8,7 +8,7 @@ class NetworkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: [['Time', 'Upload Mbs', 'Download Mbs']],
+            chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
             dark: false,
             connectedDevices: 0,
             combinedUploadSpeed: 0,
@@ -36,7 +36,6 @@ class NetworkContainer extends Component {
     }
 
     ws.onmessage = evt => {
-      // on receiving data from server, update devices
       let deviceData = JSON.parse(evt.data)
       this.setState({
         devices: deviceData}) 
@@ -52,7 +51,7 @@ class NetworkContainer extends Component {
       
         // does not follow this logic but now connects and reconnects.
         connectInterval = setTimeout(() => {
-          this.checkForWebsocket()
+          this.checkForWebSocket()
         }, 30000)
       }
 
@@ -69,16 +68,16 @@ class NetworkContainer extends Component {
   }
 
   checkForWebSocket() {
-      if (!this.ws || this.ws.readyState == WebSocket.CLOSED) {
-        this.connect()
+      if (!this.ws || this.ws.readyState === WebSocket.CLOSED) {
+        this.connectToWebSocket()
     }
   }
   
   chartDataMapping() { 
-    if (this.state.devices.length == 0) {
+    if (this.state.devices.length === 0) {
       return
     } else {
-      this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+      this.setState({chartData: [['Time', 'Upload Mbs', 'Download Mbs']]})
       let newChartData = []
       let completeTimeString = ''
       let formattedTimeString = ''
@@ -88,8 +87,6 @@ class NetworkContainer extends Component {
         completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
         formattedTimeString = completeTimeString.slice(11, 16)
         this.state.devices.forEach(device => {
-          // completeTimeString = device.snap_shots[counter].time_stamp
-          // formattedTimeString = completeTimeString.slice(11, 16)
           uploadTotal += device.snap_shots[counter].upload_speed
           downloadTotal += device.snap_shots[counter].download_speed
         })
