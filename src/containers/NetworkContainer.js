@@ -31,17 +31,7 @@ class NetworkContainer extends Component {
     //   this.setState({connectedWebsocket: true})
     // }
 
-    // this.ws.onmessage = evt => {
-    //   // on receiving data from server, update devices
-    //   let deviceData = JSON.parse(evt.data)
-    //   this.setState({
-    //     devices: deviceData}) 
-    //   this.chartDataMapping()
-      
-    //   this.countConnectedDevices()
-    //   this.countUploadSpeed()
-    //   this.countDownloadSpeed()
-    // }
+
 
     // this.ws.onclose = () => {
     //   console.log('Disconnected to server. Will attempt to reconnect in 30s')
@@ -92,6 +82,18 @@ class NetworkContainer extends Component {
         clearTimeout(connectInterval)
       }
 
+      ws.onmessage = evt => {
+        // on receiving data from server, update devices
+        let deviceData = JSON.parse(evt.data)
+        this.setState({
+          devices: deviceData}) 
+        this.chartDataMapping()
+        
+        this.countConnectedDevices()
+        this.countUploadSpeed()
+        this.countDownloadSpeed()
+      }
+
       ws.onclose = e => {
         console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
       
@@ -99,9 +101,6 @@ class NetworkContainer extends Component {
           connectInterval = setTimeout(() => {
             this.check()
           }, 30000)
-            
-            
-            
         }
 
       ws.onerror = err => {
@@ -126,7 +125,7 @@ class NetworkContainer extends Component {
   
   chartDataMapping() { 
     if (this.state.devices.length == 0) {
-      console.log(this.state.devices)
+      return
     } else {
       this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
       let newChartData = []
