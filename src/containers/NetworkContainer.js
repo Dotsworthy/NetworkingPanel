@@ -49,7 +49,6 @@ class NetworkContainer extends Component {
     ws.onclose = e => {
       console.log(`Socket is closed. Reconnect will be attempted in 30 seconds.`, e.reason)
       
-        // does not follow this logic but now connects and reconnects.
         connectInterval = setTimeout(() => {
           this.checkForWebSocket()
         }, 30000)

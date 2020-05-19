@@ -6,7 +6,7 @@ class DeviceDetail extends Component {
         super(props);
         this.state = {
             chartData: [
-                ['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]
+                ['Time', 'Upload Mbs', 'Download Mbs']
             ],
             open: false,
         }
@@ -26,15 +26,15 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
-        // to do: rewrite this function to do a check on whether the size of the chartData 
-        // matches the size of the snapShots. If no, loop through every snapshot and push it to the
-        // chartData. This may be cleaner than doing it repeatedly and avoid the state mutation warning
-        // flagged by React.
-        // below function works on Network Container chart but now here. why?
-        this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+        let chartSize = this.state.chartData.length
         let newChartData = []
         let formattedTimeString = ''
-        this.props.snapShots.map(timeStamp => {
+        let newChartEntries
+        let snapShotsSize = this.props.snapShots.length
+        
+        for (let counter = chartSize; counter < snapShotsSize; counter ++) {
+            newChartEntries = this.props.snapShots.slice(counter -1, counter)
+            newChartEntries.map(timeStamp => {
         formattedTimeString = timeStamp.time_stamp.slice(11, 16)
         newChartData.push(formattedTimeString)
         newChartData.push(timeStamp.upload_speed)
@@ -42,6 +42,11 @@ class DeviceDetail extends Component {
         this.state.chartData.push(newChartData)
         newChartData = []  
         })
+        }
+    
+        
+        
+        
     }   
 
     render() {
