@@ -31,6 +31,7 @@ class DeviceDetail extends Component {
         let formattedTimeString = ''
         let newChartEntries
         let snapShotsSize = this.props.snapShots.length
+        snapShotsSize += 1
         
         for (let counter = chartSize; counter < snapShotsSize; counter ++) {
             newChartEntries = this.props.snapShots.slice(counter -1, counter)
