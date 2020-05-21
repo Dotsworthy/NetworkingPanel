@@ -8,13 +8,14 @@ $menu-dark: #26537C;
 $heading-light:#000000;
 $heading-dark: #FFFFFF;
 $heading-box-light: #FBFBFB;
-$heading-box-dark: #000000;
+$heading-box-dark: #1D3354;
 $font-light: #000000;
 $font-dark: #FFFFFF;
+$transition: .5s;
 
 // Display Options
 %display-options {
-  display: grid;
+  display: grid;  
 }
 
 // Content Box Universal Settings
@@ -24,16 +25,36 @@ $font-dark: #FFFFFF;
   margin: 5px;
   padding: 10px;
   background-color: $menu-light;
+  color: $font-light;
+  transition: $transition;
 }
 
 html {
   background: $background-light;
   color: $font-light;
+  transition: $transition;
 }
 
 html[data-theme='dark'] {
   background: $background-dark;
   color: $font-dark;
+  transition: $transition;
+}
+
+h2 {
+  border: 0pt solid $menu-dark;
+  border-radius: 10px;
+  margin: 3px;
+  padding: 5px 5px 5px 10px;
+  background-color: $heading-box-light;
+  color: $heading-light;
+  transition: $transition;
+}
+
+.dark {
+  background-color: $heading-box-dark;
+  color: $heading-dark;
+  $transition: $transition;
 }
 
 input[type=checkbox] {
@@ -47,6 +68,7 @@ label {
   width: 55px;
   height: 30px;
   background: $background-dark;
+  transition: $transition;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -59,8 +81,9 @@ label {
 
 label:after {
   content: '';
-    background: #fff;
-    width: 20px;
+  background: #fff;
+  transition: $transition;
+  width: 20px;
   height: 20px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -73,11 +96,13 @@ label:after {
 
 input:checked + label:after {
   background: $background-dark;
+  transition: $transition;
 }
 
 
 input:checked + label {
   background: $background-light;
+  transition: $transition;
 }
 
 input:checked + label:after {
@@ -107,14 +132,6 @@ body {
   font-family: 'Nunito' sans-serif;
 }
 
-
-h2 {
-  border: 0pt solid $menu-dark;
-  border-radius: 10px;
-  margin: 3px;
-  padding: 5px 5px 5px 10px;
-}
-
 .app-container {
   @extend %display-options;
   grid-template-rows: 100px 1fr;
@@ -126,13 +143,6 @@ h2 {
   margin: 10px 0px 0px 10px;
   h1 {
     font-size: 42pt;
-    .light {
-      color: $heading-light;
-    }
-
-    .dark {
-      color: $heading-dark;
-    }
   }
 
   .light-dark-container {
@@ -148,15 +158,12 @@ h2 {
 // Site Content
 .summary-container {
   @extend %content-box-options;
-
-    #dark {
-      background-color: $menu-dark;
-    }
 }
 
 .summary-container-dark {
   @extend %content-box-options;
   background-color: $menu-dark;
+  color: $font-dark;
 }
 
 .device-container {
@@ -166,15 +173,13 @@ h2 {
 .device-container-dark {
   @extend %content-box-options;
   background-color: $menu-dark;
+  color: $font-dark;
 }
 
 #title-panel{
   display: grid;
   grid-template-columns: 10fr 2fr;
   margin-left: 10px;
-}
-.dark {
-  background-color: #1D3354
 }
 
 
