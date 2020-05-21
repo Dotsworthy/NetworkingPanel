@@ -9,7 +9,7 @@ class NetworkContainer extends Component {
         super(props);
         this.state = {
             chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
-            dark: false,
+            darkMode: false,
             connectedDevices: 0,
             combinedUploadSpeed: 0,
             combinedDownloadSpeed: 0,
@@ -18,7 +18,12 @@ class NetworkContainer extends Component {
             ws: null,
           };
         this.toggleMode = this.toggleMode.bind(this);
+
+        
+
     }
+
+
 
   componentDidMount() {
     this.connectToWebSocket();
@@ -141,10 +146,67 @@ class NetworkContainer extends Component {
     }
 
     toggleMode(event) {
-        this.setState({dark: !this.state.dark})
-        let element = document.body;
-        element.classList.toggle("dark");
-      } 
+     
+
+
+
+
+      let trans = () => {
+        document.documentElement.classList.add('transisition');
+                  window.setTimeout(() => {
+                    document.documentElement.classList.remove('transisition')
+                  }, 1000)
+      }
+      if(this.state.darkMode == false) {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'dark');
+        this.setState({darkMode: true})
+        
+      } else {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'light')
+        this.setState({darkMode: false})
+        }
+      }
+      
+      
+      
+      
+      
+
+
+        // this.setState({dark: !this.state.dark})
+        // let element = document.body;
+        // element.classList.toggle("dark");
+
+
+
+        // let checkbox =
+        // document.querySelector('input[name=mode')
+        // checkbox.addEventListener('change', 
+        // function() {
+        //   if(this.checked) {
+        //     trans()
+    
+        //     document.documentElement.setAttribute('data-theme', 'dark')
+        //   } else {
+        //     trans()
+                
+        //     document.documentElement.setAttribute('data-theme', 'light')
+        //       }
+        //   })
+        //   let trans = () => {
+        //     document.documentElement.classList.add('transisition');
+        //               window.setTimeout(() => {
+        //     document.documentElement.classList.remove('transisition')
+        //               }, 1000)
+          // }  
+
+
+
+
+
+      
   
 
 
@@ -158,15 +220,17 @@ class NetworkContainer extends Component {
                 <h1>Network Dashboard</h1>
                 
                   <div className="light-dark-container">
-                  <input onClick={(event) => this.toggleMode(event)} className="container_toggle" type="checkbox" id="switch" name="mode"></input>
-                  <label id="switch">Toggle Light/Dark</label>
+                  <p>Light / Dark Mode</p>
+                  <input onClick={(event) => this.toggleMode(event)} className="container_toggle" type="checkbox" id="switch" name="mode">
+                  </input>
+                  <label for="switch">Toggle</label>
                   </div>
                 </div>
                 
                 <div className="content-container">
 
-                  <div className={this.state.dark ? "summary-container-dark" : "summary-container"}>
-                  <h2 className={this.state.dark ? "dark" : "" }>Summary</h2>
+                  <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
+                  <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
                   chartData = {this.state.chartData} 
                   connectedDevices = {this.state.connectedDevices} 
@@ -176,8 +240,8 @@ class NetworkContainer extends Component {
                   />
                   </div>
 
-                  <div className={this.state.dark ? "device-container-dark" : "device-container"}>
-                  <h2 className={this.state.dark ? "dark" : "" }>Devices</h2>
+                  <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>
+                  <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>
                   <DeviceList devices={this.state.devices}/>
                   </div>         
                 

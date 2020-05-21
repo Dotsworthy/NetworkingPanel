@@ -8,7 +8,7 @@ class DeviceDetail extends Component {
             chartData: [
                 ['Time', 'Upload Mbs', 'Download Mbs']
             ],
-            open: false,
+            open: true,
         }
         this.togglePanel = this.togglePanel.bind(this);
     }

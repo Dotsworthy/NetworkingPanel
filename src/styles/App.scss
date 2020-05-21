@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 // Colour Scheme
 $background-light: #FBFBFB;
 $background-dark: #1D3354;
@@ -32,16 +26,85 @@ $font-dark: #FFFFFF;
   background-color: $menu-light;
 }
 
+html {
+  background: $background-light;
+  // color: $font-light;
+}
+
+html[data-theme='dark'] {
+  background: $background-dark;
+  // color: $font-dark;
+}
+
+input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 55px;
+  height: 30px;
+  background: $background-dark;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+    background: #fff;
+    width: 20px;
+  height: 20px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+ transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+}
+
+input:checked + label:after {
+  background: $background-dark;
+}
+
+
+input:checked + label {
+  background: $background-light;
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+  transition-delay: 0!important;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body {
   font-family: 'Nunito' sans-serif;
-  background-color: $background-light;
-  color: $font-light;
-}
-
-.dark {
-  background-color: $background-dark;
-  color: $font-dark;
 }
 
 
@@ -62,7 +125,7 @@ h2 {
 
 .app-container {
   @extend %display-options;
-  grid-template-rows: 76px 1fr;
+  grid-template-rows: 100px 1fr;
 }
 
 .title-bar-container {
