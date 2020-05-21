@@ -28,12 +28,12 @@ $font-dark: #FFFFFF;
 
 html {
   background: $background-light;
-  // color: $font-light;
+  color: $font-light;
 }
 
 html[data-theme='dark'] {
   background: $background-dark;
-  // color: $font-dark;
+  color: $font-dark;
 }
 
 input[type=checkbox] {
@@ -109,18 +109,10 @@ body {
 
 
 h2 {
-  background-color: $heading-box-light;
-  color: $heading-light;
   border: 0pt solid $menu-dark;
   border-radius: 10px;
   margin: 3px;
   padding: 5px 5px 5px 10px;
-  font-family: 'Nunito' sans-serif;
-
-  .dark {
-    background-color: $heading-box-dark;
-    color: $heading-dark;
-  }
 }
 
 .app-container {
