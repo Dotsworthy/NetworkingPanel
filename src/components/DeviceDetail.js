@@ -6,7 +6,7 @@ class DeviceDetail extends Component {
         super(props);
         this.state = {
             chartData: [
-                ['Time', 'Upload Mbs', 'Download Mbs']
+                ['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]
             ],
             open: true,
         }
@@ -26,29 +26,23 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
-        let chartSize = this.state.chartData.length
+        this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let newChartData = []
         let formattedTimeString = ''
-        let newChartEntries
-        let snapShotsSize = this.props.snapShots.length
-        snapShotsSize += 1
-        
-        for (let counter = chartSize; counter < snapShotsSize; counter ++) {
-            newChartEntries = this.props.snapShots.slice(counter -1, counter)
-            newChartEntries.map(timeStamp => {
-        formattedTimeString = timeStamp.time_stamp.slice(11, 16)
-        newChartData.push(formattedTimeString)
-        newChartData.push(timeStamp.upload_speed)
-        newChartData.push(timeStamp.download_speed)
-        this.state.chartData.push(newChartData)
-        newChartData = []  
+            this.props.snapShots.map(timeStamp => {
+            formattedTimeString = timeStamp.time_stamp.slice(11, 16)
+            newChartData.push(formattedTimeString)
+            newChartData.push(timeStamp.upload_speed)
+            newChartData.push(timeStamp.download_speed)
+            this.state.chartData.push(newChartData)
+            newChartData = []
         })
         }
     
         
         
         
-    }   
+      
 
     render() {
         return (
