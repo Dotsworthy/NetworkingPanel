@@ -3,7 +3,7 @@ import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
-const URL = 'ws://localhost:5001';
+const URL = 'ws://77.68.23.244:5001';
 
 class NetworkContainer extends Component {
     constructor(props) {
