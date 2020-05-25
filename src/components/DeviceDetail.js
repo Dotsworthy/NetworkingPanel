@@ -5,20 +5,15 @@ class DeviceDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: [
-                ['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]
-            ],
             open: false,
         }
         this.togglePanel = this.togglePanel.bind(this);
     }
 
-    componentDidMount() {
-        this.plotData() 
-    }
-    // To do: React warns against this, try and find another way? Perhaps move state open to device list level
-    componentWillReceiveProps() {
-        this.plotData()
+    shouldComponentUpdate(nextProps) {
+        if (nextProps) {
+            return true;
+        }
     }
 
     togglePanel(e){
@@ -28,7 +23,7 @@ class DeviceDetail extends Component {
     plotData() {
         let chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let formattedTimeString = ''
-        this.props.snapShots.map(timeStamp => {
+        this.props.snapShots.forEach(timeStamp => {
             let newChartData = []    
             formattedTimeString = timeStamp.time_stamp.slice(11, 16)
             newChartData.push(formattedTimeString)
@@ -36,14 +31,9 @@ class DeviceDetail extends Component {
             newChartData.push(timeStamp.download_speed)
             chartData.push(newChartData)
         })
-        this.setState({chartData: chartData})
+        return chartData
     }
     
-        
-        
-        
-      
-
     render() {
         return (
                 <div>
@@ -69,7 +59,7 @@ class DeviceDetail extends Component {
                     </div>
                     <div>
                     
-                    <TotalDataChart chartData={this.state.chartData} /> </div>
+                    <TotalDataChart chartData={this.plotData()} /> </div>
                     </div>
                     )
                     :null 
