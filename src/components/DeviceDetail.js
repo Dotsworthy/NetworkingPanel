@@ -7,7 +7,7 @@ class DeviceDetail extends Component {
         this.state = {
             open: false,
         }
-        this.togglePanel = this.togglePanel.bind(this);
+        // this.togglePanel = this.togglePanel.bind(this);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -37,16 +37,7 @@ class DeviceDetail extends Component {
     render() {
         return (
                 <div>
-                    <div onClick={(e)=> this.togglePanel(e)} className ='header'>
-                    
-                    <div className="device-title-bar">
-                        <h3>{this.props.deviceName}</h3>
-                        <img src={this.props.activeConnection ? "../images/connected.png" : "../images/disconnected.png"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="42" width="42"></img>
-                        </div>
-                    
-                    </div> 
                     {
-                    this.state.open? (
                     <div className='device-list-content'> 
                     <div>
                     <p>Device: {this.props.deviceType}</p>
@@ -61,8 +52,7 @@ class DeviceDetail extends Component {
                     
                     <TotalDataChart chartData={this.plotData()} /> </div>
                     </div>
-                    )
-                    :null 
+
                     }
                 </div>
         );

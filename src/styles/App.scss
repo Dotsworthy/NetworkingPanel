@@ -200,3 +200,50 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+/* STOCK TAB */
+
+.tab {
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  font-size: 1.5em;
+  border-radius: 2em;
+  border: none;
+  // color: ghostwhite;
+  // margin: 0 0.5em;
+  // text-align: center;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  color: #F4B41A;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  color: #F4B41A;
+  text-decoration: underline;
+}
+
+.tab button:focus {
+  outline: none;
+}
+/* Style the tab content */
+.tabcontent {
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.tabelement {
+  display: inline-block;
+  padding: 20px;
+}
