@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import {PassiveListener} from 'react-event-injector';
+// import {TransitionGroup, CSSTransition} from 'react-transition-group';
+// above not currently used by may be implemented
 
 const URL = 'ws://77.68.23.244:5001';
 
@@ -78,28 +80,22 @@ class NetworkContainer extends Component {
       return
     } else {
       this.setState({chartData: [['Time', 'Upload Mbs', 'Download Mbs']]})
-      let newChartData = []
-      let completeTimeString = ''
-      let formattedTimeString = ''
-      let uploadTotal = 0
-      let downloadTotal = 0
       for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
-        completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
-        formattedTimeString = completeTimeString.slice(11, 16)
+        let newChartData = []
+        let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
+        let formattedTimeString = completeTimeString.slice(11, 16)
+        let uploadTotal = 0
+        let downloadTotal = 0
         this.state.devices.forEach(device => {
           uploadTotal += device.snap_shots[counter].upload_speed
           downloadTotal += device.snap_shots[counter].download_speed
         })
-        newChartData.push(formattedTimeString)
-        newChartData.push(uploadTotal)
-        newChartData.push(downloadTotal)
+        newChartData.push(formattedTimeString, uploadTotal, downloadTotal)
         this.state.chartData.push(newChartData)
-        newChartData = []
-        uploadTotal = 0
-        downloadTotal = 0
      }    
     }
   }
+
   
   countConnectedDevices() {
     let counter = 0;
@@ -146,7 +142,7 @@ class NetworkContainer extends Component {
                     document.documentElement.classList.remove('transisition')
                   }, 1000)
       }
-      if(this.state.darkMode == false) {
+      if(this.state.darkMode === false) {
         trans()
         document.documentElement.setAttribute('data-theme', 'dark');
         this.setState({darkMode: true})
@@ -169,14 +165,26 @@ class NetworkContainer extends Component {
                 
                   <div className="light-dark-container">
                   <p>Light / Dark Mode</p>
-                  <input 
-                  onClick={(event) => this.toggleMode(event)} 
-                  className="container_toggle" 
-                  type="checkbox" 
-                  id="switch" 
-                  name="mode">
-                  </input>
-                  <label for="switch">Toggle</label>
+                  
+                  {/* <PassiveListener> */}
+                    <input
+                    key = "PassiveListener"
+                    // onClick={(event) => this.toggleMode(event)} 
+                    className="container_toggle" 
+                    type="checkbox" 
+                    id="switch" 
+                    name="mode">
+                    </input>
+                  {/* </PassiveListener> */}
+                  <PassiveListener>
+                    <label
+                    key = "PassiveListener"
+                    onClick={(event) => this.toggleMode(event)} 
+                    htmlFor="switch">Toggle
+                    </label>
+                  </PassiveListener>
+                  
+                  
                   </div>
                 </div>
                 

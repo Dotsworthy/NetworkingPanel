@@ -8,7 +8,7 @@ class DeviceDetail extends Component {
             chartData: [
                 ['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]
             ],
-            open: true,
+            open: false,
         }
         this.togglePanel = this.togglePanel.bind(this);
     }
@@ -26,18 +26,18 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
-        this.state.chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
-        let newChartData = []
+        let chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let formattedTimeString = ''
-            this.props.snapShots.map(timeStamp => {
+        this.props.snapShots.map(timeStamp => {
+            let newChartData = []    
             formattedTimeString = timeStamp.time_stamp.slice(11, 16)
             newChartData.push(formattedTimeString)
             newChartData.push(timeStamp.upload_speed)
             newChartData.push(timeStamp.download_speed)
-            this.state.chartData.push(newChartData)
-            newChartData = []
+            chartData.push(newChartData)
         })
-        }
+        this.setState({chartData: chartData})
+    }
     
         
         
