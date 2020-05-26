@@ -1,5 +1,4 @@
 import React from "react";
-import TotalDataChart from "./TotalDataChart";
 
 
 function SummaryComponent(props) {
