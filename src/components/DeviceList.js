@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         // backgroundColor: theme.pallete.backgroundColor.paper,
         display: 'flex',
-        height: 224,
+        height: 350,
     },
     tabs: {
         // borderRight: `1px solid ${theme.pallete.divider}`, 
@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 export default function VerticalTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-    const devices = props.devices;
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
@@ -72,13 +71,11 @@ export default function VerticalTabs(props) {
             <Tab 
             id={device.id}
             label={device.host_name} {...a11yProps(tabCounter)} 
-            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon /> : <SignalWifiOffTwoToneIcon /> }>
-            />
-            {tabCounter ++}
+            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "green"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "red"}} /> }
+            {...tabCounter ++}
+            >
             </Tab>
-            
             )
-          
         });
         
 
@@ -89,7 +86,8 @@ export default function VerticalTabs(props) {
                 <TabPanel
                  key = {device.id}
                  value={value}
-                 index={panelCounter}> 
+                 index={panelCounter}>
+                 {panelCounter ++}     
                     <DeviceDetail
                         key={device.ip_address}
                         id={device.id} 
@@ -102,8 +100,9 @@ export default function VerticalTabs(props) {
                         uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
+                        
                     />
-                    {panelCounter ++}
+                    
                 </TabPanel> 
             )
             
