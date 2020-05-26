@@ -167,16 +167,16 @@ body {
 
 .device-container {
 @extend %content-box-options;
-grid-column-start: 1;
-grid-column-end: 3;
+// grid-column-start: 1;
+// grid-column-end: 3;
 }
 
 .device-container-dark {
   @extend %content-box-options;
   background-color: $menu-dark;
   color: $font-dark;
-  grid-column-start: 1;
-  grid-column-end: 3;
+  // grid-column-start: 1;
+  // grid-column-end: 3;
 }
 
 #title-panel{

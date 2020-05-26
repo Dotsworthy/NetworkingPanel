@@ -47,12 +47,14 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        // backgroundColor: theme.pallete.backgroundColor.paper,
         display: 'flex',
-        height: 350,
-    },
+        height: 500,
+        
+        },
     tabs: {
         // borderRight: `1px solid ${theme.pallete.divider}`, 
+        display: 'inline-flex',
+        // fontSize: '2px',
     }
 }));
 
