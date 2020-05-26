@@ -1,6 +1,7 @@
 // import React, {Component} from 'react';
-import DeviceDetail from './DeviceDetail.js'
-import DeviceName from './DeviceName.js'
+import DeviceDetail from './DeviceDetail.js';
+import DeviceName from './DeviceName.js';
+import DevicePanel from './DevicePanel.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +9,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone';
+import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -64,6 +67,50 @@ export default function VerticalTabs(props) {
         setValue(newValue)
     };
 
+    let mapDeviceTab
+    let counter    
+    for (let counter = 0; counter < devices[0].snap_shots.length; counter ++) {
+        mapDeviceTab = props.devices.map(device => {
+        
+            return (
+                <Tab 
+                id={device.id}
+                label={device.host_name} {...a11yProps(counter)} 
+                icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon /> : <SignalWifiOffTwoToneIcon /> }>
+                />
+                </Tab>
+                )
+                
+            });
+    }
+    
+
+    const mapDevicePanel = props.devices.map(device => {
+        
+            return (
+                <TabPanel
+                 key = {device.id}
+                 value={value}
+                 index={counter}> 
+                    <DeviceDetail
+                        key={device.ip_address}
+                        id={device.id} 
+                        deviceName={device.host_name}
+                        deviceType={device.device_type}
+                        ipAddress={device.ip_address}
+                        macAddress={device.mac_address}
+                        operatingSystem={device.operating_system}
+                        activeConnection={device.snap_shots[device.snap_shots.length - 1].active_connection}
+                        uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
+                        downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
+                        snapShots={device.snap_shots}
+                    />
+                </TabPanel> 
+            )
+            
+        })
+              
+
     return (
         <div className={classes.root}>
             <Tabs
@@ -74,18 +121,28 @@ export default function VerticalTabs(props) {
             aria-label="Vertical tabs example"
             className={classes.tabs}
             >
-            <DeviceName devices={devices}/>
+            {mapDeviceTab}    
+            {/* <DeviceName 
+            devices={devices}
+            value = {value}
+            /> */}
+            {/* <Tab label="Item One" {...a11yProps(0)} />
+            <Tab label="Item Two" {...a11yProps(1)} />
+            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="Item Four" {...a11yProps(3)} />
+            <Tab label="Item Five" {...a11yProps(4)} />
+            <Tab label="Item Six" {...a11yProps(5)} />
+            <Tab label="Item Seven" {...a11yProps(6)} /> */}
             
-                            
-                {/* <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
-                <Tab label="Item Three" {...a11yProps(2)} />
-                <Tab label="Item Four" {...a11yProps(3)} />
-                <Tab label="Item Five" {...a11yProps(4)} />
-                <Tab label="Item Six" {...a11yProps(5)} />
-                <Tab label="Item Seven" {...a11yProps(6)} /> */}
             </Tabs>
-            <TabPanel value={value} index={0}>
+            {mapDevicePanel}
+            {/* <DevicePanel 
+            devices={devices}
+            value={value}
+            /> */}
+            
+
+            {/* <TabPanel value={value} index={0}>
                 Item One
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -105,9 +162,13 @@ export default function VerticalTabs(props) {
             </TabPanel>
             <TabPanel value={value} index={6}>
                 Item Seven
-            </TabPanel>
+            </TabPanel> */}
         </div>
-    );
+    )
+
+    
+
+
 }
 // class DeviceList extends Component {
 //     constructor(props) {
