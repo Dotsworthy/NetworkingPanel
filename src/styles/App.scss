@@ -210,6 +210,8 @@ grid-column-end: 3;
 .tab {
   overflow: hidden;
   // text-align: center;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
 }
 
 /* Style the buttons that are used to open the tab content */
