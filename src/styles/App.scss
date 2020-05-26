@@ -167,12 +167,16 @@ body {
 
 .device-container {
 @extend %content-box-options;
+grid-column-start: 1;
+grid-column-end: 3;
 }
 
 .device-container-dark {
   @extend %content-box-options;
   background-color: $menu-dark;
   color: $font-dark;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 #title-panel{
@@ -205,13 +209,13 @@ body {
 
 .tab {
   overflow: hidden;
-  text-align: center;
+  // text-align: center;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
   background-color: inherit;
-  font-size: 1.5em;
+  // font-size: 1.5em;
   border-radius: 2em;
   border: none;
   // color: ghostwhite;
@@ -241,6 +245,7 @@ body {
 .tabcontent {
   padding: 6px 12px;
   border-top: none;
+  display: none;
 }
 
 .tabelement {

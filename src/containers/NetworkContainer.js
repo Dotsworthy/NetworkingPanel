@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import {PassiveListener} from 'react-event-injector';
+import TotalDataChart from "../components/TotalDataChart";
+
 // import {TransitionGroup, CSSTransition} from 'react-transition-group';
 // above not currently used by may be implemented
 
@@ -193,12 +195,19 @@ class NetworkContainer extends Component {
                   <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
                   <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
-                  chartData = {this.state.chartData} 
+                  
                   connectedDevices = {this.state.connectedDevices} 
                   uploadSpeed = {this.state.combinedUploadSpeed}
                   downloadSpeed = {this.state.combinedDownloadSpeed}
                   dark = {this.state.dark}  
                   />
+                  </div>
+
+                  <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
+                  <TotalDataChart
+                  chartData = {this.state.chartData} 
+                  />
+
                   </div>
 
                   <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>

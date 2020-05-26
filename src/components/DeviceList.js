@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import DeviceDetail from './DeviceDetail.js'
 
-  
 class DeviceList extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +41,7 @@ class DeviceList extends Component {
                 <div className="tab">
                     <div>
                         <button className="tablinks" onClick={()=>this.openTab(device.host_name)}>{device.host_name}</button>
-                        <img src={device.snap_shots[device.snap_shots.length - 1].active_connection ? "../images/connected.png" : "../images/disconnected.png"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="42" width="42"></img>
+                        <img src={device.snap_shots[device.snap_shots.length - 1].active_connection ? "../images/connected.png" : "../images/disconnected.png"} alt={this.props.activeConnection ? "Connected" : "Disconnected"} height="21" width="21"></img>
                     </div>
 
                     <div class = "tabcontent" id={device.host_name}>
