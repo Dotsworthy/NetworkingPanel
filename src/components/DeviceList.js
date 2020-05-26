@@ -67,31 +67,31 @@ export default function VerticalTabs(props) {
         setValue(newValue)
     };
 
-    let mapDeviceTab
-    let counter    
-    for (let counter = 0; counter < devices[0].snap_shots.length; counter ++) {
-        mapDeviceTab = props.devices.map(device => {
+    let tabCounter = 0
+    const mapDeviceTab = props.devices.map(device => {
         
-            return (
-                <Tab 
-                id={device.id}
-                label={device.host_name} {...a11yProps(counter)} 
-                icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon /> : <SignalWifiOffTwoToneIcon /> }>
-                />
-                </Tab>
-                )
-                
-            });
-    }
-    
+        return (
+            <Tab 
+            id={device.id}
+            label={device.host_name} {...a11yProps(tabCounter)} 
+            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon /> : <SignalWifiOffTwoToneIcon /> }>
+            />
+            {tabCounter ++}
+            </Tab>
+            
+            )
+          
+        });
+        
 
+    let panelCounter = 0
     const mapDevicePanel = props.devices.map(device => {
         
             return (
                 <TabPanel
                  key = {device.id}
                  value={value}
-                 index={counter}> 
+                 index={panelCounter}> 
                     <DeviceDetail
                         key={device.ip_address}
                         id={device.id} 
@@ -105,6 +105,7 @@ export default function VerticalTabs(props) {
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
                     />
+                    {panelCounter ++}
                 </TabPanel> 
             )
             
