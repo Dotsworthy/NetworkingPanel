@@ -22,8 +22,8 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
+                <Box height='100%' p={3}>
+                    <Typography height='100%'>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -48,14 +48,22 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         display: 'flex',
-        height: 500,
-        
+        height: 350,
         },
-    tabs: {
-        // borderRight: `1px solid ${theme.pallete.divider}`, 
+    MuiTabsRoot: {
         display: 'inline-flex',
-        // fontSize: '2px',
-    }
+        width: 200,
+      },
+    tabs: {
+
+    },  
+    tabPanel: {
+        width: '80vw',
+    },
+    MuiWrapper: {
+        display: 'inline-flex',
+        flexDirection: 'row',
+    },    
 }));
 
 export default function VerticalTabs(props) {
@@ -72,10 +80,13 @@ export default function VerticalTabs(props) {
         return (
             <Tab 
             id={device.id}
-            label={device.host_name} {...a11yProps(tabCounter)} 
+            label={device.host_name} 
+            {...a11yProps(tabCounter)} 
             icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "green"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "red"}} /> }
             {...tabCounter ++}
+            classes={classes.MuiTabsRoot}
             >
+            {/* {device.host_name}     */}
             </Tab>
             )
         });
@@ -88,8 +99,12 @@ export default function VerticalTabs(props) {
                 <TabPanel
                  key = {device.id}
                  value={value}
-                 index={panelCounter}>
-                 {panelCounter ++}     
+                 index={panelCounter}
+                 className={classes.tabPanel}
+                 {...panelCounter ++}  
+                 >
+                   
+                 
                     <DeviceDetail
                         key={device.ip_address}
                         id={device.id} 

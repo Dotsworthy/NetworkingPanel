@@ -192,6 +192,13 @@ class NetworkContainer extends Component {
                 
                 <div className="content-container">
 
+                  <div className={this.state.darkMode ? "graph-container-dark" : "graph-container"}>
+                  <TotalDataChart
+                  chartData = {this.state.chartData} 
+                  />
+                  </div>
+
+
                   <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
                   <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
@@ -203,12 +210,9 @@ class NetworkContainer extends Component {
                   />
                   </div>
 
-                  {/* <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
-                  <TotalDataChart
-                  chartData = {this.state.chartData} 
-                  />
+                  
 
-                  </div> */}
+                  
 
                   <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>
                   <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>

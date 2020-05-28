@@ -11,6 +11,8 @@ const TotalDataChart = (props) => {
             data={ props.chartData }
             options={{
                 title: 'Total Upload & Downloads',
+                height: '100%',
+                width: '100%',
                 backgroundColor: { fill: 'transparent'},
                 hAxis: { title: 'Time', titleTextStyle: { color: '#333'}, textStyle: {
                     fontSize: 9
