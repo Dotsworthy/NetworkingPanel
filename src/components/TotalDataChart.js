@@ -14,7 +14,7 @@ const lightOptions = {
         height: '100%',
         width: '100%',
         backgroundColor: { fill: 'transparent'},
-        colors: ['#FF1053', '#B3EFB2'],
+        colors: ['#FF1053', '#69E067'],
         lineWidth: 3,
         legend: { 
             position: 'bottom',
@@ -55,7 +55,7 @@ const darkOptions = {
     height: '100%',
     width: '100%',
     backgroundColor: { fill: 'transparent'},
-    colors: ['#FAA916', '#C8D3D5'],
+    colors: ['#FF1053', '#69E067'],
     lineWidth: 3,
     legend: { 
         position: 'bottom',

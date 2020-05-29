@@ -1,13 +1,11 @@
 import React from "react";
 import WifiIcon from '@material-ui/icons/Wifi';
 import SpeedIcon from '@material-ui/icons/Speed';
-import Typography from '@material-ui/core/Typography';
 
 
 
 function SummaryComponent(props) {
     return (
-        // <Typography>
         <div className="summary">
             <div className="summary-item">
             <WifiIcon/>
@@ -17,7 +15,7 @@ function SummaryComponent(props) {
 
             <div className="summary-item">
             <SpeedIcon
-            style={{fill: 'green'}}
+            style={{fill: '#69E067'}}
             />
             <p>Download Speed </p>
             <p>{props.downloadSpeed} Mbs</p>
@@ -25,14 +23,13 @@ function SummaryComponent(props) {
 
             <div className="summary-item">
             <SpeedIcon
-            style={{fill: 'red'}}
+            style={{fill: '#FF1053'}}
             >
             </SpeedIcon>    
             <p>UploadSpeed</p>
             <p>{props.uploadSpeed} Mbs </p>
             </div>
         </div>
-        // </Typography>
     )
 } 
 
