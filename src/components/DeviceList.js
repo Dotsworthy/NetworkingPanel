@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
     },  
     tabPanel: {
-        width: '80vw',
+        width: '100%',
     },
 }));
 
