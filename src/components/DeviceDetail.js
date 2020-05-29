@@ -40,15 +40,18 @@ class DeviceDetail extends Component {
                     
                 <div className="device-content">
                 <p>Device: {this.props.deviceType}</p>
-                <p>IP Address: {this.props.ipAddress}</p> 
-                <p>MAC Address: {this.props.macAddress}</p> 
+                <p>IP Address: {this.props.ipAddress}</p>
+                <p>MAC Address: {this.props.macAddress}</p>
                 <p>OS: {this.props.operatingSystem}</p>
                 <p>Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</p>
                 <p>Upload Speed: {this.props.uploadSpeed}</p>
                 <p>Download Speed: {this.props.downloadSpeed}</p>
                 </div>
                 
-                <TotalDataChart chartData={this.plotData()} /> 
+                <TotalDataChart 
+                chartData={this.plotData()} 
+                darkMode={this.props.darkMode}
+                /> 
                                 
             </div>
         );

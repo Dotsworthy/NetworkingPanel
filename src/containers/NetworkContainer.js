@@ -195,6 +195,7 @@ class NetworkContainer extends Component {
                   <div className={this.state.darkMode ? "graph-container-dark" : "graph-container"}>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
+                  darkMode = {this.state.darkMode}
                   />
                   </div>
 
@@ -216,7 +217,10 @@ class NetworkContainer extends Component {
 
                   <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>
                   <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>
-                  <DeviceList devices={this.state.devices}/>
+                  <DeviceList
+                  devices={this.state.devices}
+                  darkMode = {this.state.darkMode}
+                  />
                   </div>         
                 
                 </div>   

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
 
 // Colour Scheme
-$background-light: #FBFBFB;
+$background-light: #fbfbfb;
 $background-dark: #1D3354;
 $menu-light: #FFFFFF;
 $menu-dark: #26537C;
@@ -167,6 +167,15 @@ body {
   color: $font-dark;
 }
 
+.summary {
+  display: flex;
+  padding: 30px;
+}
+
+.summary-item {
+  margin: 15px;
+}
+
 .summary-container {
   @extend %content-box-options;
 }
@@ -215,13 +224,14 @@ grid-column-end: 3;
 .device-list-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  height: 350px;
+  height: 300px;
 }
 
 .device-content {
   height: 100%;
+  padding: 15px;
 }
 
-// .MuiTab-wrapper {
-//   display: inline-block;
-// }
+.chart {
+  transition: $transition;
+}

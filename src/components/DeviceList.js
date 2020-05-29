@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone';
 import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
@@ -22,8 +21,8 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box height='100%' p={3}>
-                    <Typography height='100%'>{children}</Typography>
+                <Box height='90%' p={3}>
+                    {children}
                 </Box>
             )}
         </div>
@@ -48,11 +47,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         display: 'flex',
-        height: 350,
+        height: 340,
         },
     MuiTabsRoot: {
         display: 'inline-flex',
         width: 200,
+        flexDirection: 'row',
       },
     tabs: {
 
@@ -60,10 +60,6 @@ const useStyles = makeStyles((theme) => ({
     tabPanel: {
         width: '80vw',
     },
-    MuiWrapper: {
-        display: 'inline-flex',
-        flexDirection: 'row',
-    },    
 }));
 
 export default function VerticalTabs(props) {
@@ -80,13 +76,13 @@ export default function VerticalTabs(props) {
         return (
             <Tab 
             id={device.id}
+            key={device.id}
             label={device.host_name} 
             {...a11yProps(tabCounter)} 
             icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "green"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "red"}} /> }
             {...tabCounter ++}
-            classes={classes.MuiTabsRoot}
+            className={classes.MuiTabsRoot}
             >
-            {/* {device.host_name}     */}
             </Tab>
             )
         });
@@ -117,6 +113,7 @@ export default function VerticalTabs(props) {
                         uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
+                        darkMode = {props.darkMode}
                         
                     />
                     
