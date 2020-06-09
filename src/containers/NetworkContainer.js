@@ -167,24 +167,18 @@ class NetworkContainer extends Component {
                 
                   <div className="light-dark-container">
                   <p>Light / Dark Mode</p>
-                  
-                  {/* <PassiveListener> */}
+ 
                     <input
-                    key = "PassiveListener"
-                    // onClick={(event) => this.toggleMode(event)} 
+
                     className="container_toggle" 
                     type="checkbox" 
                     id="switch" 
                     name="mode">
                     </input>
-                  {/* </PassiveListener> */}
-                  <PassiveListener>
                     <label
-                    key = "PassiveListener"
                     onClick={(event) => this.toggleMode(event)} 
                     htmlFor="switch">Toggle
                     </label>
-                  </PassiveListener>
                   
                   
                   </div>
