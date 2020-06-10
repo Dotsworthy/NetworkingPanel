@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
-import {PassiveListener} from 'react-event-injector';
 import TotalDataChart from "../components/TotalDataChart";
-
-// import {TransitionGroup, CSSTransition} from 'react-transition-group';
-// above not currently used by may be implemented
 
 const URL = 'ws://77.68.23.244:5001';
 
@@ -45,7 +41,6 @@ class NetworkContainer extends Component {
       this.setState({
         devices: deviceData}) 
       this.chartDataMapping()
-        
       this.countConnectedDevices()
       this.countUploadSpeed()
       this.countDownloadSpeed()
@@ -125,46 +120,33 @@ class NetworkContainer extends Component {
     })
     this.setState({combinedDownloadSpeed: counter})
   }
-  
 
-    countWiredDevices() {
-      let wiredDevices = this.state.devices.filter(device => device.connectionType === "wifi")
-      return wiredDevices.length
+  toggleMode(event) {
+    let trans = () => {
+      document.documentElement.classList.add('transisition');
+                window.setTimeout(() => {
+                  document.documentElement.classList.remove('transisition')
+                }, 1000)
     }
-
-    countWirelessDevices() {
-      let wirlessDevices = this.state.devices.filter(device => device.connectionType === "ethernet")
-      return wirlessDevices.length
+    if(this.state.darkMode === false) {
+      trans()
+      document.documentElement.setAttribute('data-theme', 'dark');
+      this.setState({darkMode: true})
+      
+    } else {
+      trans()
+      document.documentElement.setAttribute('data-theme', 'light')
+      this.setState({darkMode: false})
+      }
     }
-
-    toggleMode(event) {
-      let trans = () => {
-        document.documentElement.classList.add('transisition');
-                  window.setTimeout(() => {
-                    document.documentElement.classList.remove('transisition')
-                  }, 1000)
-      }
-      if(this.state.darkMode === false) {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'dark');
-        this.setState({darkMode: true})
-        
-      } else {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'light')
-        this.setState({darkMode: false})
-        }
-      }
    
     render() {
         return (
             <div>
-              <div className="app-container"> 
-                
-                <div className="title-bar-container">
+
                 <h1>Network Dashboard</h1>
                 
-                  <div className="light-dark-container">
+
                   <p>Light / Dark Mode</p>
                     <input
                     className="container_toggle" 
@@ -176,20 +158,16 @@ class NetworkContainer extends Component {
                     onClick={(event) => this.toggleMode(event)} 
                     htmlFor="switch">Toggle
                     </label>
-                  </div>
-                </div>
-                
-                <div className="content-container">
 
-                  <div className={this.state.darkMode ? "graph-container-dark" : "graph-container"}>
+                
+
                   <TotalDataChart
                   chartData = {this.state.chartData} 
                   darkMode = {this.state.darkMode}
                   />
-                  </div>
 
 
-                  <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
+
                   <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
                   <SummaryComponent 
                   chartData = {this.state.chartData}
@@ -198,24 +176,18 @@ class NetworkContainer extends Component {
                   downloadSpeed = {this.state.combinedDownloadSpeed}
                   dark = {this.state.dark}  
                   />
-                  </div>
+
 
                   
 
                   
 
-                  <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>
                   <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>
                   <DeviceList
                   devices={this.state.devices}
                   darkMode = {this.state.darkMode}
                   />
-                  </div>         
-                
-                </div>   
-              
-              </div>
-            </div>
+                  </div>
         )
     }
 }
