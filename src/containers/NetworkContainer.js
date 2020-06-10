@@ -142,24 +142,7 @@ class NetworkContainer extends Component {
    
     render() {
         return (
-            <div>
-
-                <h1>Network Dashboard</h1>
-                
-
-                  <p>Light / Dark Mode</p>
-                    <input
-                    className="container_toggle" 
-                    type="checkbox" 
-                    id="switch" 
-                    name="mode">
-                    </input>
-                    <label
-                    onClick={(event) => this.toggleMode(event)} 
-                    htmlFor="switch">Toggle
-                    </label>
-
-                
+            <div>            
 
                   <TotalDataChart
                   chartData = {this.state.chartData} 
@@ -168,7 +151,7 @@ class NetworkContainer extends Component {
 
 
 
-                  <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
+                  <h2>Summary</h2>
                   <SummaryComponent 
                   chartData = {this.state.chartData}
                   connectedDevices = {this.state.connectedDevices} 
@@ -182,10 +165,9 @@ class NetworkContainer extends Component {
 
                   
 
-                  <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>
+                  <h2>Devices</h2>
                   <DeviceList
                   devices={this.state.devices}
-                  darkMode = {this.state.darkMode}
                   />
                   </div>
         )
