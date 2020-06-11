@@ -91,12 +91,12 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     display: "flex",
-//     overflow: "auto",
-//     flexDirection: "column"
-//   },
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column"
+  },
   fixedHeight: {
     height: 240
   }
@@ -107,6 +107,8 @@ export default function Dashboard() {
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? blue[900] : grey[300];
   const mainSecondaryColor = darkState ? blue[100] : grey[900];
+  const backGroundColor = darkState ? '#1D3354' : grey[300];
+  const paperColor = darkState ? '#26537C': grey[200];
   const darkTheme = createMuiTheme({
     palette: {
         type: palletType,
@@ -115,8 +117,12 @@ export default function Dashboard() {
         },
         secondary: {
           main: mainSecondaryColor
+        },
+        background: {
+            default: backGroundColor,
+            paper: paperColor,
         }
-      }
+     }
     });
   const classes = useStyles();
   const handleThemeChange = () => {
