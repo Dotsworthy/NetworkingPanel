@@ -11,6 +11,9 @@ import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+
 
 
 function TabPanel(props) {
@@ -54,19 +57,10 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         display: 'flex',
         height: 300,
-        // height: 270,
         },
-    MuiTabsRoot: {
-        display: 'inline-flex',
-        width: 200,
-        flexDirection: 'row',
-      },
     tabs: {
         borderRight: `1px solid ${theme.palette.divider}`,
     },  
-    tabPanel: {
-        width: '100%',
-    },
 }));
 
 export default function VerticalTabs(props) {
@@ -132,7 +126,6 @@ export default function VerticalTabs(props) {
     return (
         <Grid
          className={classes.root}
-
          >
             <Tabs
             orientation="vertical"
@@ -144,10 +137,9 @@ export default function VerticalTabs(props) {
             >   
             {mapDeviceTab}    
             </Tabs>
+           
             <Grid
-            style={{
-                width: '100%',
-            }}
+            item xs = {12} item md = {10}
             >
             {mapDevicePanel}
             </Grid>
