@@ -57,9 +57,9 @@ class DeviceDetail extends Component {
                 <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
                 </Grid>        
                 
-                {/* <Hidden
+                <Hidden
                 xsDown
-                > */}
+                >
                 <Grid
                 item sm = {8} item md={10}
                 
@@ -69,7 +69,7 @@ class DeviceDetail extends Component {
                 darkMode={this.props.darkMode}
                 /> 
                 </Grid>    
-                {/* </Hidden>             */}
+                </Hidden>            
             </Grid>
         );
     }
