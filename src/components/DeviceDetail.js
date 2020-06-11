@@ -46,7 +46,7 @@ class DeviceDetail extends Component {
             container
             direction="row"> 
                 <Grid
-                 item xs
+                 item sm item md
                  >
                 <Typography variant="body2">Device: {this.props.deviceType}</Typography>
                 <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
@@ -57,11 +57,11 @@ class DeviceDetail extends Component {
                 <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
                 </Grid>        
                 
-                <Hidden
-                smDown
-                >
+                {/* <Hidden
+                xsDown
+                > */}
                 <Grid
-                item md={8}
+                item sm = {8} item md={10}
                 
                 >
                 <TotalDataChart 
@@ -69,7 +69,7 @@ class DeviceDetail extends Component {
                 darkMode={this.props.darkMode}
                 /> 
                 </Grid>    
-                </Hidden>            
+                {/* </Hidden>             */}
             </Grid>
         );
     }

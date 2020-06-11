@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 
 
@@ -55,8 +56,8 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        display: 'flex',
-        height: 300,
+        // display: 'flex',
+        // height: 300,
         },
     tabs: {
         borderRight: `1px solid ${theme.palette.divider}`,
@@ -127,8 +128,8 @@ export default function VerticalTabs(props) {
         <Grid
          className={classes.root}
          >
-            <Tabs
-            orientation="vertical"
+             <Tabs
+            orientation="horizontal"
             variant="scrollable"
             value={value}
             onChange={handleChange}
@@ -137,9 +138,8 @@ export default function VerticalTabs(props) {
             >   
             {mapDeviceTab}    
             </Tabs>
-           
             <Grid
-            item xs = {12} item md = {10}
+            
             >
             {mapDevicePanel}
             </Grid>
