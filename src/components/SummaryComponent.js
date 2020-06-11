@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
-
+const variant = 'body2'
 
 function SummaryComponent(props) {
     return (
@@ -20,27 +20,36 @@ function SummaryComponent(props) {
             height: '100%',
         }}
         >
-            <Box>     
+            <Box
+            style={{
+                textAlign: 'center',
+            }}> 
             <WifiIcon/>
-            <p>Connections </p>
-            <p>{props.connectedDevices}</p>
+            <Typography variant={variant} align='center'> Connections </Typography>
+            <Typography variant={variant} align='center'>{props.connectedDevices}</Typography>
             </Box>
 
-            <Box>
+            <Box
+            style={{
+                textAlign: 'center',
+            }}>
             <SpeedIcon
             style={{fill: 'green'}}
             />
-            <p>Download Speed </p>
-            <p>{props.downloadSpeed} Mbs</p>
+            <Typography variant={variant} align='center'>Download Speed </Typography>
+            <Typography variant={variant} align='center'>{props.downloadSpeed} Mbs</Typography>
             </Box>
 
-            <Box>
+            <Box
+            style={{
+                textAlign: 'center',
+            }}>
             <SpeedIcon
             style={{fill: 'red'}}
             >
             </SpeedIcon>    
-            <p>UploadSpeed</p>
-            <p>{props.uploadSpeed} Mbs </p>
+            <Typography variant={variant}align='center'>Upload Speed</Typography>
+            <Typography variant={variant} align='center'>{props.uploadSpeed} Mbs </Typography>
             </Box>
         </Grid>
         
