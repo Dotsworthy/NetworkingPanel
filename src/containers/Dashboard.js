@@ -9,12 +9,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from "@material-ui/core/Grid";
+
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import {
     blue,
     grey,
-    indigo,
+    red,
     deepOrange
   } from "@material-ui/core/colors";
 
@@ -59,7 +61,9 @@ const useStyles = makeStyles(theme => ({
     display: "none"
   },
   title: {
-    flexGrow: 1
+    background: 'linear-gradient(to right, red, purple)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
   },
   drawerPaper: {
     position: "relative",
@@ -106,7 +110,7 @@ export default function Dashboard() {
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? blue[900] : grey[300];
-  const mainSecondaryColor = darkState ? blue[100] : grey[900];
+  const mainSecondaryColor = darkState ? red[500] : red[500];
   const backGroundColor = darkState ? '#1D3354' : grey[300];
   const paperColor = darkState ? '#26537C': grey[200];
   const darkTheme = createMuiTheme({
@@ -118,10 +122,6 @@ export default function Dashboard() {
         secondary: {
           main: mainSecondaryColor
         },
-        background: {
-            default: backGroundColor,
-            paper: paperColor,
-        }
      }
     });
   const classes = useStyles();
@@ -132,6 +132,7 @@ export default function Dashboard() {
   return (
     <ThemeProvider theme={darkTheme}>
         <CssBaseline />
+        <Container>
     <AppBar
         position="static"
         style = {{
@@ -141,21 +142,32 @@ export default function Dashboard() {
         }}
     >
         <Toolbar>
+        <Grid
+        container
+        justify="space-between">
         <Typography
-              component="h1"
-              variant="h6"
+            //   component="h1"
+              variant="h3"
               color="inherit"
-              noWrap
+            //   noWrap
               className={classes.title}
             >
               Network Dashboard
             </Typography>
             <FormControlLabel
-            control={<Switch checked={darkState} onChange={handleThemeChange}/>}
+            control={
+                <Switch 
+                    checked={darkState}
+                    onChange={handleThemeChange}
+                />
+            }
             label="Dark Mode"
+            // labelPlacement="bottom"        
             />
+        </Grid>
       </Toolbar>
     </AppBar>
+    </Container>
         <Container>
             <NetworkContainer/>
         </Container>

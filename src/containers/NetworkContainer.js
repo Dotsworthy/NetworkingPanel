@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import Typography from '@material-ui/core/Typography';
+import { borders } from '@material-ui/system';
 
 
 const URL = 'ws://77.68.23.244:5001';
@@ -158,15 +159,28 @@ class NetworkContainer extends Component {
                 <Grid item xs = {12} item sm = {8} item md={8}>
                   <Paper
                   elevation={0}
+                  style = {{
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                  }}
                   >
+                  <Paper>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
                   darkMode = {this.state.darkMode}
                   />
+                  </Paper>  
                   </Paper>
                 </Grid>
                   
-                <Grid item xs={12} item sm={4} item md={4}>
+                <Grid 
+                item xs={12} 
+                item sm={4} 
+                item md={4} 
+                >
                   <Paper
                   elevation={0}
                   style = {{
@@ -174,11 +188,16 @@ class NetworkContainer extends Component {
                     minHeight: '150px',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
                   }}
                   >
-                    <Container
+                    <Paper
                     style = {{
-                      height: '100%',
+                      height: '100%',                      
                     }}>
                   <SummaryComponent 
                   chartData = {this.state.chartData}
@@ -186,18 +205,27 @@ class NetworkContainer extends Component {
                   uploadSpeed = {this.state.combinedUploadSpeed}
                   downloadSpeed = {this.state.combinedDownloadSpeed}
                   />
-                  </Container>
+                  </Paper>
                   </Paper>
                 </Grid> 
 
                 <Grid item xs = {12}> 
                   <Paper
                   elevation={0}
+                  style = {{
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                  }}
                   >
                   {/* <Typography>Devices</Typography> */}
+                  <Paper>
                   <DeviceList
                   devices={this.state.devices}
                   />
+                  </Paper>
                   </Paper> 
                   </Grid>   
               </Grid>
