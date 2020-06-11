@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
 
 const URL = 'ws://77.68.23.244:5001';
 
@@ -142,34 +147,59 @@ class NetworkContainer extends Component {
    
     render() {
         return (
-            <div>            
-
+          <Grid
+          
+          >            
+            <Grid
+            container
+            direction="row"
+            spacing={2}
+            >
+                <Grid item xs = {12} item sm = {8} item md={8}>
+                  <Paper>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
                   darkMode = {this.state.darkMode}
                   />
-
-
-
-                  <h2>Summary</h2>
+                  </Paper>
+                </Grid>
+                  {/* <h2>Summary</h2> */}
+                <Grid item xs={12} item sm={4} item md={4}>
+                  <Paper
+                  style = {{
+                    height: '100%',
+                    minHeight: '150px',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  >
+                    <Container
+                    style = {{
+                      height: '100%',
+                    }}>
                   <SummaryComponent 
                   chartData = {this.state.chartData}
                   connectedDevices = {this.state.connectedDevices} 
                   uploadSpeed = {this.state.combinedUploadSpeed}
                   downloadSpeed = {this.state.combinedDownloadSpeed}
-                  dark = {this.state.dark}  
                   />
-
+                  </Container>
+                  </Paper>
+                </Grid>  
+          </Grid>
 
                   
 
                   
-
+                <Grid>
+                  <Paper>
                   <h2>Devices</h2>
                   <DeviceList
                   devices={this.state.devices}
                   />
-                  </div>
+                  </Paper>
+                </Grid>
+          </Grid>
         )
     }
 }

@@ -11,8 +11,8 @@ const options = {
         titleTextStyle: {
             fontName: 'Nunito',
         },
-        height: '100%',
-        width: '100%',
+        // height: '100%',
+        // width: '100%',
         backgroundColor: { fill: 'transparent'},
         colors: ['#FF1053', '#B3EFB2'],
         lineWidth: 3,

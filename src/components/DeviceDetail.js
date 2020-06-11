@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TotalDataChart from "./TotalDataChart";
+import Grid from "@material-ui/core/Grid";
 
 class DeviceDetail extends Component {
     constructor(props) {
@@ -36,9 +37,12 @@ class DeviceDetail extends Component {
     
     render() {
         return (
-            <div className='device-list-content'> 
+            <Grid
+            container
+            direction="row"
+            > 
                     
-                <div className="device-content">
+                <div>
                 <p>Device: {this.props.deviceType}</p>
                 <p>IP Address: {this.props.ipAddress}</p>
                 <p>MAC Address: {this.props.macAddress}</p>
@@ -53,7 +57,7 @@ class DeviceDetail extends Component {
                 darkMode={this.props.darkMode}
                 /> 
                                 
-            </div>
+            </Grid>
         );
     }
 }
