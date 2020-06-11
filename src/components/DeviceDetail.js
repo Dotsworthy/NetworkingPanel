@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import TotalDataChart from "./TotalDataChart";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+
+
 
 class DeviceDetail extends Component {
     constructor(props) {
@@ -39,10 +43,10 @@ class DeviceDetail extends Component {
         return (
             <Grid
             container
-            direction="row"
-            > 
-                    
-                <div>
+            direction="row"> 
+                <Grid
+                //  item xs
+                 >
                 <p>Device: {this.props.deviceType}</p>
                 <p>IP Address: {this.props.ipAddress}</p>
                 <p>MAC Address: {this.props.macAddress}</p>
@@ -50,13 +54,16 @@ class DeviceDetail extends Component {
                 <p>Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</p>
                 <p>Upload Speed: {this.props.uploadSpeed}</p>
                 <p>Download Speed: {this.props.downloadSpeed}</p>
-                </div>
+                </Grid>        
                 
+                <Grid
+                // item xs={12}
+                >
                 <TotalDataChart 
                 chartData={this.plotData()} 
                 darkMode={this.props.darkMode}
                 /> 
-                                
+                </Grid>                
             </Grid>
         );
     }

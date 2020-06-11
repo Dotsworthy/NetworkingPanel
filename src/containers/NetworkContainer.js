@@ -7,6 +7,8 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
+import Typography from '@material-ui/core/Typography';
+
 
 const URL = 'ws://77.68.23.244:5001';
 
@@ -147,9 +149,7 @@ class NetworkContainer extends Component {
    
     render() {
         return (
-          <Grid
-          
-          >            
+         
             <Grid
             container
             direction="row"
@@ -163,7 +163,7 @@ class NetworkContainer extends Component {
                   />
                   </Paper>
                 </Grid>
-                  {/* <h2>Summary</h2> */}
+                  
                 <Grid item xs={12} item sm={4} item md={4}>
                   <Paper
                   style = {{
@@ -185,21 +185,17 @@ class NetworkContainer extends Component {
                   />
                   </Container>
                   </Paper>
-                </Grid>  
-          </Grid>
+                </Grid> 
 
-                  
-
-                  
-                <Grid>
+                <Grid item xs = {12}> 
                   <Paper>
-                  <h2>Devices</h2>
+                  {/* <Typography>Devices</Typography> */}
                   <DeviceList
                   devices={this.state.devices}
                   />
-                  </Paper>
-                </Grid>
-          </Grid>
+                  </Paper> 
+                  </Grid>   
+              </Grid>
         )
     }
 }

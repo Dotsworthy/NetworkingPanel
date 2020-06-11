@@ -8,6 +8,10 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone';
 import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
+import Grid from "@material-ui/core/Grid";
+import Typography from '@material-ui/core/Typography';
+import Container from "@material-ui/core/Container";
+
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -21,8 +25,10 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box height='90%' p={3}>
-                    {children}
+                <Box
+                p={3}
+                 >
+                <Typography variant='body2'>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -47,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         display: 'flex',
-        height: 340,
+        height: 300,
+        // height: 270,
         },
     MuiTabsRoot: {
         display: 'inline-flex',
@@ -55,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
       },
     tabs: {
-
+        borderRight: `1px solid ${theme.palette.divider}`,
     },  
     tabPanel: {
         width: '100%',
@@ -114,7 +121,6 @@ export default function VerticalTabs(props) {
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
                         darkMode = {props.darkMode}
-                        
                     />
                     
                 </TabPanel> 
@@ -124,7 +130,10 @@ export default function VerticalTabs(props) {
               
 
     return (
-        <div className={classes.root}>
+        <Grid
+         className={classes.root}
+
+         >
             <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -132,10 +141,16 @@ export default function VerticalTabs(props) {
             onChange={handleChange}
             aria-label="Vertical tabs example"
             className={classes.tabs}
-            >
+            >   
             {mapDeviceTab}    
             </Tabs>
+            <Grid
+            style={{
+                width: '100%',
+            }}
+            >
             {mapDevicePanel}
-        </div>
+            </Grid>
+        </Grid>
     )
 }
