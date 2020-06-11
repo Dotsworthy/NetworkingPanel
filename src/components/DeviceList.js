@@ -59,9 +59,9 @@ const useStyles = makeStyles((theme) => ({
         // display: 'flex',
         // height: 300,
         },
-    tabs: {
-        borderRight: `1px solid ${theme.palette.divider}`,
-    },  
+    // tabs: {
+    //     borderRight: `1px solid ${theme.palette.divider}`,
+    // },  
 }));
 
 export default function VerticalTabs(props) {

@@ -156,7 +156,9 @@ class NetworkContainer extends Component {
             spacing={2}
             >
                 <Grid item xs = {12} item sm = {8} item md={8}>
-                  <Paper>
+                  <Paper
+                  elevation={0}
+                  >
                   <TotalDataChart
                   chartData = {this.state.chartData} 
                   darkMode = {this.state.darkMode}
@@ -166,6 +168,7 @@ class NetworkContainer extends Component {
                   
                 <Grid item xs={12} item sm={4} item md={4}>
                   <Paper
+                  elevation={0}
                   style = {{
                     height: '100%',
                     minHeight: '150px',
@@ -188,7 +191,9 @@ class NetworkContainer extends Component {
                 </Grid> 
 
                 <Grid item xs = {12}> 
-                  <Paper>
+                  <Paper
+                  elevation={0}
+                  >
                   {/* <Typography>Devices</Typography> */}
                   <DeviceList
                   devices={this.state.devices}
