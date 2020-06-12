@@ -170,7 +170,7 @@ class NetworkContainer extends Component {
                   <Paper>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
-                  darkMode = {this.state.darkMode}
+                  darkState = {this.props.darkState}
                   />
                   </Paper>  
                   </Paper>
@@ -224,6 +224,7 @@ class NetworkContainer extends Component {
                   <Paper>
                   <DeviceList
                   devices={this.state.devices}
+                  darkState = {this.props.darkState}
                   />
                   </Paper>
                   </Paper> 

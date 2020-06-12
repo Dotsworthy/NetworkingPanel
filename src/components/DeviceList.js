@@ -115,7 +115,7 @@ export default function VerticalTabs(props) {
                         uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
-                        darkMode = {props.darkMode}
+                        darkState = {props.darkState}
                     />
                     
                 </TabPanel> 

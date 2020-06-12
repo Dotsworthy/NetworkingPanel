@@ -66,7 +66,7 @@ class DeviceDetail extends Component {
                 >
                 <TotalDataChart 
                 chartData={this.plotData()} 
-                darkMode={this.props.darkMode}
+                darkState={this.props.darkState}
                 /> 
                 </Grid>    
                 </Hidden>            

@@ -169,7 +169,9 @@ export default function Dashboard() {
     </AppBar>
     </Container>
         <Container>
-            <NetworkContainer/>
+            <NetworkContainer
+            darkState = {darkState}
+            />
         </Container>
     </ThemeProvider>
   );
