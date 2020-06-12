@@ -122,7 +122,10 @@ export default function Dashboard() {
         secondary: {
           main: mainSecondaryColor
         },
-     }
+     },
+     typography: {
+       fontFamily: 'nunito',
+     },
     });
   const classes = useStyles();
   const handleThemeChange = () => {
@@ -152,7 +155,7 @@ export default function Dashboard() {
             //   noWrap
               className={classes.title}
             >
-              Network Dashboard
+              dashNET
             </Typography>
             <FormControlLabel
             control={
@@ -161,7 +164,7 @@ export default function Dashboard() {
                     onChange={handleThemeChange}
                 />
             }
-            label="Dark Mode"
+            label="Dark"
             // labelPlacement="bottom"        
             />
         </Grid>
