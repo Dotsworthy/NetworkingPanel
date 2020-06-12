@@ -14,7 +14,7 @@ const lightOptions = {
     height: '100%',
     width: '100%',
     backgroundColor: { fill: 'transparent'},
-    colors: ['red', 'green'],
+    colors: ['#FF1053', '#69E067'],
     lineWidth: 2,
     legend: { 
         position: 'top',
@@ -61,7 +61,7 @@ titleTextStyle: {
 height: '100%',
 width: '100%',
 backgroundColor: { fill: 'transparent'},
-colors: ['red', 'green'],
+colors: ['#FF1053', '#69E067'],
 lineWidth: 2,
 legend: { 
     position: 'top',

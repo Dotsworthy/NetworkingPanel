@@ -110,7 +110,7 @@ export default function Dashboard() {
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? blue[900] : grey[300];
-  const mainSecondaryColor = darkState ? red[500] : red[500];
+  const mainSecondaryColor = darkState ? '#FF1053' : '#FF1053';
   const backGroundColor = darkState ? '#1D3354' : grey[300];
   const paperColor = darkState ? '#26537C': grey[200];
   const darkTheme = createMuiTheme({

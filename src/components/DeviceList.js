@@ -81,7 +81,7 @@ export default function VerticalTabs(props) {
             key={device.id}
             label={device.host_name} 
             {...a11yProps(tabCounter)} 
-            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "green"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "red"}} /> }
+            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "#69E067"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "#FF1053"}} /> }
             {...tabCounter ++}
             className={classes.MuiTabsRoot}
             >

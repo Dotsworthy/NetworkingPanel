@@ -237,3 +237,7 @@ grid-column-end: 3;
 .chart {
   transition: $transition;
 }
+
+.sortable-handler {
+  touch-action: none;
+}

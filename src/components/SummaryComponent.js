@@ -34,7 +34,7 @@ function SummaryComponent(props) {
                 textAlign: 'center',
             }}>
             <SpeedIcon
-            style={{fill: 'green'}}
+            style={{fill: '#69E067'}}
             />
             <Typography variant={variant} align='center'>Download Speed </Typography>
             <Typography variant={variant} align='center'>{props.downloadSpeed} Mbs</Typography>
@@ -45,7 +45,7 @@ function SummaryComponent(props) {
                 textAlign: 'center',
             }}>
             <SpeedIcon
-            style={{fill: 'red'}}
+            style={{fill: '#FF1053'}}
             >
             </SpeedIcon>    
             <Typography variant={variant}align='center'>Upload Speed</Typography>
