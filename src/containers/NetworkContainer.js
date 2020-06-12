@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
-import {PassiveListener} from 'react-event-injector';
 import TotalDataChart from "../components/TotalDataChart";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import Typography from '@material-ui/core/Typography';
+import { borders } from '@material-ui/system';
 
-// import {TransitionGroup, CSSTransition} from 'react-transition-group';
-// above not currently used by may be implemented
 
 const URL = 'ws://77.68.23.244:5001';
 
@@ -45,7 +49,6 @@ class NetworkContainer extends Component {
       this.setState({
         devices: deviceData}) 
       this.chartDataMapping()
-        
       this.countConnectedDevices()
       this.countUploadSpeed()
       this.countDownloadSpeed()
@@ -125,102 +128,108 @@ class NetworkContainer extends Component {
     })
     this.setState({combinedDownloadSpeed: counter})
   }
-  
 
-    countWiredDevices() {
-      let wiredDevices = this.state.devices.filter(device => device.connectionType === "wifi")
-      return wiredDevices.length
+  toggleMode(event) {
+    let trans = () => {
+      document.documentElement.classList.add('transisition');
+                window.setTimeout(() => {
+                  document.documentElement.classList.remove('transisition')
+                }, 1000)
     }
-
-    countWirelessDevices() {
-      let wirlessDevices = this.state.devices.filter(device => device.connectionType === "ethernet")
-      return wirlessDevices.length
+    if(this.state.darkMode === false) {
+      trans()
+      document.documentElement.setAttribute('data-theme', 'dark');
+      this.setState({darkMode: true})
+      
+    } else {
+      trans()
+      document.documentElement.setAttribute('data-theme', 'light')
+      this.setState({darkMode: false})
+      }
     }
-
-    toggleMode(event) {
-      let trans = () => {
-        document.documentElement.classList.add('transisition');
-                  window.setTimeout(() => {
-                    document.documentElement.classList.remove('transisition')
-                  }, 1000)
-      }
-      if(this.state.darkMode === false) {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'dark');
-        this.setState({darkMode: true})
-        
-      } else {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'light')
-        this.setState({darkMode: false})
-        }
-      }
    
     render() {
         return (
-            <div>
-              
-             <div className="app-container"> 
-                
-                <div className="title-bar-container">
-                <h1>Network Dashboard</h1>
-                
-                  <div className="light-dark-container">
-                  <p>Light / Dark Mode</p>
- 
-                    <input
-
-                    className="container_toggle" 
-                    type="checkbox" 
-                    id="switch" 
-                    name="mode">
-                    </input>
-                    <label
-                    onClick={(event) => this.toggleMode(event)} 
-                    htmlFor="switch">Toggle
-                    </label>
-                  
-                  
-                  </div>
-                </div>
-                
-                <div className="content-container">
-
-                  <div className={this.state.darkMode ? "graph-container-dark" : "graph-container"}>
+         
+            <Grid
+            container
+            direction="row"
+            spacing={2}
+            >
+                <Grid item xs = {12} item sm = {8} item md={8}>
+                  <Paper
+                  elevation={0}
+                  style = {{
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                  }}
+                  >
+                  <Paper>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
-                  darkMode = {this.state.darkMode}
+                  darkState = {this.props.darkState}
                   />
-                  </div>
-
-
-                  <div className={this.state.darkMode ? "summary-container-dark" : "summary-container"}>
-                  <h2 className={this.state.darkMode ? "dark" : "" }>Summary</h2>
+                  </Paper>  
+                  </Paper>
+                </Grid>
+                  
+                <Grid 
+                item xs={12} 
+                item sm={4} 
+                item md={4} 
+                >
+                  <Paper
+                  elevation={0}
+                  style = {{
+                    height: '100%',
+                    minHeight: '150px',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                  }}
+                  >
+                    <Paper
+                    style = {{
+                      height: '100%',                      
+                    }}>
                   <SummaryComponent 
                   chartData = {this.state.chartData}
                   connectedDevices = {this.state.connectedDevices} 
                   uploadSpeed = {this.state.combinedUploadSpeed}
                   downloadSpeed = {this.state.combinedDownloadSpeed}
-                  dark = {this.state.dark}  
                   />
-                  </div>
+                  </Paper>
+                  </Paper>
+                </Grid> 
 
-                  
-
-                  
-
-                  <div className={this.state.darkMode ? "device-container-dark" : "device-container"}>
-                  <h2 className={this.state.darkMode ? "dark" : "" }>Devices</h2>
+                <Grid item xs = {12}> 
+                  <Paper
+                  elevation={0}
+                  style = {{
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                  }}
+                  >
+                  {/* <Typography>Devices</Typography> */}
+                  <Paper>
                   <DeviceList
                   devices={this.state.devices}
-                  darkMode = {this.state.darkMode}
+                  darkState = {this.props.darkState}
                   />
-                  </div>         
-                
-                </div>   
-              
-              </div>
-            </div>
+                  </Paper>
+                  </Paper> 
+                  </Grid>   
+              </Grid>
         )
     }
 }

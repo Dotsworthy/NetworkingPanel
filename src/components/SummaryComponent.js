@@ -2,37 +2,57 @@ import React from "react";
 import WifiIcon from '@material-ui/icons/Wifi';
 import SpeedIcon from '@material-ui/icons/Speed';
 import Typography from '@material-ui/core/Typography';
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 
-
+const variant = 'body2'
 
 function SummaryComponent(props) {
     return (
-        // <Typography>
-        <div className="summary">
-            <div className="summary-item">
+        
+        <Grid
+        container
+        direction="row"
+        justify='space-around'
+        alignItems='center'
+        style = {{
+            height: '100%',
+        }}
+        >
+            <Box
+            style={{
+                textAlign: 'center',
+            }}> 
             <WifiIcon/>
-            <p>Connections </p>
-            <p>{props.connectedDevices}</p>
-            </div>
+            <Typography variant={variant} align='center'> Connections </Typography>
+            <Typography variant={variant} align='center'>{props.connectedDevices}</Typography>
+            </Box>
 
-            <div className="summary-item">
+            <Box
+            style={{
+                textAlign: 'center',
+            }}>
             <SpeedIcon
-            style={{fill: 'green'}}
+            style={{fill: '#69E067'}}
             />
-            <p>Download Speed </p>
-            <p>{props.downloadSpeed} Mbs</p>
-            </div>
+            <Typography variant={variant} align='center'>Download Speed </Typography>
+            <Typography variant={variant} align='center'>{props.downloadSpeed} Mbs</Typography>
+            </Box>
 
-            <div className="summary-item">
+            <Box
+            style={{
+                textAlign: 'center',
+            }}>
             <SpeedIcon
-            style={{fill: 'red'}}
+            style={{fill: '#FF1053'}}
             >
             </SpeedIcon>    
-            <p>UploadSpeed</p>
-            <p>{props.uploadSpeed} Mbs </p>
-            </div>
-        </div>
-        // </Typography>
+            <Typography variant={variant}align='center'>Upload Speed</Typography>
+            <Typography variant={variant} align='center'>{props.uploadSpeed} Mbs </Typography>
+            </Box>
+        </Grid>
+        
     )
 } 
 

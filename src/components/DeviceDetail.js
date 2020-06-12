@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
 import TotalDataChart from "./TotalDataChart";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
+
+
 
 class DeviceDetail extends Component {
     constructor(props) {
@@ -7,7 +14,6 @@ class DeviceDetail extends Component {
         this.state = {
             open: false,
         }
-        // this.togglePanel = this.togglePanel.bind(this);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -36,24 +42,35 @@ class DeviceDetail extends Component {
     
     render() {
         return (
-            <div className='device-list-content'> 
-                    
-                <div className="device-content">
-                <p>Device: {this.props.deviceType}</p>
-                <p>IP Address: {this.props.ipAddress}</p>
-                <p>MAC Address: {this.props.macAddress}</p>
-                <p>OS: {this.props.operatingSystem}</p>
-                <p>Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</p>
-                <p>Upload Speed: {this.props.uploadSpeed}</p>
-                <p>Download Speed: {this.props.downloadSpeed}</p>
-                </div>
+            <Grid
+            container
+            direction="row"> 
+                <Grid
+                 item sm item md
+                 >
+                <Typography variant="body2">Device: {this.props.deviceType}</Typography>
+                <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
+                <Typography variant="body2">MAC Address: {this.props.macAddress}</Typography>
+                <Typography variant="body2">OS: {this.props.operatingSystem}</Typography>
+                <Typography variant="body2">Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</Typography>
+                <Typography variant="body2">Upload Speed: {this.props.uploadSpeed}</Typography>
+                <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
+                </Grid>        
                 
+                <Hidden
+                xsDown
+                >
+                <Grid
+                item sm = {8} item md={10}
+                
+                >
                 <TotalDataChart 
                 chartData={this.plotData()} 
-                darkMode={this.props.darkMode}
+                darkState={this.props.darkState}
                 /> 
-                                
-            </div>
+                </Grid>    
+                </Hidden>            
+            </Grid>
         );
     }
 }

@@ -8,6 +8,14 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone';
 import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
+import Grid from "@material-ui/core/Grid";
+import Typography from '@material-ui/core/Typography';
+import Container from "@material-ui/core/Container";
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
+
+
+
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -21,8 +29,10 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box height='90%' p={3}>
-                    {children}
+                <Box
+                p={3}
+                 >
+                <Typography variant='body2'>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -46,20 +56,12 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        display: 'flex',
-        height: 340,
+        // display: 'flex',
+        // height: 300,
         },
-    MuiTabsRoot: {
-        display: 'inline-flex',
-        width: 200,
-        flexDirection: 'row',
-      },
     tabs: {
-
+        borderBottom: `1px solid ${theme.palette.divider}`,
     },  
-    tabPanel: {
-        width: '100%',
-    },
 }));
 
 export default function VerticalTabs(props) {
@@ -79,7 +81,7 @@ export default function VerticalTabs(props) {
             key={device.id}
             label={device.host_name} 
             {...a11yProps(tabCounter)} 
-            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "green"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "red"}} /> }
+            icon={device.snap_shots[device.snap_shots.length - 1].active_connection ? <SignalWifi4BarTwoToneIcon style={{fill: "#69E067"}} /> : <SignalWifiOffTwoToneIcon style={{fill: "#FF1053"}} /> }
             {...tabCounter ++}
             className={classes.MuiTabsRoot}
             >
@@ -113,8 +115,7 @@ export default function VerticalTabs(props) {
                         uploadSpeed={device.snap_shots[device.snap_shots.length - 1].upload_speed}
                         downloadSpeed={device.snap_shots[device.snap_shots.length - 1].download_speed}
                         snapShots={device.snap_shots}
-                        darkMode = {props.darkMode}
-                        
+                        darkState = {props.darkState}
                     />
                     
                 </TabPanel> 
@@ -124,18 +125,24 @@ export default function VerticalTabs(props) {
               
 
     return (
-        <div className={classes.root}>
-            <Tabs
-            orientation="vertical"
+        <Grid
+         className={classes.root}
+         >
+             <Tabs
+            orientation="horizontal"
             variant="scrollable"
             value={value}
             onChange={handleChange}
             aria-label="Vertical tabs example"
             className={classes.tabs}
-            >
+            >   
             {mapDeviceTab}    
             </Tabs>
+            <Grid
+            
+            >
             {mapDevicePanel}
-        </div>
+            </Grid>
+        </Grid>
     )
 }
