@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { borders } from '@material-ui/system';
 
 
-const URL = 'ws://77.68.23.244:5001';
+const URL = 'wss://network-sim.fraserkeir.com';
 
 class NetworkContainer extends Component {
     constructor(props) {
