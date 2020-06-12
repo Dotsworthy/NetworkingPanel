@@ -1,6 +1,6 @@
 {
   "name": "networking_panel",
-  "homepage": "/NetworkingPanel/",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
