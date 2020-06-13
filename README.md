@@ -1,4 +1,4 @@
-[See the Dashboard in action](Hosted-link)
+[See the Dashboard in action](https://networkdashboard.netlify.app/)
 
 [Back-end Repo](https://github.com/LUKERHYS/Simulated-Network-Monitor)
 
