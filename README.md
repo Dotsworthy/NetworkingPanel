@@ -1,16 +1,12 @@
-[See the Dashboard in action](https://networkdashboard.netlify.app/)
-
-[Back-end Repo](https://github.com/LUKERHYS/Simulated-Network-Monitor)
+[See the Dashboard in action](https://networkdashboard.netlify.app/) | [Back-end Repo](https://github.com/LUKERHYS/Simulated-Network-Monitor)
 
 This project was built as our final project for CodeClan's professional software development course. Version 1 was completed in the first 5 day sprint, we then continued to develop the project after the course finished. It functions as a Networking panel, and is also available for use as a websocket API with updating network data.
 
 Our aim for this project was to model a useful tool. We wanted to build a web app dashboard that would display network data and monitor changes for connected devices. The dashboard would need to display vital stats and enable data to be understood at a glance.
 
-The gif below shows a quickened version of the dashboard updating with new network data. It starts with 10 timestamps for each device, adds 60 more, and resets to 10. In the live version this repeats every hour.
+The gif below shows a quickened version of the dashboard, updating with new network data. It starts with 10 timestamps for each device, adds 60 more, and resets to 10. In the live version this repeats every hour.
 
 ![Dashboard updating with new network data and resetting](readme_files/dashnet-demo.gif)
-
-The initial plan was to use an existing API to generate the network data, we would then build our own API to store and access changes over time for each device giving us the ability to graph those changes in state. After some research we realised that such an API did not exist and that we would need to build it. This lead to the creation of the second back-end to simulate a network.
 ​
 ## Project Overview
 
@@ -27,7 +23,7 @@ The project consists of three main components: the network server, the app serve
 [Diagram showing network-app-cron-dashboard + databases and interactions]
 
 #### Network server
-The network server stores and presents the static data of each network device via a RESTful API built using Flask. It is not directly accessible in the live version but is used to provide data to the app server. 
+The network server stores and presents the static data of each network device, via a RESTful API built using Flask. It is not directly accessible in the live version but is used to provide data to the app server. 
 
 It has a POST route for adding multiple devices, via port 5000 when runnning locally. This route can be used on the server for adding new devices. 
 
@@ -35,7 +31,7 @@ It also has a GET route which updates all device dynamic data and returns all de
 
 Example data from the network server, showing the current state of the network:
 
-```javascript
+```yaml
 [
     {
         "device_type": "Router",
@@ -62,7 +58,7 @@ Example data from the network server, showing the current state of the network:
 ]
 ```
 ​
-####App server
+#### App server
  
 The app server acts as the middle man between the network server and the dashboard. It requests data from the back end and splits the static data (host\_name, device\_type, ...) from the dynamic data (upload\_speed, download\_speed, active\_connection). A time stamp is added to the dynamic data so that the network changes can be tracked and plotted over time. This formatted JSON data is then presented to the front-end via a websocket.
 
@@ -74,7 +70,7 @@ Two cron-jobs trigger different behaviours in the app-server:
 
 Example data from the app server, showing multiple snapshots:
 
-```javascript
+```yaml
 [
     {
     	"id": 1,
