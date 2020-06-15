@@ -1,21 +1,12 @@
-// import React, {Component} from 'react';
-import DeviceDetail from './DeviceDetail.js';
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { Tabs, Tab, Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
 import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone';
 import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
-import Grid from "@material-ui/core/Grid";
-import Typography from '@material-ui/core/Typography';
-import Container from "@material-ui/core/Container";
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
+import PropTypes from 'prop-types';
 
-
-
+import DeviceDetail from './DeviceDetail.js';
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -56,8 +47,6 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        // display: 'flex',
-        // height: 300,
         },
     tabs: {
         borderBottom: `1px solid ${theme.palette.divider}`,

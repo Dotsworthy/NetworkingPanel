@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
+import { Grid, Typography, Hidden } from "@material-ui/core";
+
 import TotalDataChart from "./TotalDataChart";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-
-
 
 class DeviceDetail extends Component {
     constructor(props) {
@@ -61,9 +56,15 @@ class DeviceDetail extends Component {
                 xsDown
                 >
                 <Grid
-                item sm = {8} item md={10}
+                item sm = {8} item md={9}
                 
+                >  
+                <Typography
+                style={{
+                    paddingLeft: '10px',
+                }}
                 >
+                Total Uploads/Downloads({this.props.deviceType})</Typography>
                 <TotalDataChart 
                 chartData={this.plotData()} 
                 darkState={this.props.darkState}

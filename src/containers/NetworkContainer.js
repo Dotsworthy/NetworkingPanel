@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
+import {Grid, Paper, Typography, Container } from "@material-ui/core/";
+
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 const URL = 'wss://network-sim.fraserkeir.com';
 
 class NetworkContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
-            darkMode: false,
-            connectedDevices: 0,
-            combinedUploadSpeed: 0,
-            combinedDownloadSpeed: 0,
-            devices: [],
-            connectedWebsocket: false,
-            ws: null,
-          };
-        this.toggleMode = this.toggleMode.bind(this);   
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+          chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
+          connectedDevices: 0,
+          combinedUploadSpeed: 0,
+          combinedDownloadSpeed: 0,
+          devices: [],
+          connectedWebsocket: false,
+          ws: null,
+        };
+  }
 
   componentDidMount() {
     this.connectToWebSocket();
@@ -65,7 +63,6 @@ class NetworkContainer extends Component {
 
       ws.close();
      }  
-      
   }
 
   checkForWebSocket() {
@@ -121,108 +118,91 @@ class NetworkContainer extends Component {
     })
     this.setState({combinedDownloadSpeed: counter})
   }
-
-  toggleMode(event) {
-    let trans = () => {
-      document.documentElement.classList.add('transisition');
-                window.setTimeout(() => {
-                  document.documentElement.classList.remove('transisition')
-                }, 1000)
-    }
-    if(this.state.darkMode === false) {
-      trans()
-      document.documentElement.setAttribute('data-theme', 'dark');
-      this.setState({darkMode: true})
-      
-    } else {
-      trans()
-      document.documentElement.setAttribute('data-theme', 'light')
-      this.setState({darkMode: false})
-      }
-    }
    
     render() {
         return (
          
-            <Grid
-            container
-            direction="row"
-            spacing={2}
+          <Grid
+          container
+          direction="row"
+          spacing={2}
+          >
+            <Grid item xs = {12} item sm = {8} item md={8}>
+              <Paper
+              elevation={0}
+              style = {{
+                border: '5px transparent',
+                background: 'linear-gradient(to right, red, purple)',
+                zIndex: '-1',
+                padding: '5px',
+              }}
+              >
+                <Paper>
+                
+                <Typography
+                style={{
+                  paddingLeft: '10px',
+                }}
+                >Total Uploads/Downloads (All Devices)</Typography> 
+                <TotalDataChart
+                chartData = {this.state.chartData} 
+                darkState = {this.props.darkState}
+                />
+                </Paper>  
+              </Paper>
+            </Grid>
+              
+            <Grid 
+            item xs={12} 
+            item sm={4} 
+            item md={4} 
             >
-                <Grid item xs = {12} item sm = {8} item md={8}>
-                  <Paper
-                  elevation={0}
-                  style = {{
-                    border: '5px transparent',
-                    // borderRadius: '10px',
-                    background: 'linear-gradient(to right, red, purple)',
-                    zIndex: '-1',
-                    padding: '5px',
-                  }}
-                  >
-                  <Paper>
-                  <TotalDataChart
-                  chartData = {this.state.chartData} 
-                  darkState = {this.props.darkState}
-                  />
-                  </Paper>  
-                  </Paper>
-                </Grid>
-                  
-                <Grid 
-                item xs={12} 
-                item sm={4} 
-                item md={4} 
-                >
-                  <Paper
-                  elevation={0}
-                  style = {{
-                    height: '100%',
-                    minHeight: '150px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    border: '5px transparent',
-                    // borderRadius: '10px',
-                    background: 'linear-gradient(to right, red, purple)',
-                    zIndex: '-1',
-                    padding: '5px',
-                  }}
-                  >
-                    <Paper
-                    style = {{
-                      height: '100%',                      
-                    }}>
-                  <SummaryComponent 
-                  chartData = {this.state.chartData}
-                  connectedDevices = {this.state.connectedDevices} 
-                  uploadSpeed = {this.state.combinedUploadSpeed}
-                  downloadSpeed = {this.state.combinedDownloadSpeed}
-                  />
-                  </Paper>
-                  </Paper>
-                </Grid> 
+              <Paper
+              elevation={0}
+              style = {{
+                height: '100%',
+                minHeight: '150px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '5px transparent',
+                background: 'linear-gradient(to right, red, purple)',
+                zIndex: '-1',
+                padding: '5px',
+              }}
+              >
+                <Paper
+                style = {{
+                  height: '100%',                      
+                }}>
+                <SummaryComponent 
+                chartData = {this.state.chartData}
+                connectedDevices = {this.state.connectedDevices} 
+                uploadSpeed = {this.state.combinedUploadSpeed}
+                downloadSpeed = {this.state.combinedDownloadSpeed}
+                />
+                </Paper>
+              </Paper>
+            </Grid> 
 
-                <Grid item xs = {12}> 
-                  <Paper
-                  elevation={0}
-                  style = {{
-                    border: '5px transparent',
-                    // borderRadius: '10px',
-                    background: 'linear-gradient(to right, red, purple)',
-                    zIndex: '-1',
-                    padding: '5px',
-                  }}
-                  >
-                  {/* <Typography>Devices</Typography> */}
-                  <Paper>
-                  <DeviceList
-                  devices={this.state.devices}
-                  darkState = {this.props.darkState}
-                  />
-                  </Paper>
-                  </Paper> 
-                  </Grid>   
-              </Grid>
+            <Grid item xs = {12}> 
+              <Paper
+              elevation={0}
+              style = {{
+                border: '5px transparent',
+                background: 'linear-gradient(to right, red, purple)',
+                zIndex: '-1',
+                padding: '5px',
+              }}
+              >
+                <Paper>
+                <DeviceList
+                devices={this.state.devices}
+                darkState = {this.props.darkState}
+                />
+                </Paper>
+              </Paper> 
+              </Grid>   
+          </Grid>
         )
     }
 }

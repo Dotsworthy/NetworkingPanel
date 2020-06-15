@@ -1,10 +1,8 @@
 import React from "react";
+
+import { Box, Grid, Typography } from "@material-ui/core";
 import WifiIcon from '@material-ui/icons/Wifi';
 import SpeedIcon from '@material-ui/icons/Speed';
-import Typography from '@material-ui/core/Typography';
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 
 const variant = 'body2'
 
