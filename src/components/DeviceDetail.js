@@ -41,22 +41,22 @@ class DeviceDetail extends Component {
             container
             direction="row"> 
                 <Grid
-                 item sm item md
+                 item sm md
                  >
-                <Typography variant="body2">Device: {this.props.deviceType}</Typography>
-                <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
-                <Typography variant="body2">MAC Address: {this.props.macAddress}</Typography>
-                <Typography variant="body2">OS: {this.props.operatingSystem}</Typography>
-                <Typography variant="body2">Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</Typography>
-                <Typography variant="body2">Upload Speed: {this.props.uploadSpeed}</Typography>
-                <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
+                    <Typography variant="body2">Device: {this.props.deviceType}</Typography>
+                    <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
+                    <Typography variant="body2">MAC Address: {this.props.macAddress}</Typography>
+                    <Typography variant="body2">OS: {this.props.operatingSystem}</Typography>
+                    <Typography variant="body2">Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</Typography>
+                    <Typography variant="body2">Upload Speed: {this.props.uploadSpeed}</Typography>
+                    <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
                 </Grid>        
                 
                 <Hidden
                 xsDown
                 >
                 <Grid
-                item sm = {8} item md={9}
+                item sm = {8} md={9}
                 
                 >  
                 <Typography

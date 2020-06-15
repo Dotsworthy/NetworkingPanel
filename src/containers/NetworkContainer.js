@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Paper, Typography, Container } from "@material-ui/core/";
+import {Grid, Paper, Typography} from "@material-ui/core/";
 
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
@@ -127,7 +127,7 @@ class NetworkContainer extends Component {
           direction="row"
           spacing={2}
           >
-            <Grid item xs = {12} item sm = {8} item md={8}>
+            <Grid item xs = {12} sm = {8} md={8}>
               <Paper
               elevation={0}
               style = {{
@@ -153,9 +153,7 @@ class NetworkContainer extends Component {
             </Grid>
               
             <Grid 
-            item xs={12} 
-            item sm={4} 
-            item md={4} 
+            item xs={12} sm={4} md={4} 
             >
               <Paper
               elevation={0}
