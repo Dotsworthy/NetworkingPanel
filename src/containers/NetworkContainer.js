@@ -3,13 +3,7 @@ import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
-import Typography from '@material-ui/core/Typography';
-import { borders } from '@material-ui/system';
-
 
 const URL = 'wss://network-sim.fraserkeir.com';
 
@@ -100,7 +94,6 @@ class NetworkContainer extends Component {
      }    
     }
   }
-
   
   countConnectedDevices() {
     let counter = 0;
