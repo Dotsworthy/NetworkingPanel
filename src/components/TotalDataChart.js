@@ -7,7 +7,6 @@ const lightOptions = {
         duraction: 50,
         easing: 'in',
     },
-    // title: 'Total Upload & Downloads',
     titleTextStyle: {
         fontName: 'Nunito',
     },
@@ -53,7 +52,6 @@ const lightOptions = {
 }
 
 const darkOptions = {
-// title: 'Total Upload & Downloads',
 titleTextStyle: {
     color: 'white',
     fontName: 'Nunito',

@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
+import { Grid, Typography, Hidden } from "@material-ui/core";
+
 import TotalDataChart from "./TotalDataChart";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-
-
 
 class DeviceDetail extends Component {
     constructor(props) {
@@ -46,24 +41,30 @@ class DeviceDetail extends Component {
             container
             direction="row"> 
                 <Grid
-                 item sm item md
+                 item sm md
                  >
-                <Typography variant="body2">Device: {this.props.deviceType}</Typography>
-                <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
-                <Typography variant="body2">MAC Address: {this.props.macAddress}</Typography>
-                <Typography variant="body2">OS: {this.props.operatingSystem}</Typography>
-                <Typography variant="body2">Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</Typography>
-                <Typography variant="body2">Upload Speed: {this.props.uploadSpeed}</Typography>
-                <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
+                    <Typography variant="body2">Device: {this.props.deviceType}</Typography>
+                    <Typography variant="body2">IP Address: {this.props.ipAddress}</Typography>
+                    <Typography variant="body2">MAC Address: {this.props.macAddress}</Typography>
+                    <Typography variant="body2">OS: {this.props.operatingSystem}</Typography>
+                    <Typography variant="body2">Connection Status: {this.props.activeConnection ? "Connected" : "Disconnected"}</Typography>
+                    <Typography variant="body2">Upload Speed: {this.props.uploadSpeed}</Typography>
+                    <Typography variant="body2">Download Speed: {this.props.downloadSpeed}</Typography>
                 </Grid>        
                 
                 <Hidden
                 xsDown
                 >
                 <Grid
-                item sm = {8} item md={10}
+                item sm = {8} md={9}
                 
+                >  
+                <Typography
+                style={{
+                    paddingLeft: '10px',
+                }}
                 >
+                Total Uploads/Downloads({this.props.deviceType})</Typography>
                 <TotalDataChart 
                 chartData={this.plotData()} 
                 darkState={this.props.darkState}
