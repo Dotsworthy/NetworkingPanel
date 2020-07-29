@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import TotalDataChart from "./TotalDataChart";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 

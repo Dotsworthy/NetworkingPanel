@@ -1,5 +1,4 @@
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
 import Switch from "@material-ui/core/Switch";
@@ -7,7 +6,6 @@ import NetworkContainer from "./NetworkContainer";
 import { CssBaseline } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from "@material-ui/core/Grid";
 
@@ -15,9 +13,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import {
     blue,
-    grey,
-    red,
-    deepOrange
+    grey
   } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
@@ -111,8 +107,8 @@ export default function Dashboard() {
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? blue[900] : grey[300];
   const mainSecondaryColor = darkState ? '#FF1053' : '#FF1053';
-  const backGroundColor = darkState ? '#1D3354' : grey[300];
-  const paperColor = darkState ? '#26537C': grey[200];
+  // const backGroundColor = darkState ? '#1D3354' : grey[300];
+  // const paperColor = darkState ? '#26537C': grey[200];
   const darkTheme = createMuiTheme({
     palette: {
         type: palletType,

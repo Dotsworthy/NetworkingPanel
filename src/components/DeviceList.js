@@ -1,4 +1,3 @@
-// import React, {Component} from 'react';
 import DeviceDetail from './DeviceDetail.js';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,9 +9,6 @@ import SignalWifi4BarTwoToneIcon from '@material-ui/icons/SignalWifi4BarTwoTone'
 import SignalWifiOffTwoToneIcon from '@material-ui/icons/SignalWifiOffTwoTone';
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
-import Container from "@material-ui/core/Container";
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
 
 
 
@@ -122,7 +118,6 @@ export default function VerticalTabs(props) {
             )
             
         })
-              
 
     return (
         <Grid
