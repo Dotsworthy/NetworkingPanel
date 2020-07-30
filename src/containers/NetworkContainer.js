@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 
 const URL = 'wss://network-sim.fraserkeir.com';
@@ -233,11 +234,23 @@ class NetworkContainer extends Component {
                   }}
                   >
                   {/* <Typography>Devices</Typography> */}
-                  <Paper>
+                  <Paper
+                  style = {{
+                    padding: '10px'
+                  }}
+                  >
                   {
-                  !this.state.devices.length ? <Typography>
-                  Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click <Button variant='text' onClick={() => this.createSampleData()}>here</Button> to view sample data until the server responds.
+                  !this.state.devices.length ? 
+                  <Container>
+                  <Typography>
+                  Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click below to view sample data until the server responds.
                   </Typography>
+                  <Button 
+                  variant='outlined' 
+                  size="small"
+                  onClick={() => this.createSampleData()}>View sample data
+                  </Button>
+                  </Container>
                   :<DeviceList
                     devices={this.state.devices}
                     darkState = {this.props.darkState} 
