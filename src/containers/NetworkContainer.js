@@ -82,26 +82,24 @@ class NetworkContainer extends Component {
     if (this.state.devices.length === 0) {
       return
     } else {
-      this.setState({chartData: [['Time', 'Upload Mbs', 'Download Mbs']]})
-      for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
-        let newChartData = []
-        let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
-        console.log(completeTimeString);
-        let formattedTimeString = completeTimeString.slice(11, 16)
-        console.log(formattedTimeString)
-        let uploadTotal = 0
-        let downloadTotal = 0
-        this.state.devices.forEach(device => {
-          uploadTotal += device.snap_shots[counter].upload_speed
-          downloadTotal += device.snap_shots[counter].download_speed
-        })
-        newChartData.push(formattedTimeString, uploadTotal, downloadTotal)
-        console.log(newChartData)
-        this.state.chartData.push(newChartData)
-        console.log(this.state.chartData)
-     }
-    console.log(this.state.chartData)     
-    }
+      let completeChartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+        for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
+          let newChartData = []
+          let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
+          console.log(completeTimeString);
+          let formattedTimeString = completeTimeString.slice(11, 16)
+          console.log(formattedTimeString)
+          let uploadTotal = 0
+          let downloadTotal = 0
+          this.state.devices.forEach(device => {
+            uploadTotal += device.snap_shots[counter].upload_speed
+            downloadTotal += device.snap_shots[counter].download_speed
+          })
+          newChartData.push(formattedTimeString, uploadTotal, downloadTotal)
+          completeChartData.push(newChartData)
+       }
+       this.setState({chartData: completeChartData})
+      }
   }
 
   
@@ -155,14 +153,11 @@ class NetworkContainer extends Component {
         this.setState({
           devices: sampleData
         }, () => {
-        
         this.countConnectedDevices();
         this.countUploadSpeed();
         this.countDownloadSpeed();
         this.chartDataMapping();
-        }
-        
-          );
+        });
     }
    
     render() {
@@ -239,14 +234,15 @@ class NetworkContainer extends Component {
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper>
-                  { this.state.devices === [] || <Typography>
-                      Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click <Button variant='text' onClick={() => this.createSampleData()}>here</Button> to view sample data until the server responds.
-                      </Typography>}
-                    
-                  {<DeviceList
-                  devices={this.state.devices}
-                  darkState = {this.props.darkState} />
-                  }
+                  {
+                  !this.state.devices.length ? <Typography>
+                  Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click <Button variant='text' onClick={() => this.createSampleData()}>here</Button> to view sample data until the server responds.
+                  </Typography>
+                  :<DeviceList
+                    devices={this.state.devices}
+                    darkState = {this.props.darkState} 
+                  />}
+                  
                   </Paper>
                   </Paper> 
                   </Grid>   
@@ -270,13 +266,37 @@ const sampleData = [
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
+        time_stamp: "2018-01-12 12:14:35.976715",
         upload_speed: 14,
         download_speed: 2,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
+        time_stamp: "2018-01-12 12:29:35.976715",
+        upload_speed: 17,
+        download_speed: 3,
+        active_connection: true
+      },
+      {
+        time_stamp: "2018-01-12 12:29:35.976715",
+        upload_speed: 17,
+        download_speed: 3,
+        active_connection: true
+      }, 
+      {
+        time_stamp: "2018-01-12 12:29:35.976715",
+        upload_speed: 17,
+        download_speed: 3,
+        active_connection: true
+      }, 
+      {
+        time_stamp: "2018-01-12 12:29:35.976715",
+        upload_speed: 17,
+        download_speed: 3,
+        active_connection: true
+      },
+      {
+        time_stamp: "2018-01-12 12:29:35.976715",
         upload_speed: 17,
         download_speed: 3,
         active_connection: true
@@ -297,17 +317,41 @@ const sampleData = [
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
+        time_stamp: "2018-01-12 12:14:35.976715",
         upload_speed: 28,
         download_speed: 9,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
+        time_stamp: "2018-01-12 12:29:35.976715",
         upload_speed: 25,
         download_speed: 7,
         active_connection: true
-      }
+      },
+      {
+        time_stamp: "2018-01-12 12:14:35.976715",
+        upload_speed: 28,
+        download_speed: 9,
+        active_connection: true
+      },
+      {
+        time_stamp: "2018-01-12 12:14:35.976715",
+        upload_speed: 28,
+        download_speed: 9,
+        active_connection: true
+      },
+      {
+        time_stamp: "2018-01-12 12:14:35.976715",
+        upload_speed: 28,
+        download_speed: 9,
+        active_connection: true
+      },
+      {
+        time_stamp: "2018-01-12 12:14:35.976715",
+        upload_speed: 28,
+        download_speed: 9,
+        active_connection: true
+      },
     ]
   }
 ]
