@@ -178,9 +178,13 @@ class NetworkContainer extends Component {
                     background: 'linear-gradient(to right, red, purple)',
                     zIndex: '-1',
                     padding: '5px',
+                    height: "210px"
                   }}
                   >
-                  <Paper>
+                  <Paper
+                  style = {{
+                    height: "200px"
+                  }}>
                   <TotalDataChart
                   chartData = {this.state.chartData} 
                   darkState = {this.props.darkState}
@@ -246,7 +250,7 @@ class NetworkContainer extends Component {
                   !this.state.devices.length ? 
                   <Container>
                   <Typography>
-                  Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click below to view sample data until the server responds.
+                  Welcome to the dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server that creates network data every minute. If you are seeing this message, the server is down for maintenance. Click below to view sample data until the server is back online.
                   </Typography>
                   <Button 
                   variant='outlined' 
