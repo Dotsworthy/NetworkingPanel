@@ -24,12 +24,13 @@ class DeviceDetail extends Component {
     plotData() {
         let chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
         let formattedTimeString = ''
-        this.props.snapShots.forEach(timeStamp => {
-            let newChartData = []    
-            formattedTimeString = timeStamp.time_stamp.slice(11, 16)
+        this.props.snapShots.forEach(snapShot => {
+            let newChartData = []
+            let completeTimeString = snapShot.time_stamp    
+            formattedTimeString = completeTimeString.slice(11, 16)
             newChartData.push(formattedTimeString)
-            newChartData.push(timeStamp.upload_speed)
-            newChartData.push(timeStamp.download_speed)
+            newChartData.push(snapShot.upload_speed)
+            newChartData.push(snapShot.download_speed)
             chartData.push(newChartData)
         })
         return chartData

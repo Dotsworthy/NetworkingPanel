@@ -111,7 +111,6 @@ export default function VerticalTabs(props) {
             )
             
         })
-              
 
     return (
         <Grid
@@ -127,9 +126,8 @@ export default function VerticalTabs(props) {
             >   
             {mapDeviceTab}    
             </Tabs>
-            <Grid
-            
-            >
+            <Grid>
+
             {mapDevicePanel}
             </Grid>
         </Grid>
