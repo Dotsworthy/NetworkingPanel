@@ -86,7 +86,9 @@ class NetworkContainer extends Component {
       for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
         let newChartData = []
         let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
+        console.log(completeTimeString);
         let formattedTimeString = completeTimeString.slice(11, 16)
+        console.log(formattedTimeString)
         let uploadTotal = 0
         let downloadTotal = 0
         this.state.devices.forEach(device => {
@@ -94,8 +96,11 @@ class NetworkContainer extends Component {
           downloadTotal += device.snap_shots[counter].download_speed
         })
         newChartData.push(formattedTimeString, uploadTotal, downloadTotal)
+        console.log(newChartData)
         this.state.chartData.push(newChartData)
-     }    
+        console.log(this.state.chartData)
+     }
+    console.log(this.state.chartData)     
     }
   }
 
@@ -150,11 +155,13 @@ class NetworkContainer extends Component {
         this.setState({
           devices: sampleData
         }, () => {
-        this.chartDataMapping();
+        
         this.countConnectedDevices();
         this.countUploadSpeed();
         this.countDownloadSpeed();
+        this.chartDataMapping();
         }
+        
           );
     }
    
@@ -257,21 +264,21 @@ const sampleData = [
     ip_address: "192.168.1.23",
     snap_shots: [
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 23,
+        download_speed: 7,
         active_connection: true
       },
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 14,
+        download_speed: 2,
         active_connection: true
       },
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 17,
+        download_speed: 3,
         active_connection: true
       }
     ]
@@ -284,21 +291,21 @@ const sampleData = [
     ip_address: "192.168.1.23",
     snap_shots: [
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 45,
+        download_speed: 12,
         active_connection: true
       },
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 28,
+        download_speed: 9,
         active_connection: true
       },
       {
-        time_stamp: "201221304302901",
-        upload_speed: 23456,
-        download_speed: 8946748,
+        time_stamp: "2018-01-12 11:59:35.976715",
+        upload_speed: 25,
+        download_speed: 7,
         active_connection: true
       }
     ]

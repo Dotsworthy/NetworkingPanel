@@ -32,8 +32,8 @@ class DeviceDetail extends Component {
             let completeTimeString = snapShot.time_stamp    
             formattedTimeString = completeTimeString.slice(11, 16)
             newChartData.push(formattedTimeString)
-            newChartData.push(snapShot.uploadSpeed)
-            newChartData.push(snapShot.downloadSpeed)
+            newChartData.push(snapShot.upload_speed)
+            newChartData.push(snapShot.download_speed)
             chartData.push(newChartData)
         })
         return chartData
