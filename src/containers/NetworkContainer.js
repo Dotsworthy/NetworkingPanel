@@ -24,7 +24,7 @@ class NetworkContainer extends Component {
             ws: null,
           };
         this.toggleMode = this.toggleMode.bind(this);   
-        // this.createSampleData = this.createSampleData.bind(this);
+        this.createSampleData = this.createSampleData.bind(this);
     }
 
   componentDidMount() {
@@ -147,29 +147,15 @@ class NetworkContainer extends Component {
     }
 
     createSampleData(event) {
-      let sampleData = [
-        {
-          hostName: "Andrew's Laptop",
-          device_type: "PC",
-          operating_system: "OSx",
-          mac_address: "82:0f:0c:79:5d:69" ,
-          ip_address: "192.168.1.23",
-          snap_shots: [
-            {
-              time_stamp: 123456789,
-              upload_speed: 23456,
-              download_speed: 8946748,
-              active_connection: true
-            }
-          ]
+        this.setState({
+          devices: sampleData
+        }, () => {
+        this.chartDataMapping();
+        this.countConnectedDevices();
+        this.countUploadSpeed();
+        this.countDownloadSpeed();
         }
-      ]
-      this.setState({devices: sampleData})
-      // // this.chartDataMapping()
-      this.countConnectedDevices()
-      this.countUploadSpeed()
-      this.countDownloadSpeed()
-      console.log(sampleData);
+          );
     }
    
     render() {
@@ -246,11 +232,11 @@ class NetworkContainer extends Component {
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper>
-                  { this.state.devices ? 
-                    <Typography>
+                  { this.state.devices === [] || <Typography>
                       Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click <Button variant='text' onClick={() => this.createSampleData()}>here</Button> to view sample data until the server responds.
-                      </Typography>
-                   : <DeviceList
+                      </Typography>}
+                    
+                  {<DeviceList
                   devices={this.state.devices}
                   darkState = {this.props.darkState} />
                   }
@@ -261,5 +247,62 @@ class NetworkContainer extends Component {
         )
     }
 }
+
+const sampleData = [
+  {
+    hostName: "Andrew's Laptop",
+    device_type: "PC",
+    operating_system: "OSx",
+    mac_address: "82:0f:0c:79:5d:69" ,
+    ip_address: "192.168.1.23",
+    snap_shots: [
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      },
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      },
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      }
+    ]
+  },
+  {
+    hostName: "Jerry's Phone",
+    device_type: "Phone",
+    operating_system: "iOS10",
+    mac_address: "82:0f:0c:79:5d:69" ,
+    ip_address: "192.168.1.23",
+    snap_shots: [
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      },
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      },
+      {
+        time_stamp: "201221304302901",
+        upload_speed: 23456,
+        download_speed: 8946748,
+        active_connection: true
+      }
+    ]
+  }
+]
 
 export default NetworkContainer;
