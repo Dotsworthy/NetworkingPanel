@@ -4,9 +4,11 @@ import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 
-const URL = 'ws://77.68.23.244:5001';
+const URL = 'wss://network-sim.fraserkeir.com';
 
 class NetworkContainer extends Component {
     constructor(props) {
@@ -22,6 +24,7 @@ class NetworkContainer extends Component {
             ws: null,
           };
         this.toggleMode = this.toggleMode.bind(this);   
+        // this.createSampleData = this.createSampleData.bind(this);
     }
 
   componentDidMount() {
@@ -142,6 +145,32 @@ class NetworkContainer extends Component {
       this.setState({darkMode: false})
       }
     }
+
+    createSampleData(event) {
+      let sampleData = [
+        {
+          hostName: "Andrew's Laptop",
+          device_type: "PC",
+          operating_system: "OSx",
+          mac_address: "82:0f:0c:79:5d:69" ,
+          ip_address: "192.168.1.23",
+          snap_shots: [
+            {
+              time_stamp: 123456789,
+              upload_speed: 23456,
+              download_speed: 8946748,
+              active_connection: true
+            }
+          ]
+        }
+      ]
+      this.setState({devices: sampleData})
+      // // this.chartDataMapping()
+      this.countConnectedDevices()
+      this.countUploadSpeed()
+      this.countDownloadSpeed()
+      console.log(sampleData);
+    }
    
     render() {
         return (
@@ -217,10 +246,14 @@ class NetworkContainer extends Component {
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper>
-                  <DeviceList
+                  { this.state.devices ? 
+                    <Typography>
+                      Welcome to dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server. If you are seeing this message, there may have been a delay between the server and the app. Click <Button variant='text' onClick={() => this.createSampleData()}>here</Button> to view sample data until the server responds.
+                      </Typography>
+                   : <DeviceList
                   devices={this.state.devices}
-                  darkState = {this.props.darkState}
-                  />
+                  darkState = {this.props.darkState} />
+                  }
                   </Paper>
                   </Paper> 
                   </Grid>   

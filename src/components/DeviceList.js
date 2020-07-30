@@ -11,8 +11,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 
 
-
-
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
 
@@ -133,9 +131,8 @@ export default function VerticalTabs(props) {
             >   
             {mapDeviceTab}    
             </Tabs>
-            <Grid
-            
-            >
+            <Grid>
+
             {mapDevicePanel}
             </Grid>
         </Grid>
