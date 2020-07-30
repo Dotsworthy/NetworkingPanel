@@ -4,6 +4,9 @@ import {Grid, Paper, Typography} from "@material-ui/core/";
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
+import { Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
+
 
 const URL = 'wss://network-sim.fraserkeir.com';
 
@@ -79,9 +82,7 @@ class NetworkContainer extends Component {
         for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
           let newChartData = []
           let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp
-          console.log(completeTimeString);
           let formattedTimeString = completeTimeString.slice(11, 16)
-          console.log(formattedTimeString)
           let uploadTotal = 0
           let downloadTotal = 0
           this.state.devices.forEach(device => {
@@ -121,6 +122,17 @@ class NetworkContainer extends Component {
     })
     this.setState({combinedDownloadSpeed: counter})
   }
+
+  createSampleData(event) {
+    this.setState({
+      devices: sampleData
+    }, () => {
+    this.countConnectedDevices();
+    this.countUploadSpeed();
+    this.countDownloadSpeed();
+    this.chartDataMapping();
+    });
+  }
    
     render() {
         return (
@@ -138,6 +150,7 @@ class NetworkContainer extends Component {
                 background: 'linear-gradient(to right, red, purple)',
                 zIndex: '-1',
                 padding: '5px',
+                
               }}
               >
                 <Paper>
@@ -145,6 +158,7 @@ class NetworkContainer extends Component {
                 <Typography
                 style={{
                   paddingLeft: '10px',
+                  
                 }}
                 >Total Uploads/Downloads (All Devices)</Typography> 
                 <TotalDataChart
@@ -186,22 +200,43 @@ class NetworkContainer extends Component {
             </Grid> 
 
             <Grid item xs = {12}> 
-              <Paper
-              elevation={0}
-              style = {{
-                border: '5px transparent',
-                background: 'linear-gradient(to right, red, purple)',
-                zIndex: '-1',
-                padding: '5px',
-              }}
-              >
-                <Paper>
-                <DeviceList
-                devices={this.state.devices}
-                darkState = {this.props.darkState}
-                />
-                </Paper>
-              </Paper> 
+            <Paper
+                  elevation={0}
+                  style = {{
+                    border: '5px transparent',
+                    // borderRadius: '10px',
+                    background: 'linear-gradient(to right, red, purple)',
+                    zIndex: '-1',
+                    padding: '5px',
+                    // height: "316px"
+                  }}
+                  >
+                  {/* <Typography>Devices</Typography> */}
+                  <Paper
+                  style = {{
+                    padding: '10px',
+                    // height: "306px"
+                  }}
+                  >
+                  {
+                  !this.state.devices.length ? 
+                  <Container>
+                  <Typography>
+                  Welcome to the dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server that creates network data every minute. If you are seeing this message, the server is down for maintenance. Click below to view sample data until the server is back online.
+                  </Typography>
+                  <Button 
+                  variant='outlined' 
+                  size="small"
+                  onClick={() => this.createSampleData()}>View sample data
+                  </Button>
+                  </Container>
+                  :<DeviceList
+                    devices={this.state.devices}
+                    darkState = {this.props.darkState} 
+                  />}
+                  
+                  </Paper>
+                  </Paper> 
               </Grid>   
           </Grid>
         )

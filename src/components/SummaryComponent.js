@@ -3,12 +3,6 @@ import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import WifiIcon from '@material-ui/icons/Wifi';
 import SpeedIcon from '@material-ui/icons/Speed';
-<<<<<<< HEAD
-=======
-import Typography from '@material-ui/core/Typography';
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
->>>>>>> develop
 
 const variant = 'body2'
 
