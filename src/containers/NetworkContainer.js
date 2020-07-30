@@ -206,6 +206,7 @@ class NetworkContainer extends Component {
                     background: 'linear-gradient(to right, red, purple)',
                     zIndex: '-1',
                     padding: '5px',
+                    
                   }}
                   >
                     <Paper
@@ -231,12 +232,14 @@ class NetworkContainer extends Component {
                     background: 'linear-gradient(to right, red, purple)',
                     zIndex: '-1',
                     padding: '5px',
+                    height: "316px"
                   }}
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper
                   style = {{
-                    padding: '10px'
+                    padding: '10px',
+                    height: "306px"
                   }}
                   >
                   {
