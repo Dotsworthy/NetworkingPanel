@@ -253,7 +253,8 @@ class NetworkContainer extends Component {
 
 const sampleData = [
   {
-    hostName: "Andrew's Laptop",
+    id: 1,
+    host_name: "Andrew's Laptop",
     device_type: "PC",
     operating_system: "OSx",
     mac_address: "82:0f:0c:79:5d:69" ,
@@ -304,7 +305,8 @@ const sampleData = [
     ]
   },
   {
-    hostName: "Jerry's Phone",
+    id: 2,
+    host_name: "Jerry's Phone",
     device_type: "Phone",
     operating_system: "iOS10",
     mac_address: "82:0f:0c:79:5d:69" ,
