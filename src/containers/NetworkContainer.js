@@ -253,47 +253,185 @@ const sampleData = [
     ip_address: "192.168.1.23",
     snap_shots: [
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
-        upload_speed: 23,
-        download_speed: 7,
+        time_stamp: "2020-07-31 10:00:00.976715",
+        upload_speed: 18,
+        download_speed: 50,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
+        time_stamp: "2020-07-31 10:01:35.976715",
+        upload_speed: 9,
+        download_speed: 38,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:02:35.976715",
         upload_speed: 14,
-        download_speed: 2,
+        download_speed: 45,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:29:35.976715",
-        upload_speed: 17,
-        download_speed: 3,
-        active_connection: true
-      },
-      {
-        time_stamp: "2018-01-12 12:29:35.976715",
-        upload_speed: 17,
-        download_speed: 3,
+        time_stamp: "2020-07-31 10:03:35.976715",
+        upload_speed: 11,
+        download_speed: 37,
         active_connection: true
       }, 
       {
-        time_stamp: "2018-01-12 12:29:35.976715",
-        upload_speed: 17,
-        download_speed: 3,
-        active_connection: true
+        time_stamp: "2020-07-31 10:04:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
       }, 
       {
-        time_stamp: "2018-01-12 12:29:35.976715",
+        time_stamp: "2020-07-31 10:05:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:05:35.976715",
         upload_speed: 17,
-        download_speed: 3,
+        download_speed: 47,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:29:35.976715",
-        upload_speed: 17,
-        download_speed: 3,
+        time_stamp: "2020-07-31 10:06:35.976715",
+        upload_speed: 14,
+        download_speed: 46,
         active_connection: true
-      }
+      },
+      {
+        time_stamp: "2020-07-31 10:07:35.976715",
+        upload_speed: 19,
+        download_speed: 56,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:08:35.976715",
+        upload_speed: 13,
+        download_speed: 48,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:09:35.976715",
+        upload_speed: 14,
+        download_speed: 59,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:10:35.976715",
+        upload_speed: 10,
+        download_speed: 54,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:11:35.976715",
+        upload_speed: 7,
+        download_speed: 44,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:12:35.976715",
+        upload_speed: 9,
+        download_speed: 28,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:13:35.976715",
+        upload_speed: 6,
+        download_speed: 25,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:13:35.976715",
+        upload_speed: 10,
+        download_speed: 29,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:14:35.976715",
+        upload_speed: 13,
+        download_speed: 38,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:15:35.976715",
+        upload_speed: 17,
+        download_speed: 49,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:16:35.976715",
+        upload_speed: 19,
+        download_speed: 54,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:17:35.976715",
+        upload_speed: 20,
+        download_speed: 57,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:18:35.976715",
+        upload_speed: 18,
+        download_speed: 50,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:19:35.976715",
+        upload_speed: 16,
+        download_speed: 49,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:20:35.976715",
+        upload_speed: 18,
+        download_speed: 54,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:21:35.976715",
+        upload_speed: 14,
+        download_speed: 45,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:22:35.976715",
+        upload_speed: 13,
+        download_speed: 44,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:23:35.976715",
+        upload_speed: 12,
+        download_speed: 40,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:24:35.976715",
+        upload_speed: 12,
+        download_speed: 45,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:25:35.976715",
+        upload_speed: 9,
+        download_speed: 33,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:26:35.976715",
+        upload_speed: 5,
+        download_speed: 29,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:27:35.976715",
+        upload_speed: 9,
+        download_speed: 28,
+        active_connection: true
+      },
     ]
   },
   {
@@ -305,46 +443,184 @@ const sampleData = [
     ip_address: "192.168.1.23",
     snap_shots: [
       {
-        time_stamp: "2018-01-12 11:59:35.976715",
-        upload_speed: 45,
-        download_speed: 12,
+        time_stamp: "2020-07-31 10:00:00.976715",
+        upload_speed: 4,
+        download_speed: 27,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
-        upload_speed: 28,
-        download_speed: 9,
+        time_stamp: "2020-07-31 10:01:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:02:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:03:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      }, 
+      {
+        time_stamp: "2020-07-31 10:04:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      }, 
+      {
+        time_stamp: "2020-07-31 10:05:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:05:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:06:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:07:35.976715",
+        upload_speed: 4,
+        download_speed: 27,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:29:35.976715",
-        upload_speed: 25,
-        download_speed: 7,
+        time_stamp: "2020-07-31 10:08:35.976715",
+        upload_speed: 3,
+        download_speed: 24,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
-        upload_speed: 28,
-        download_speed: 9,
+        time_stamp: "2020-07-31 10:09:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:10:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:11:35.976715",
+        upload_speed: 2,
+        download_speed: 21,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
-        upload_speed: 28,
-        download_speed: 9,
+        time_stamp: "2020-07-31 10:12:35.976715",
+        upload_speed: 4,
+        download_speed: 23,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
-        upload_speed: 28,
-        download_speed: 9,
+        time_stamp: "2020-07-31 10:13:35.976715",
+        upload_speed: 6,
+        download_speed: 26,
         active_connection: true
       },
       {
-        time_stamp: "2018-01-12 12:14:35.976715",
-        upload_speed: 28,
-        download_speed: 9,
+        time_stamp: "2020-07-31 10:13:35.976715",
+        upload_speed: 7,
+        download_speed: 27,
         active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:14:35.976715",
+        upload_speed: 6,
+        download_speed: 26,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:15:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:16:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:17:35.976715",
+        upload_speed: 5,
+        download_speed: 34,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:18:35.976715",
+        upload_speed: 4,
+        download_speed: 32,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:19:35.976715",
+        upload_speed: 4,
+        download_speed: 29,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:20:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:21:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:22:35.976715",
+        upload_speed: 6,
+        download_speed: 23,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:23:35.976715",
+        upload_speed: 5,
+        download_speed: 26,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:24:35.976715",
+        upload_speed: 5,
+        download_speed: 30,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:25:35.976715",
+        upload_speed: 6,
+        download_speed: 33,
+        active_connection: true
+      },
+      {
+        time_stamp: "2020-07-31 10:26:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
+      },
+      {
+        time_stamp: "2020-07-31 10:27:35.976715",
+        upload_speed: 0,
+        download_speed: 0,
+        active_connection: false
       },
     ]
   }
