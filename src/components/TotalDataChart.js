@@ -113,7 +113,16 @@ const TotalDataChart = (props) => {
      <div>
         <Chart
             chartType="LineChart"
-            loader={<div>Loading Chart</div>}
+            loader={<div
+            style= {{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "stretch"
+            }}    
+            >
+            Loading Chart
+            </div>
+            }
             data={ props.chartData }
             options={props.darkState ? darkOptions : lightOptions }
         />

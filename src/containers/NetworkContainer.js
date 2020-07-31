@@ -150,10 +150,14 @@ class NetworkContainer extends Component {
                 background: 'linear-gradient(to right, red, purple)',
                 zIndex: '-1',
                 padding: '5px',
-                
+                height: "250px",
               }}
               >
-                <Paper>
+                <Paper
+                style = {{
+                  height: "240px"
+                }}
+                >
                 
                 <Typography
                 style={{
@@ -208,14 +212,14 @@ class NetworkContainer extends Component {
                     background: 'linear-gradient(to right, red, purple)',
                     zIndex: '-1',
                     padding: '5px',
-                    // height: "316px"
+                    height: "391px"
                   }}
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper
                   style = {{
                     padding: '10px',
-                    // height: "306px"
+                    height: "381px"
                   }}
                   >
                   {
