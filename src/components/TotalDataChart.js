@@ -34,7 +34,7 @@ const lightOptions = {
         showTextEvery: 5,
     },
     vAxis: {
-        title: 'Mbs',
+        title: 'Mbps',
         titleTextStyle: {
             fontName: 'Nunito',
         },
@@ -85,7 +85,7 @@ hAxis: {
     showTextEvery: 5, 
 },
 vAxis: { 
-    title: 'Mbs',
+    title: 'Mbps',
     titleTextStyle: {
         color: 'white',
         fontName: 'Nunito',

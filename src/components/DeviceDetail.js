@@ -22,7 +22,7 @@ class DeviceDetail extends Component {
     }
 
     plotData() {
-        let chartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+        let chartData = [['Time', 'Upload Mbps', 'Download Mbps']]
         let formattedTimeString = ''
         this.props.snapShots.forEach(snapShot => {
             let newChartData = []

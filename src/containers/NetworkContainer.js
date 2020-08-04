@@ -14,7 +14,7 @@ class NetworkContainer extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          chartData: [['Time', 'Upload Mbs', 'Download Mbs'], [0,0,0]],
+          chartData: [['Time', 'Upload Mbps', 'Download Mbps'], [0,0,0]],
           connectedDevices: 0,
           combinedUploadSpeed: 0,
           combinedDownloadSpeed: 0,
@@ -78,7 +78,7 @@ class NetworkContainer extends Component {
     if (this.state.devices.length === 0) {
       return
     } else {
-      let completeChartData = [['Time', 'Upload Mbs', 'Download Mbs']]
+      let completeChartData = [['Time', 'Upload Mbps', 'Download Mbps']]
         for (let counter = 0; counter < this.state.devices[0].snap_shots.length; counter ++) {
           let newChartData = []
           let completeTimeString = this.state.devices[0].snap_shots[counter].time_stamp

@@ -35,7 +35,7 @@ function SummaryComponent(props) {
             style={{fill: '#69E067'}}
             />
             <Typography variant={variant} align='center'>Download Speed </Typography>
-            <Typography variant={variant} align='center'>{props.downloadSpeed} Mbs</Typography>
+            <Typography variant={variant} align='center'>{props.downloadSpeed} Mbps</Typography>
             </Box>
 
             <Box
@@ -47,7 +47,7 @@ function SummaryComponent(props) {
             >
             </SpeedIcon>    
             <Typography variant={variant}align='center'>Upload Speed</Typography>
-            <Typography variant={variant} align='center'>{props.uploadSpeed} Mbs </Typography>
+            <Typography variant={variant} align='center'>{props.uploadSpeed} Mbps </Typography>
             </Box>
         </Grid>
         
