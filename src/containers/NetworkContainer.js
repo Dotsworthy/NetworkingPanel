@@ -4,8 +4,8 @@ import {Grid, Paper, Typography} from "@material-ui/core/";
 import SummaryComponent from '../components/SummaryComponent.js';
 import DeviceList from '../components/DeviceList.js';
 import TotalDataChart from "../components/TotalDataChart";
-import { Button } from '@material-ui/core';
-import { Container } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
+// import { Container } from '@material-ui/core';
 
 
 const URL = 'wss://network-sim.fraserkeir.com';
@@ -18,14 +18,24 @@ class NetworkContainer extends Component {
           connectedDevices: 0,
           combinedUploadSpeed: 0,
           combinedDownloadSpeed: 0,
-          devices: [],
+          devices: sampleData,
           connectedWebsocket: false,
           ws: null,
         };
   }
 
   componentDidMount() {
+    // Temporary measure as server appears to be permanently online.
+    if (this.state.devices) {
+      this.chartDataMapping()
+      this.countConnectedDevices()
+      this.countUploadSpeed()
+      this.countDownloadSpeed()
+    }
+    
+
     this.connectToWebSocket();
+    
   }
 
   connectToWebSocket() {
@@ -223,18 +233,19 @@ class NetworkContainer extends Component {
                   }}
                   >
                   {
-                  !this.state.devices.length ? 
-                  <Container>
-                  <Typography>
-                  Welcome to the dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server that creates network data every minute. If you are seeing this message, the server is down for maintenance. Click below to view sample data until the server is back online.
-                  </Typography>
-                  <Button 
-                  variant='outlined' 
-                  size="small"
-                  onClick={() => this.createSampleData()}>View sample data
-                  </Button>
-                  </Container>
-                  :<DeviceList
+                  // !this.state.devices.length ? 
+                  // <Container>
+                  // <Typography>
+                  // Welcome to the dashNet Networking Panel. This app emulates a network and devices that connect to it, rendering in real time by collecting data from a seperate server that creates network data every minute. If you are seeing this message, the server is down for maintenance. Click below to view sample data until the server is back online.
+                  // </Typography>
+                  // <Button 
+                  // variant='outlined' 
+                  // size="small"
+                  // onClick={() => this.createSampleData()}>View sample data
+                  // </Button>
+                  // </Container>
+                  // :
+                  <DeviceList
                     devices={this.state.devices}
                     darkState = {this.props.darkState} 
                   />}
