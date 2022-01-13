@@ -161,7 +161,8 @@ class NetworkContainer extends Component {
                 
                 <Typography
                 style={{
-                  paddingLeft: '10px',
+                  paddingTop: '5px',
+                  paddingLeft: '10px'
                   
                 }}
                 >Total Uploads/Downloads (All Devices)</Typography> 

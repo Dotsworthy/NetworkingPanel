@@ -62,7 +62,7 @@ class DeviceDetail extends Component {
                 >  
                 <Typography
                 style={{
-                    paddingLeft: '10px',
+                    paddingLeft: '10px'
                 }}
                 >
                 Total Uploads/Downloads({this.props.deviceType})</Typography>
