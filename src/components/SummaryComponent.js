@@ -21,6 +21,7 @@ function SummaryComponent(props) {
             <Box
             style={{
                 textAlign: 'center',
+                padding: '5px'
             }}> 
             <WifiIcon/>
             <Typography variant={variant} align='center'> Connections </Typography>
@@ -30,6 +31,7 @@ function SummaryComponent(props) {
             <Box
             style={{
                 textAlign: 'center',
+                padding: '5px'
             }}>
             <SpeedIcon
             style={{fill: '#69E067'}}
@@ -41,6 +43,7 @@ function SummaryComponent(props) {
             <Box
             style={{
                 textAlign: 'center',
+                padding: '5px'
             }}>
             <SpeedIcon
             style={{fill: '#FF1053'}}

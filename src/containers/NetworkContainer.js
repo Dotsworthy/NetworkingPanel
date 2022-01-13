@@ -165,7 +165,7 @@ class NetworkContainer extends Component {
                   paddingLeft: '10px'
                   
                 }}
-                >Total Uploads/Downloads (All Devices)</Typography> 
+                >Total Uploads/Downloads</Typography> 
                 <TotalDataChart
                 chartData = {this.state.chartData} 
                 darkState = {this.props.darkState}
@@ -213,14 +213,14 @@ class NetworkContainer extends Component {
                     background: 'linear-gradient(to right, red, purple)',
                     zIndex: '-1',
                     padding: '5px',
-                    height: "391px"
+                    // height: "391px"
                   }}
                   >
                   {/* <Typography>Devices</Typography> */}
                   <Paper
                   style = {{
                     padding: '10px',
-                    height: "381px"
+                    minHeight: "381px"
                   }}
                   >
                   {
