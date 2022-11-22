@@ -19,7 +19,7 @@
     "react-event-injector": "^1.1.2",
     "react-event-listener": "^0.6.6",
     "react-google-charts": "^3.0.15",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.1",
     "socket.io": "^2.4.1"
   },
